@@ -1,6 +1,6 @@
-# assignment_clinic_finder
+# Assignment Clinic Finder 
 
-A new Flutter project.
+An app that finds the closest clinics from a database based off the user's current location.
 
 ## Getting Started
 
