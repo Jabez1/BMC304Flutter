@@ -12,6 +12,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const AddClinicPage(),
+        '/second': (context) => const UpdateClinicPage(),
+
+      },
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -93,6 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
+          // im kenji
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
