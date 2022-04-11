@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:assignment_clinic_finder/InsertCase.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'main.dart';
 import 'HomePage.dart';
+import 'InsertCase.dart';
 
 class ViewCases extends StatefulWidget {
   ViewCases({Key? key}) : super(key: key);
@@ -29,6 +31,28 @@ class _MyAppState extends State<ViewCases> {
       home: Scaffold(
         appBar: AppBar(
           title: Text('Flutter ListView'),
+          leading: GestureDetector(
+            onTap: () { Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            ); },
+            child: Icon(
+              Icons.arrow_back, // add custom icons also
+            ),
+          ),
+          actions: <Widget> [Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => InsertCase()),
+                );},
+                child: Icon(
+                    Icons.add,
+                ),
+              )
+          ),]
+
         ),
         body: Center(
           child: FutureBuilder <List<DeathCase>>(
@@ -102,22 +126,6 @@ class DeathCase {
   }
 }
 
-createDeathCase(String date, String count) async{
-  final response = await http.post(
-      Uri.parse('http://' + urIp + '/BMC304php/BMC304php/deathCaseInsert.php'),
-      body:{
-        'deathDate' : date,
-        'deathCount' : count
-      }
-  );
-  if (response.statusCode == 200){
-    print("Returned Message: "+response.body.toString());
-  }
-  else{
-    throw Exception('Unexpected Error Occurred!');
-  }
-}
-
 deleteDeathCase(String date) async{
   final response = await http.post(
       Uri.parse('http://' + urIp + '/BMC304php/deathCaseDelete.php'),
@@ -147,7 +155,6 @@ class DeathCaseCard extends StatelessWidget{
         child: Card(
             child: InkWell(
                 onTap: (){
-
                 },
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -158,18 +165,18 @@ class DeathCaseCard extends StatelessWidget{
                       ),
                       Text("Death Count: " + this.count.toString()),
                       ElevatedButton(
-                      child: Text('back button lol'),
-                      style: ElevatedButton.styleFrom(
-                      primary: Colors.purple,
-                      padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-                      textStyle: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold)),
-                      onPressed: () {
-                      Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomePage()),
-                      );
+                        child: Text('back button lol'),
+                        style: ElevatedButton.styleFrom(
+                        primary: Colors.purple,
+                        padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                        textStyle: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold)),
+                        onPressed: () {
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomePage()),
+                        );
                       }
                       ),
                     ]

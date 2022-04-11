@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'HomePage.dart';
 import 'ViewCases.dart';
+import 'InsertCase.dart';
 
 final String urIp = "192.168.42.217"; //Change ur IP here for easy php
 
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const HomePage(),
         '/viewCases': (context) => ViewCases(),
+        '/insertCase': (context) => InsertCase(),
       },
     );
   }
