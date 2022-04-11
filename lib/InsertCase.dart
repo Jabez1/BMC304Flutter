@@ -11,14 +11,25 @@ import 'ViewCases.dart';
 class InsertCase extends StatelessWidget {
   const InsertCase({Key? key}) : super(key: key);
 
-  static const String _title = 'Flutter Code Sample';
+  static const String _title = 'Insert Death Cases for a date';
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: _title,
       home: Scaffold(
-        appBar: AppBar(title: const Text(_title)),
+        appBar: AppBar(
+          title: const Text(_title),
+          leading: GestureDetector(
+            onTap: () { Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ViewCases()),
+            ); },
+            child: Icon(
+              Icons.arrow_back, // add custom icons also
+            ),
+          ),
+        ),
         body: const MyCustomForm(),
       ),
     );

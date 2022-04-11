@@ -150,7 +150,7 @@ class DeathCaseCard extends StatelessWidget{
   Widget build(BuildContext context){
     return Container(
         padding: EdgeInsets.all(5),
-        height:200,
+        height: 100,
         width: 400,
         child: Card(
             child: InkWell(
@@ -164,21 +164,6 @@ class DeathCaseCard extends StatelessWidget{
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       Text("Death Count: " + this.count.toString()),
-                      ElevatedButton(
-                        child: Text('back button lol'),
-                        style: ElevatedButton.styleFrom(
-                        primary: Colors.purple,
-                        padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-                        textStyle: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold)),
-                        onPressed: () {
-                        Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomePage()),
-                        );
-                      }
-                      ),
                     ]
                 )
             )
