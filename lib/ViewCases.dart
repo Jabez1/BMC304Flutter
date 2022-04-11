@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'main.dart';
+import 'HomePage.dart';
 
 class ViewCases extends StatefulWidget {
   ViewCases({Key? key}) : super(key: key);
@@ -42,19 +44,17 @@ class _MyAppState extends State<ViewCases> {
                         final item = cases?[index];
                         return Dismissible(
                           key: Key(item!.getDeathDate()),
-
                           onDismissed: (direction){
-
                             setState((){
                               cases?.removeAt(index);
-                              deleteDeathCase(item!.getDeathDate());
+                              deleteDeathCase(item.getDeathDate());
                             });
                           },
                           background:Container(color: Colors.red),
                           child: Center(
                               child: DeathCaseCard(
                                   date: cases![index].getDeathDate(),
-                                  count: cases![index].deathCount
+                                  count: cases[index].deathCount
                               )
                           ),
                         );
@@ -75,7 +75,7 @@ class _MyAppState extends State<ViewCases> {
 
 Future <List<DeathCase>> fetchData() async {
   final response =await http
-      .get(Uri.parse('http://192.168.42.217/BMC304php/deathCaseJson.php'));
+      .get(Uri.parse('http://' + urIp + '/BMC304php/deathCaseJson.php'));
   if (response.statusCode == 200) {
     List jsonResponse = json.decode(response.body);
     return jsonResponse.map((data) => new DeathCase.fromJson(data)).toList();
@@ -104,7 +104,7 @@ class DeathCase {
 
 createDeathCase(String date, String count) async{
   final response = await http.post(
-      Uri.parse('http://192.168.42.217/BMC304php/deathCaseInsert.php'),
+      Uri.parse('http://' + urIp + '/BMC304php/BMC304php/deathCaseInsert.php'),
       body:{
         'deathDate' : date,
         'deathCount' : count
@@ -120,7 +120,7 @@ createDeathCase(String date, String count) async{
 
 deleteDeathCase(String date) async{
   final response = await http.post(
-      Uri.parse('http://192.168.42.217/BMC304php/deathCaseDelete.php'),
+      Uri.parse('http://' + urIp + '/BMC304php/deathCaseDelete.php'),
       body:{
         'deathDate' : date
       }
@@ -157,7 +157,21 @@ class DeathCaseCard extends StatelessWidget{
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       Text("Death Count: " + this.count.toString()),
-
+                      ElevatedButton(
+                      child: Text('back button lol'),
+                      style: ElevatedButton.styleFrom(
+                      primary: Colors.purple,
+                      padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                      textStyle: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold)),
+                      onPressed: () {
+                      Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomePage()),
+                      );
+                      }
+                      ),
                     ]
                 )
             )
