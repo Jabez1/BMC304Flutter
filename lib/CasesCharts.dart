@@ -66,7 +66,7 @@ class CasesChartMaker extends StatelessWidget {
   Widget build(BuildContext context) {
     List<charts.Series<DeathCaseSeries, String>> series = [
       charts.Series(
-          id: "Subscribers",
+          id: "Deaths",
           data: data,
           domainFn: (DeathCaseSeries series, _) => series.date,
           measureFn: (DeathCaseSeries series, _) => series.count,
@@ -83,7 +83,7 @@ class CasesChartMaker extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Text(
-                "World of Warcraft Subscribers by Year",
+                "Covid Deaths for the past few days",
                 //style: Theme.of(context).textTheme.bodyText2,
               ),
               Expanded(

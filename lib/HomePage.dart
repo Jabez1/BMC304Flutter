@@ -1,3 +1,4 @@
+import 'package:assignment_clinic_finder/AdminLoginPage.dart';
 import 'package:flutter/material.dart';
 import 'ViewCases.dart';
 import 'CasesCharts.dart';
@@ -46,7 +47,21 @@ class _MyHomePageState extends State<HomePage> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text("widget.title"),
+        title: Text("Home Page"),
+        automaticallyImplyLeading: false,
+        actions: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {Navigator.pushNamed(context, '/loginPage');
+                  },
+                child: Icon(
+                  Icons.login,
+                  size: 26.0,
+                ),
+              )
+          ),
+        ],
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it

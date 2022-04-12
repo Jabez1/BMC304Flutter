@@ -5,11 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'main.dart';
-import 'HomePage.dart';
+
 import 'ViewCases.dart';
 
-class InsertCase extends StatelessWidget {
-  const InsertCase({Key? key}) : super(key: key);
+class UpdateCase extends StatelessWidget {
+  const UpdateCase({Key? key}) : super(key: key);
 
   static const String _title = 'Insert Death Cases for a date';
 
@@ -38,7 +38,7 @@ class InsertCase extends StatelessWidget {
 
 createDeathCase(String date, String count) async{
   final response = await http.post(
-      Uri.parse('http://' + urIp + '/BMC304php/deathCaseInsert.php'),
+      Uri.parse('http://' + urIp + '/BMC304php/deathCaseUpdate.php'),
       body:{
         'deathDate' : date,
         'deathCount' : count
@@ -91,21 +91,21 @@ class _MyCustomFormState extends State<MyCustomForm> {
             ),
             readOnly: true,
             onTap: () async {
-                DateTime? pickedDate = await showDatePicker(
-                context: context,
-                initialDate: DateTime.now(),
-                firstDate: DateTime(2018),
-                lastDate: DateTime(2101));
-                if (pickedDate != null){
-                  String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
-                  setState(() {
-                    dateController.text = formattedDate;
-                    print(formattedDate);
-                  });}
-                  else{
-                    print("Date not selected");
-                  }
-              },
+              DateTime? pickedDate = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(2018),
+                  lastDate: DateTime(2101));
+              if (pickedDate != null){
+                String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+                setState(() {
+                  dateController.text = formattedDate;
+                  print(formattedDate);
+                });}
+              else{
+                print("Date not selected");
+              }
+            },
             validator: (value) {
               if (value!.isEmpty) {
                 return 'Please enter a date';
@@ -143,7 +143,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
                     });
                     // If the form is valid, display a Snackbar.
                     Scaffold.of(context)
-                        .showSnackBar(SnackBar(content: Text('Case has been Added!')));
+                        .showSnackBar(SnackBar(content: Text('Data is in processing.')));
                   }
                 },
               )),

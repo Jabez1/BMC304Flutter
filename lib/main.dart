@@ -3,6 +3,8 @@ import 'HomePage.dart';
 import 'ViewCases.dart';
 import 'InsertCase.dart';
 import 'CasesCharts.dart';
+import 'UpdateCase.dart';
+import 'AdminLoginPage.dart';
 
 final String urIp = "192.168.42.217"; //Change ur IP here for easy php
 
@@ -23,6 +25,8 @@ class MyApp extends StatelessWidget {
         '/viewCases': (context) => ViewCases(),
         '/insertCase': (context) => InsertCase(),
         '/casesCharts': (context) => CasesCharts(),
+        '/updateCase': (context) => UpdateCase(),
+        '/loginPage' : (context) => AdminLoginPage(),
       },
     );
   }

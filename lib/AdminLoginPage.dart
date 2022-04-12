@@ -8,8 +8,8 @@ import 'main.dart';
 import 'HomePage.dart';
 import 'ViewCases.dart';
 
-class InsertCase extends StatelessWidget {
-  const InsertCase({Key? key}) : super(key: key);
+class AdminLoginPage extends StatelessWidget {
+  const AdminLoginPage({Key? key}) : super(key: key);
 
   static const String _title = 'Insert Death Cases for a date';
 
@@ -91,21 +91,21 @@ class _MyCustomFormState extends State<MyCustomForm> {
             ),
             readOnly: true,
             onTap: () async {
-                DateTime? pickedDate = await showDatePicker(
-                context: context,
-                initialDate: DateTime.now(),
-                firstDate: DateTime(2018),
-                lastDate: DateTime(2101));
-                if (pickedDate != null){
-                  String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
-                  setState(() {
-                    dateController.text = formattedDate;
-                    print(formattedDate);
-                  });}
-                  else{
-                    print("Date not selected");
-                  }
-              },
+              DateTime? pickedDate = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(2018),
+                  lastDate: DateTime(2101));
+              if (pickedDate != null){
+                String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+                setState(() {
+                  dateController.text = formattedDate;
+                  print(formattedDate);
+                });}
+              else{
+                print("Date not selected");
+              }
+            },
             validator: (value) {
               if (value!.isEmpty) {
                 return 'Please enter a date';
@@ -143,7 +143,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
                     });
                     // If the form is valid, display a Snackbar.
                     Scaffold.of(context)
-                        .showSnackBar(SnackBar(content: Text('Case has been Added!')));
+                        .showSnackBar(SnackBar(content: Text('Data is in processing.')));
                   }
                 },
               )),
