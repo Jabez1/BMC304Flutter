@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 Future <List<Clinic>> fetchData() async {
   final response =await http
-      .get(Uri.parse('https://192.168.1.105/convtjson.php'));
+      .get(Uri.parse('http://192.168.1.105/convtjson.php'));
   if (response.statusCode == 200) {
     List jsonResponse = json.decode(response.body);
     return jsonResponse.map((data) => new Clinic.fromJson(data)).toList();
