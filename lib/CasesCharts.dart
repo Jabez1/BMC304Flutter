@@ -9,71 +9,26 @@ class CasesCharts extends StatelessWidget {
 
   Future<List<DeathCaseSeries>> createChartList(Future <List<DeathCase>> deathCases) async{
     List<DeathCaseSeries> coloredList = [];
-    var deathList = await deathCases;
+    List<DeathCase> deathList = await deathCases;
+
     for (var i = 0; i < deathList.length; i++) {
       var tempBarColor =  charts.ColorUtil.fromDartColor(Colors.white);
       if(deathList[i].deathCount > 1000){
         tempBarColor =  charts.ColorUtil.fromDartColor(Colors.red);
+        print(deathList[i].deathDate);
       }
       else{
         tempBarColor =  charts.ColorUtil.fromDartColor(Colors.blue);
       }
-      coloredList[i] = DeathCaseSeries(
+      print(coloredList.length);
+      coloredList.add(DeathCaseSeries(
           date: DateFormat('MM-dd').format(deathList[i].deathDate),
           count: deathList[i].deathCount,
           barColor: tempBarColor
-      );
+      ));
     }
     return coloredList;
   }
-
-  List<DeathCaseSeries> createChartLists(List<DeathCase>? deathCases){
-    List<DeathCaseSeries> coloredList = [];
-    for (var i = 0; i < deathCases!.length; i++) {
-      var tempBarColor =  charts.ColorUtil.fromDartColor(Colors.white);
-      if(deathCases[i].deathCount > 1000){
-        tempBarColor =  charts.ColorUtil.fromDartColor(Colors.red);
-      }
-      else{
-        tempBarColor =  charts.ColorUtil.fromDartColor(Colors.blue);
-      }
-      coloredList[i] = DeathCaseSeries(
-          date: DateFormat('MM-dd').format(deathCases[i].deathDate),
-          count: deathCases[i].deathCount,
-          barColor: tempBarColor
-      );
-    }
-    print("lmao123");
-    print(coloredList);
-    return coloredList;
-  }
-  final List<DeathCaseSeries> data = [
-    DeathCaseSeries(
-      date: "12-8",
-      count: 5000,
-      barColor: charts.ColorUtil.fromDartColor(Colors.blue),
-    ),
-    DeathCaseSeries(
-      date: "12-08",
-      count: 100,
-      barColor: charts.ColorUtil.fromDartColor(Colors.blue),
-    ),
-    DeathCaseSeries(
-      date: "13-08",
-      count: 1000,
-      barColor: charts.ColorUtil.fromDartColor(Colors.blue),
-    ),
-    DeathCaseSeries(
-      date: "14-08",
-      count: 100,
-      barColor: charts.ColorUtil.fromDartColor(Colors.blue),
-    ),
-    DeathCaseSeries(
-      date: "15-08",
-      count: 1000,
-      barColor: charts.ColorUtil.fromDartColor(Colors.blue),
-    ),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -82,17 +37,18 @@ class CasesCharts extends StatelessWidget {
         backgroundColor: Colors.red,
         title: Text("Covid Deaths"),
       ),
-      body: FutureBuilder <List<DeathCase>>(
-        future: futureDeathCases,
+      body: FutureBuilder <List<DeathCaseSeries>?>(
+        future: createChartList(futureDeathCases),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Center(
                 child: CasesChartMaker(
-                  data: createChartLists(snapshot.data),
+                  data: snapshot.data as List<DeathCaseSeries>,
                 )
             );
-
-          }
+            } else if (snapshot.hasError) {
+            return Text("${snapshot.error}");
+           }
           return CircularProgressIndicator();
         }
           ),
