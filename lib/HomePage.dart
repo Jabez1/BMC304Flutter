@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'ViewCases.dart';
+import 'CasesCharts.dart';
+
 //yes this is the default page lol
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -89,6 +91,12 @@ class _MyHomePageState extends State<HomePage> {
                   );
                 }
             ),
+            ElevatedButton(onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CasesCharts()),
+              );
+            }, child: Text('Case Chart'))
           ],
         ),
       ),
