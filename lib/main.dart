@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'HomePage.dart';
 import 'ViewCases.dart';
 import 'InsertCase.dart';
@@ -28,6 +29,47 @@ class MyApp extends StatelessWidget {
         '/updateCase': (context) => UpdateCase(),
         '/loginPage' : (context) => AdminLoginPage(),
       },
+    );
+  }
+}
+
+class Case{
+  final DateTime deathDate;
+  int deathCount;
+
+  Case({required this.deathDate, required this.deathCount});
+
+  factory Case.fromJson(Map<String, dynamic> json) {
+    return Case(
+      deathDate: DateTime.parse(json['deathDate']),
+      deathCount: int.parse(json['deathCount']),
+    );
+  }
+
+  String getDeathDate(){
+    return DateFormat('yyyy-MM-dd').format(this.deathDate);
+  }
+}
+class DeathCase extends Case {
+  DeathCase({ required DateTime deathDate, required int deathCount})
+      : super(deathDate:deathDate, deathCount: deathCount);
+
+  factory DeathCase.fromJson(Map<String, dynamic> json) {
+    return DeathCase(
+      deathDate: DateTime.parse(json['deathDate']),
+      deathCount: int.parse(json['deathCount']),
+    );
+  }
+}
+
+class CovidCase extends Case {
+  CovidCase({ required DateTime deathDate, required int deathCount})
+      : super(deathDate: deathDate, deathCount: deathCount);
+
+  factory CovidCase.fromJson(Map<String, dynamic> json) {
+    return CovidCase(
+      deathDate: DateTime.parse(json['deathDate']),
+      deathCount: int.parse(json['deathCount']),
     );
   }
 }

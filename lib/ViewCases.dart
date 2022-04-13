@@ -1,11 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:assignment_clinic_finder/InsertCase.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart';
 import 'main.dart';
-import 'InsertCase.dart';
 
 class ViewCases extends StatefulWidget {
   ViewCases({Key? key}) : super(key: key);
@@ -29,7 +26,7 @@ class _MyAppState extends State<ViewCases> {
       title: 'Flutter API and ListView Example',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Flutter ListView'),
+          title: Text('List of Death Cases'),
           leading: GestureDetector(
             onTap: () { Navigator.pushNamed(context, '/'); },
             child: Icon(
@@ -39,10 +36,7 @@ class _MyAppState extends State<ViewCases> {
           actions: <Widget> [Padding(
               padding: EdgeInsets.only(right: 20.0),
               child: GestureDetector(
-                onTap: () {Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => InsertCase()),
-                );},
+                onTap: () {Navigator.pushNamed(context, '/insertCase');},
                 child: Icon(
                     Icons.add,
                 ),
@@ -163,23 +157,6 @@ Future <List<DeathCase>> fetchData() async {
   }
 }
 
-class DeathCase {
-  final DateTime deathDate;
-  int deathCount;
-
-  DeathCase({required this.deathDate, required this.deathCount});
-
-  factory DeathCase.fromJson(Map<String, dynamic> json) {
-    return DeathCase(
-      deathDate: DateTime.parse(json['deathDate']),
-      deathCount: int.parse(json['deathCount']),
-    );
-  }
-
-  String getDeathDate(){
-    return DateFormat('yyyy-MM-dd').format(this.deathDate);
-  }
-}
 
 deleteDeathCase(String date) async{
   final response = await http.post(

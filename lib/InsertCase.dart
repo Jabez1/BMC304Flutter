@@ -1,11 +1,8 @@
-import 'dart:async';
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'main.dart';
-import 'HomePage.dart';
 import 'ViewCases.dart';
 
 class InsertCase extends StatelessWidget {
@@ -63,7 +60,6 @@ class _MyCustomFormState extends State<MyCustomForm> {
   // Create a global key that uniquely identifies the Form widget
   // and allows validation of the form.
   final _formKey = GlobalKey<FormState>();
-  Future<DeathCase>? _futureCase;
   final dateController = TextEditingController();
   final countController = TextEditingController();
 

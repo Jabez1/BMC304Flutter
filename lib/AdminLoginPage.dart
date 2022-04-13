@@ -1,16 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart';
 import 'main.dart';
-import 'HomePage.dart';
 import 'ViewCases.dart';
 
 class AdminLoginPage extends StatelessWidget {
   const AdminLoginPage({Key? key}) : super(key: key);
 
-  static const String _title = 'Insert Death Cases for a date';
+  static const String _title = 'Login as an Admin';
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +16,7 @@ class AdminLoginPage extends StatelessWidget {
         appBar: AppBar(
           title: const Text(_title),
           leading: GestureDetector(
-            onTap: () { Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ViewCases()),
-            ); },
+            onTap: () {Navigator.pop(context);},
             child: Icon(
               Icons.arrow_back, // add custom icons also
             ),
@@ -32,22 +25,6 @@ class AdminLoginPage extends StatelessWidget {
         body: const MyCustomForm(),
       ),
     );
-  }
-}
-
-createDeathCase(String date, String count) async{
-  final response = await http.post(
-      Uri.parse('http://' + urIp + '/BMC304php/deathCaseInsert.php'),
-      body:{
-        'deathDate' : date,
-        'deathCount' : count
-      }
-  );
-  if (response.statusCode == 200){
-    print("Returned Message: "+response.body.toString());
-  }
-  else{
-    throw Exception('Unexpected Error Occurred!');
   }
 }
 
@@ -63,13 +40,13 @@ class _MyCustomFormState extends State<MyCustomForm> {
   // and allows validation of the form.
   final _formKey = GlobalKey<FormState>();
   Future<DeathCase>? _futureCase;
-  final dateController = TextEditingController();
-  final countController = TextEditingController();
+  final idController = TextEditingController();
+  final pwController = TextEditingController();
 
   @override
   void dispose() {
-    dateController.dispose();
-    countController.dispose();
+    idController.dispose();
+    pwController.dispose();
     super.dispose();
   }
 
@@ -82,50 +59,29 @@ class _MyCustomFormState extends State<MyCustomForm> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           TextFormField(
-            controller: dateController,
+            controller: idController,
             decoration: const InputDecoration(
-              icon: const Icon(Icons.calendar_today),
-              hintText: 'Enter the Date',
-              labelText: 'Date',
+                icon: const Icon(Icons.calendar_today),
+              hintText: 'Enter your username',
+              labelText: 'Username',
             ),
-            readOnly: true,
-            onTap: () async {
-              DateTime? pickedDate = await showDatePicker(
-                  context: context,
-                  initialDate: DateTime.now(),
-                  firstDate: DateTime(2018),
-                  lastDate: DateTime(2101));
-              if (pickedDate != null){
-                String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
-                setState(() {
-                  dateController.text = formattedDate;
-                  print(formattedDate);
-                });}
-              else{
-                print("Date not selected");
-              }
-            },
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Please enter a date';
+                return 'Please enter your username';
               }
               return null;
             },
           ),
           TextFormField(
-            controller: countController,
+            controller: pwController,
             decoration: const InputDecoration(
               icon: const Icon(Icons.person),
-              hintText: 'Enter the number of deaths',
-              labelText: 'Death Count',
+              hintText: 'Enter your Password',
+              labelText: 'Password',
             ),
-            inputFormatters: <TextInputFormatter>[
-              FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-            ],
-            keyboardType: TextInputType.number,
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Please enter valid number';
+                return 'Please enter your password';
               }
               return null;
             },
@@ -137,9 +93,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
                 onPressed: () {
                   // It returns true if the form is valid, otherwise returns false
                   if (_formKey.currentState!.validate()) {
-                    setState(() {
-                      createDeathCase(dateController.text, countController.text);
-                    });
+                    Navigator.pushNamed(context, '/');
                     // If the form is valid, display a Snackbar.
                     Scaffold.of(context)
                         .showSnackBar(SnackBar(content: Text('Data is in processing.')));
@@ -150,4 +104,9 @@ class _MyCustomFormState extends State<MyCustomForm> {
       ),
     );
   }
+
+  login(String id, String pw){
+    Navigator.pushNamed(context, '/');
+  }
+
 }
