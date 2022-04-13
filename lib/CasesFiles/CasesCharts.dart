@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:intl/intl.dart';
-import 'main.dart';
-import 'ViewCases.dart';
+import '../main.dart';
+import 'ViewDeaths.dart';
 
 class CasesCharts extends StatelessWidget {
   Future<List<DeathCase>> futureDeathCases = fetchData();
@@ -68,7 +68,6 @@ class CasesCharts extends StatelessWidget {
     }
     return monthlyList;
   }
-
 
   @override
   Widget build(BuildContext context) {

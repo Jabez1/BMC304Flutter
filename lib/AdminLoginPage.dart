@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'main.dart';
-import 'ViewCases.dart';
 
 class AdminLoginPage extends StatelessWidget {
   const AdminLoginPage({Key? key}) : super(key: key);
@@ -39,7 +38,6 @@ class _MyCustomFormState extends State<MyCustomForm> {
   // Create a global key that uniquely identifies the Form widget
   // and allows validation of the form.
   final _formKey = GlobalKey<FormState>();
-  Future<DeathCase>? _futureCase;
   final idController = TextEditingController();
   final pwController = TextEditingController();
 

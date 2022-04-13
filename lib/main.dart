@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'HomePage.dart';
-import 'ViewCases.dart';
-import 'InsertCase.dart';
-import 'CasesCharts.dart';
-import 'UpdateCase.dart';
+import 'CasesFiles/ViewDeaths.dart';
+import 'CasesFiles/ViewCovid.dart';
+import 'CasesFiles/InsertDeath.dart';
+import 'CasesFiles/InsertCovid.dart';
+import 'CasesFiles/CasesCharts.dart';
+import 'CasesFiles/UpdateDeath.dart';
+import 'CasesFiles/UpdateCovid.dart';
 import 'AdminLoginPage.dart';
 
 final String urIp = "192.168.42.217"; //Change ur IP here for easy php
@@ -23,10 +26,15 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomePage(),
-        '/viewCases': (context) => ViewCases(),
-        '/insertCase': (context) => InsertCase(),
+        '/viewDeath': (context) => ViewDeaths(),
+        '/insertDeath': (context) => InsertDeath(),
+        '/updateDeath': (context) => UpdateDeath(),
+
+        '/viewCovid': (context) => ViewCovid(),
+        '/insertCovid': (context) => InsertCovid(),
+        '/updateCovid': (context) => UpdateCovid(),
+
         '/casesCharts': (context) => CasesCharts(),
-        '/updateCase': (context) => UpdateCase(),
         '/loginPage' : (context) => AdminLoginPage(),
       },
     );

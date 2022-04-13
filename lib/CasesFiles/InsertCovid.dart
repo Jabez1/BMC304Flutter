@@ -1,49 +1,40 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-import 'main.dart';
+import '../main.dart';
 
-import 'ViewCases.dart';
+class InsertCovid extends StatelessWidget {
+  const InsertCovid({Key? key}) : super(key: key);
 
-class UpdateCase extends StatelessWidget {
-  const UpdateCase({Key? key}) : super(key: key);
-
-  static const String _title = 'Update Death Cases for a date';
+  static const String _title = 'Insert Death Cases for a date';
 
   @override
   Widget build(BuildContext context) {
-
-    final dCaseArg = ModalRoute.of(context)!.settings.arguments as DeathCase;
-
     return MaterialApp(
       title: _title,
       home: Scaffold(
         appBar: AppBar(
           title: const Text(_title),
           leading: GestureDetector(
-            onTap: () { Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ViewCases()),
-            ); },
+            onTap: () { Navigator.pop(context);},
             child: Icon(
               Icons.arrow_back, // add custom icons also
             ),
           ),
         ),
-        body: MyCustomForm(dCase: dCaseArg),
+        body: const MyCustomForm(),
       ),
     );
   }
 }
 
-updateDeathCase(String date, String count) async{
+createCovidCase(String date, String count) async{
   final response = await http.post(
-      Uri.parse('http://' + urIp + '/BMC304php/deathCaseUpdate.php'),
+      Uri.parse('http://' + urIp + '/BMC304php/covidCaseInsert.php'),
       body:{
-        'deathDate' : date,
-        'deathCount' : count
+        'covidDate' : date,
+        'covidCount' : count
       }
   );
   if (response.statusCode == 200){
@@ -55,11 +46,7 @@ updateDeathCase(String date, String count) async{
 }
 
 class MyCustomForm extends StatefulWidget {
-
-  //Pass the DeathCase object to the form
-  final DeathCase dCase;
-
-  const MyCustomForm({Key? key, required this.dCase}) : super(key: key);
+  const MyCustomForm({Key? key}) : super(key: key);
 
   @override
   _MyCustomFormState createState() => _MyCustomFormState();
@@ -68,19 +55,9 @@ class MyCustomForm extends StatefulWidget {
 class _MyCustomFormState extends State<MyCustomForm> {
   // Create a global key that uniquely identifies the Form widget
   // and allows validation of the form.
-
   final _formKey = GlobalKey<FormState>();
-  Future<DeathCase>? _futureCase;
   final dateController = TextEditingController();
   final countController = TextEditingController();
-
-  //Adds the Death Case Initial Values to the Form
-  @override
-  void initState() {
-    super.initState();
-    dateController.text = widget.dCase.getDeathDate();
-    countController.text = widget.dCase.deathCount.toString();
-  }
 
   @override
   void dispose() {
@@ -132,8 +109,8 @@ class _MyCustomFormState extends State<MyCustomForm> {
             controller: countController,
             decoration: const InputDecoration(
               icon: const Icon(Icons.person),
-              hintText: 'Enter the number of deaths',
-              labelText: 'Death Count',
+              hintText: 'Enter the number of Covid',
+              labelText: 'Covid Count',
             ),
             inputFormatters: <TextInputFormatter>[
               FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
@@ -149,17 +126,16 @@ class _MyCustomFormState extends State<MyCustomForm> {
           Container(
               padding: const EdgeInsets.only(left: 150.0, top: 40.0),
               child: ElevatedButton(
-                child: const Text('Update'),
+                child: const Text('Submit'),
                 onPressed: () {
                   // It returns true if the form is valid, otherwise returns false
                   if (_formKey.currentState!.validate()) {
                     setState(() {
-                      updateDeathCase(dateController.text, countController.text);
-
+                      createCovidCase(dateController.text, countController.text);
                     });
                     // If the form is valid, display a Snackbar.
                     Scaffold.of(context)
-                        .showSnackBar(SnackBar(content: Text('Case Updated!')));
+                        .showSnackBar(SnackBar(content: Text('Case has been Added!')));
                   }
                 },
               )),

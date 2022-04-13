@@ -2,43 +2,42 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-import 'main.dart';
-import 'ViewCases.dart';
+import '../main.dart';
 
-class InsertCase extends StatelessWidget {
-  const InsertCase({Key? key}) : super(key: key);
+class UpdateCovid extends StatelessWidget {
+  const UpdateCovid({Key? key}) : super(key: key);
 
-  static const String _title = 'Insert Death Cases for a date';
+  static const String _title = 'Update Death Cases for a date';
 
   @override
   Widget build(BuildContext context) {
+
+    final dCaseArg = ModalRoute.of(context)!.settings.arguments as DeathCase;
+
     return MaterialApp(
       title: _title,
       home: Scaffold(
         appBar: AppBar(
           title: const Text(_title),
           leading: GestureDetector(
-            onTap: () { Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ViewCases()),
-            ); },
+            onTap: () { Navigator.pushNamed(context, '/ViewCovid'); },
             child: Icon(
               Icons.arrow_back, // add custom icons also
             ),
           ),
         ),
-        body: const MyCustomForm(),
+        body: MyCustomForm(dCase: dCaseArg),
       ),
     );
   }
 }
 
-createDeathCase(String date, String count) async{
+updateCovidCase(String date, String count) async{
   final response = await http.post(
-      Uri.parse('http://' + urIp + '/BMC304php/deathCaseInsert.php'),
+      Uri.parse('http://' + urIp + '/BMC304php/covidCaseUpdate.php'),
       body:{
-        'deathDate' : date,
-        'deathCount' : count
+        'covidDate' : date,
+        'covidCount' : count
       }
   );
   if (response.statusCode == 200){
@@ -50,7 +49,11 @@ createDeathCase(String date, String count) async{
 }
 
 class MyCustomForm extends StatefulWidget {
-  const MyCustomForm({Key? key}) : super(key: key);
+
+  //Pass the DeathCase object to the form
+  final DeathCase dCase;
+
+  const MyCustomForm({Key? key, required this.dCase}) : super(key: key);
 
   @override
   _MyCustomFormState createState() => _MyCustomFormState();
@@ -59,9 +62,18 @@ class MyCustomForm extends StatefulWidget {
 class _MyCustomFormState extends State<MyCustomForm> {
   // Create a global key that uniquely identifies the Form widget
   // and allows validation of the form.
+
   final _formKey = GlobalKey<FormState>();
   final dateController = TextEditingController();
   final countController = TextEditingController();
+
+  //Adds the Death Case Initial Values to the Form
+  @override
+  void initState() {
+    super.initState();
+    dateController.text = widget.dCase.getDeathDate();
+    countController.text = widget.dCase.deathCount.toString();
+  }
 
   @override
   void dispose() {
@@ -87,21 +99,21 @@ class _MyCustomFormState extends State<MyCustomForm> {
             ),
             readOnly: true,
             onTap: () async {
-                DateTime? pickedDate = await showDatePicker(
-                context: context,
-                initialDate: DateTime.now(),
-                firstDate: DateTime(2018),
-                lastDate: DateTime(2101));
-                if (pickedDate != null){
-                  String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
-                  setState(() {
-                    dateController.text = formattedDate;
-                    print(formattedDate);
-                  });}
-                  else{
-                    print("Date not selected");
-                  }
-              },
+              DateTime? pickedDate = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(2018),
+                  lastDate: DateTime(2101));
+              if (pickedDate != null){
+                String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+                setState(() {
+                  dateController.text = formattedDate;
+                  print(formattedDate);
+                });}
+              else{
+                print("Date not selected");
+              }
+            },
             validator: (value) {
               if (value!.isEmpty) {
                 return 'Please enter a date';
@@ -130,16 +142,17 @@ class _MyCustomFormState extends State<MyCustomForm> {
           Container(
               padding: const EdgeInsets.only(left: 150.0, top: 40.0),
               child: ElevatedButton(
-                child: const Text('Submit'),
+                child: const Text('Update'),
                 onPressed: () {
                   // It returns true if the form is valid, otherwise returns false
                   if (_formKey.currentState!.validate()) {
                     setState(() {
-                      createDeathCase(dateController.text, countController.text);
+                      updateCovidCase(dateController.text, countController.text);
+
                     });
                     // If the form is valid, display a Snackbar.
                     Scaffold.of(context)
-                        .showSnackBar(SnackBar(content: Text('Case has been Added!')));
+                        .showSnackBar(SnackBar(content: Text('Case Updated!')));
                   }
                 },
               )),

@@ -2,16 +2,16 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'main.dart';
+import '../main.dart';
 
-class ViewCases extends StatefulWidget {
-  ViewCases({Key? key}) : super(key: key);
+class ViewDeaths extends StatefulWidget {
+  ViewDeaths({Key? key}) : super(key: key);
 
   @override
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<ViewCases> {
+class _MyAppState extends State<ViewDeaths> {
   late Future <List<DeathCase>> futureDeathCase;
 
   @override
@@ -36,7 +36,7 @@ class _MyAppState extends State<ViewCases> {
           actions: <Widget> [Padding(
               padding: EdgeInsets.only(right: 20.0),
               child: GestureDetector(
-                onTap: () {Navigator.pushNamed(context, '/insertCase');},
+                onTap: () {Navigator.pushNamed(context, '/insertDeath');},
                 child: Icon(
                     Icons.add,
                 ),
@@ -95,7 +95,7 @@ class _MyAppState extends State<ViewCases> {
                                         onPressed: () => {
                                           Navigator.pushNamed(
                                               context,
-                                              '/updateCase',
+                                              '/updateDeath',
                                               arguments: cases?[index]
                                           )
                                         },
