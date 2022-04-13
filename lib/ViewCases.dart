@@ -1,12 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:assignment_clinic_finder/InsertCase.dart';
-import 'package:assignment_clinic_finder/UpdateCase.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'main.dart';
-import 'HomePage.dart';
 import 'InsertCase.dart';
 
 class ViewCases extends StatefulWidget {
@@ -33,10 +31,7 @@ class _MyAppState extends State<ViewCases> {
         appBar: AppBar(
           title: Text('Flutter ListView'),
           leading: GestureDetector(
-            onTap: () { Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomePage()),
-            ); },
+            onTap: () { Navigator.pushNamed(context, '/'); },
             child: Icon(
               Icons.arrow_back, // add custom icons also
             ),
@@ -104,7 +99,6 @@ class _MyAppState extends State<ViewCases> {
                                     actions: <Widget>[
                                       ElevatedButton(
                                         onPressed: () => {
-                                          print("lmao321"),
                                           Navigator.pushNamed(
                                               context,
                                               '/updateCase',
@@ -171,7 +165,7 @@ Future <List<DeathCase>> fetchData() async {
 
 class DeathCase {
   final DateTime deathDate;
-  final int deathCount;
+  int deathCount;
 
   DeathCase({required this.deathDate, required this.deathCount});
 
@@ -210,7 +204,7 @@ class DeathCaseCard extends StatelessWidget{
 
   Widget build(BuildContext context){
     return Container(
-        padding: EdgeInsets.all(5),
+        padding: EdgeInsets.all(2),
         height: 100,
         width: 400,
         child: Card(

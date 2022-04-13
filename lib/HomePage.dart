@@ -1,7 +1,4 @@
-import 'package:assignment_clinic_finder/AdminLoginPage.dart';
 import 'package:flutter/material.dart';
-import 'ViewCases.dart';
-import 'CasesCharts.dart';
 
 //yes this is the default page lol
 class HomePage extends StatefulWidget {
@@ -99,19 +96,10 @@ class _MyHomePageState extends State<HomePage> {
                     textStyle: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold)),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ViewCases()),
-                  );
-                }
+                onPressed: () {Navigator.pushNamed(context, '/viewCases');}
             ),
-            ElevatedButton(onPressed: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CasesCharts()),
-              );
-            }, child: Text('Case Chart'))
+            ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/casesCharts');},
+                child: Text('View Case Charts'))
           ],
         ),
       ),
