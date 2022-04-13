@@ -89,17 +89,19 @@ class _MyHomePageState extends State<HomePage> {
               style: Theme.of(context).textTheme.headline4,
             ),
             ElevatedButton(
-                child: Text('View Cases'),
+                child: Text('View Death Cases'),
                 style: ElevatedButton.styleFrom(
                     primary: Colors.purple,
                     padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                     textStyle: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold)),
-                onPressed: () {Navigator.pushNamed(context, '/viewCases');}
+                onPressed: () {Navigator.pushNamed(context, '/viewDeaths');}
             ),
             ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/casesCharts');},
-                child: Text('View Case Charts'))
+                child: Text('View Case Charts')),
+            ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/viewCovid');},
+                child: Text('View Covid Cases'))
           ],
         ),
       ),
