@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -11,10 +10,13 @@ import 'ViewCases.dart';
 class UpdateCase extends StatelessWidget {
   const UpdateCase({Key? key}) : super(key: key);
 
-  static const String _title = 'Insert Death Cases for a date';
+  static const String _title = 'Update Death Cases for a date';
 
   @override
   Widget build(BuildContext context) {
+
+    final dCaseArg = ModalRoute.of(context)!.settings.arguments as DeathCase;
+
     return MaterialApp(
       title: _title,
       home: Scaffold(
@@ -30,13 +32,13 @@ class UpdateCase extends StatelessWidget {
             ),
           ),
         ),
-        body: const MyCustomForm(),
+        body: MyCustomForm(dCase: dCaseArg),
       ),
     );
   }
 }
 
-createDeathCase(String date, String count) async{
+updateDeathCase(String date, String count) async{
   final response = await http.post(
       Uri.parse('http://' + urIp + '/BMC304php/deathCaseUpdate.php'),
       body:{
@@ -53,7 +55,11 @@ createDeathCase(String date, String count) async{
 }
 
 class MyCustomForm extends StatefulWidget {
-  const MyCustomForm({Key? key}) : super(key: key);
+
+  //Pass the DeathCase object to the form
+  final DeathCase dCase;
+
+  const MyCustomForm({Key? key, required this.dCase}) : super(key: key);
 
   @override
   _MyCustomFormState createState() => _MyCustomFormState();
@@ -62,10 +68,19 @@ class MyCustomForm extends StatefulWidget {
 class _MyCustomFormState extends State<MyCustomForm> {
   // Create a global key that uniquely identifies the Form widget
   // and allows validation of the form.
+
   final _formKey = GlobalKey<FormState>();
   Future<DeathCase>? _futureCase;
   final dateController = TextEditingController();
   final countController = TextEditingController();
+
+  //Adds the Death Case Initial Values to the Form
+  @override
+  void initState() {
+    super.initState();
+    dateController.text = widget.dCase.getDeathDate();
+    countController.text = widget.dCase.deathCount.toString();
+  }
 
   @override
   void dispose() {
@@ -134,16 +149,17 @@ class _MyCustomFormState extends State<MyCustomForm> {
           Container(
               padding: const EdgeInsets.only(left: 150.0, top: 40.0),
               child: ElevatedButton(
-                child: const Text('Submit'),
+                child: const Text('Update'),
                 onPressed: () {
                   // It returns true if the form is valid, otherwise returns false
                   if (_formKey.currentState!.validate()) {
                     setState(() {
-                      createDeathCase(dateController.text, countController.text);
+                      updateDeathCase(dateController.text, countController.text);
+
                     });
                     // If the form is valid, display a Snackbar.
                     Scaffold.of(context)
-                        .showSnackBar(SnackBar(content: Text('Data is in processing.')));
+                        .showSnackBar(SnackBar(content: Text('Case Updated!')));
                   }
                 },
               )),

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:assignment_clinic_finder/InsertCase.dart';
+import 'package:assignment_clinic_finder/UpdateCase.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
@@ -69,18 +70,78 @@ class _MyAppState extends State<ViewCases> {
                         return Dismissible(
                           key: Key(item!.getDeathDate()),
                           onDismissed: (direction){
-                            setState((){
-                              cases?.removeAt(index);
-                              deleteDeathCase(item.getDeathDate());
-                            });
+                            if(direction == DismissDirection.startToEnd){
+                              setState((){
+                                cases?.removeAt(index);
+                                deleteDeathCase(item.getDeathDate());
+                              });
+                            }
                           },
-                          background:Container(color: Colors.red),
+                          confirmDismiss: (DismissDirection direction) async {
+                            return await showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                if(direction == DismissDirection.startToEnd){
+                                  return AlertDialog(
+                                    title: const Text("Delete Confirmation"),
+                                    content: const Text("Are you sure you wish to delete this item?"),
+                                    actions: <Widget>[
+                                      ElevatedButton(
+                                          onPressed: () => Navigator.of(context).pop(true),
+                                          child: const Text("DELETE")
+                                      ),
+                                      ElevatedButton(
+                                        onPressed: () => Navigator.of(context).pop(false),
+                                        child: const Text("CANCEL"),
+                                      ),
+                                    ],
+                                  );
+                                }
+                                else{
+                                  return AlertDialog(
+                                    title: const Text("Edit Confirmation"),
+                                    content: const Text("Are you sure you wish to edit this item?"),
+                                    actions: <Widget>[
+                                      ElevatedButton(
+                                        onPressed: () => {
+                                          print("lmao321"),
+                                          Navigator.pushNamed(
+                                              context,
+                                              '/updateCase',
+                                              arguments: cases?[index]
+                                          )
+                                        },
+                                        child: const Text("EDIT")
+                                      ),
+                                      ElevatedButton(
+                                        onPressed: () => Navigator.of(context).pop(false),
+                                        child: const Text("CANCEL"),
+                                      ),
+                                    ],
+                                  );
+                                }
+                              },
+                            );
+                          },
+                          background:Container(
+                            padding: EdgeInsets.symmetric(horizontal: 30.0),
+                            color: Colors.red,
+                            alignment: Alignment.centerLeft,
+                            child: Icon(Icons.delete_forever),
+                          ),
+                          secondaryBackground: Container(
+                            padding: EdgeInsets.symmetric(horizontal: 30.0),
+                            color: Colors.blue,
+                            alignment: Alignment.centerRight,
+                            child: Icon(Icons.edit),
+                          ),
                           child: Center(
                               child: DeathCaseCard(
                                   date: cases![index].getDeathDate(),
                                   count: cases[index].deathCount
                               )
                           ),
+
                         );
                       }
                   );
