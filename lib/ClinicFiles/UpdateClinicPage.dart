@@ -1,4 +1,5 @@
 import 'package:assignment_clinic_finder/CasesFiles/UpdateCovid.dart';
+import 'package:assignment_clinic_finder/ClinicFiles/AddClinicPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -11,7 +12,7 @@ class UpdateClinic extends StatelessWidget{
   
   @override
   Widget build(BuildContext context){
-    final cInfoArg = ModalRoute.of(context)!.settings.arguments as ClinicInfo;
+    final cInfoArg = ModalRoute.of(context)!.settings.arguments as Clinic;
     
     return MaterialApp(
       title: _title,
@@ -54,7 +55,7 @@ updateClinic(String cenName, String vacAdd, String vacLad,
 }
 
 class MyClinicForm extends StatefulWidget{
-  final ClinicInfo cInfo;
+  final Clinic cInfo;
   
   const MyClinicForm({Key? key, required this.cInfo}) : super(key: key);
   
@@ -76,14 +77,14 @@ class _MyClinicFormState extends State<MyClinicForm>{
   @override
   void iniState(){
     super.initState();
-    cenNameController.text = widget.cInfo.getClinicName();
+    cenNameController.text = widget.cInfo.getString();
     vacNameController.text = widget.cInfo.getAddress();
     vacLadController.text = widget.cInfo.getLadtitude();
     vacLongController.text = widget.cInfo.getLongitude();
     vacNameController.text = widget.cInfo.getVaccineName();
     noPhoneController.text = widget.cInfo.getPhone();
   }
-  
+
   @override
   void dispose(){
     cenNameController.dispose();
