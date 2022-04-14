@@ -2,7 +2,7 @@ import 'package:assignment_clinic_finder/ClinicFiles/Clinic.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-
+import 'Clinic.dart';
 void main() => runApp(UpdateClinic());
 
 class UpdateClinic extends StatelessWidget{

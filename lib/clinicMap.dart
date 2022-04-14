@@ -3,17 +3,17 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'src/locations.dart' as locations;
 
 void main() {
-  runApp(const MyApp());
+  runApp(const clinicMap());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+class clinicMap extends StatefulWidget {
+  const clinicMap({Key? key}) : super(key: key);
 
   @override
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<clinicMap> {
   final Map<String, Marker> _markers = {};
   Future<void> _onMapCreated(GoogleMapController controller) async {
     final vacClinics = await locations.getClinics();

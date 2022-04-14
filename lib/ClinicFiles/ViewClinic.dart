@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:assignment_clinic_finder/ClinicFiles/UpdateClinicPage.dart';
+import '/../main.dart';
 import 'package:flutter/material.dart';
 import 'package:assignment_clinic_finder/ClinicFiles/Clinic.dart';
 import 'package:http/http.dart' as http;
@@ -28,7 +28,7 @@ class ViewClinic extends StatefulWidget {
 
 deleteClinic(String cenID) async {
   final response = await http.post(
-    Uri.parse('http://192.168.1.105:8080/clinicDelete.php'),
+    Uri.parse('http://' + urIp + '/clinicDelete.php'),
     body: {
       'centerId':cenID
     }

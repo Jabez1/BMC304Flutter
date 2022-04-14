@@ -2,8 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:assignment_clinic_finder/ClinicFiles/Clinic.dart';
-
+import 'Clinic.dart';
 
 void main() => runApp(AddClinic());
 

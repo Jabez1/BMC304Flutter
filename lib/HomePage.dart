@@ -93,7 +93,11 @@ class _MyHomePageState extends State<HomePage> {
             ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/casesCharts');},
                 child: Text('View Case Charts')),
             ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/viewCovid');},
-                child: Text('View Covid Cases'))
+                child: Text('View Covid Cases')),
+            ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/clinicMap');},
+                child: Text('View Map')),
+            ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/viewClinic');},
+                child: Text('View Clinic List')),
           ],
         ),
       ),
