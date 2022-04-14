@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:assignment_clinic_finder/ClinicFiles/UpdateClinicPage.dart';
 import 'package:flutter/material.dart';
 import 'package:assignment_clinic_finder/ClinicFiles/Clinic.dart';
 import 'package:http/http.dart' as http;
+import 'package:assignment_clinic_finder/ClinicFiles/AddClinicPage.dart';
 
 Future <List<Clinic>> fetchData() async {
   final response =await http
@@ -54,7 +56,19 @@ class _MyAppState extends State<ViewClinic> {
       title: 'Vaccination Center List',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Vaccination Center ListView'),
+          title: Text('Vaccination Center List'),
+          actions:<Widget>[
+            ElevatedButton(
+                onPressed: ()=> {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AddClinic()),
+                    //arguments: data?[index]
+                  )
+                },
+                child: const Text("Add")
+            ),
+          ],
         ),
         body: Center(
           child: FutureBuilder <List<Clinic>>(
@@ -110,10 +124,10 @@ class _MyAppState extends State<ViewClinic> {
                                       actions:<Widget>[
                                         ElevatedButton(
                                           onPressed: ()=> {
-                                            Navigator.pushNamed(
+                                            Navigator.push(
                                               context,
-                                              '/updateClinic',
-                                              arguments: data?[index]
+                                              MaterialPageRoute(builder: (context) => AddClinic()),
+                                              //arguments: data?[index]
                                             )
                                           },
                                           child: const Text("Update")

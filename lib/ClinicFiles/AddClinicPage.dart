@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:assignment_clinic_finder/ClinicFiles/Clinic.dart';
 
 
-void main() => runApp(const MyApp());
+void main() => runApp(AddClinic());
 
 
 createClinic(String cenName, String vacAdd, String vacLad,
@@ -26,8 +26,8 @@ createClinic(String cenName, String vacAdd, String vacLad,
 
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class AddClinic extends StatelessWidget {
+  const AddClinic({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context){
@@ -73,6 +73,14 @@ class _MyCustomFormState extends State<ClinicForm>{
     return Scaffold(
       appBar: AppBar(
         title: const Text('New Clinic Info'),
+        actions: <Widget>[
+          ElevatedButton(
+              onPressed: ()=> {
+                Navigator.maybePop(context)
+              },
+              child: const Text("Back")
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(

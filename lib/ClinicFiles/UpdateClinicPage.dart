@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
+void main() => runApp(UpdateClinic());
 
 class UpdateClinic extends StatelessWidget{
-  const UpdateClinic({Key? key}) : super (key: key);
+  UpdateClinic({Key? key}) : super (key: key);
   
   static const String _title = 'Update Clinic details';
   
