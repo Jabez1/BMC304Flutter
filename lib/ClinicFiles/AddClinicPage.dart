@@ -32,7 +32,34 @@ class Clinic {
       numPhone: json['phone'],
     );
   }
-}
+
+  String getString() {
+    return this.centerName;
+  }
+
+  String getAddress() {
+    return this.vacAddress;
+  }
+
+  String getLadtitude() {
+    return this.vacLatitude;
+  }
+
+  String getLongitude() {
+    return this.vacLongitude;
+  }
+
+  String getVaccineName() {
+    return this.vaccineName;
+  }
+
+  String getPhone() {
+    return this.numPhone;
+  }
+
+  String getAmountLeft() {
+    return this.amountLeft;
+  }}
 
 void main() => runApp(const MyApp());
 

@@ -82,6 +82,7 @@ class _MyClinicFormState extends State<MyClinicForm>{
     vacLadController.text = widget.cInfo.getLadtitude();
     vacLongController.text = widget.cInfo.getLongitude();
     vacNameController.text = widget.cInfo.getVaccineName();
+    amtLeftController.text = widget.cInfo.getAmountLeft();
     noPhoneController.text = widget.cInfo.getPhone();
   }
 
