@@ -88,7 +88,7 @@ class _MyHomePageState extends State<HomePage> {
                     textStyle: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold)),
-                onPressed: () {Navigator.pushNamed(context, '/viewDeaths');}
+                onPressed: () {Navigator.pushNamed(context, '/viewDeath');}
             ),
             ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/casesCharts');},
                 child: Text('View Case Charts')),
