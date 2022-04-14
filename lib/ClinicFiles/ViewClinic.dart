@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:assignment_clinic_finder/ClinicFiles/Clinic.dart';
 import 'package:http/http.dart' as http;
 
 Future <List<Clinic>> fetchData() async {
@@ -11,46 +12,6 @@ Future <List<Clinic>> fetchData() async {
     return jsonResponse.map((data) => new Clinic.fromJson(data)).toList();
   } else {
     throw Exception('Unexpected error occured!');
-  }
-}
-
-class Clinic {
-  final String centerId;
-  final String centerName;
-  final String vacAddress;
-  final String vacLatitude;
-  final String vacLongitude;
-  final String vaccineName;
-  final String amountLeft;
-  final String numPhone;
-
-
-  Clinic({required this.centerId, required this.centerName,
-    required this.vacAddress,required this.vacLatitude ,
-    required this.vacLongitude, required this.vaccineName,
-    required this.amountLeft, required this.numPhone});
-
-  String getString()
-  {
-    return (this.centerName);
-  }
-
-  String getId()
-  {
-    return this.centerId;
-  }
-
-  factory Clinic.fromJson(Map<String, dynamic> json) {
-    return Clinic(
-      centerId: json['center_id'],
-      centerName: json['center_name'],
-      vacAddress: json['address'],
-      vacLatitude: json['latitude'],
-      vacLongitude: json['longitude'],
-      vaccineName: json['vaccine_name'],
-      amountLeft: json['amount_left'],
-      numPhone: json['phone'],
-    );
   }
 }
 
