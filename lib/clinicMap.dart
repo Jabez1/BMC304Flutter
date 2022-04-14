@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'src/locations.dart' as locations;
+import 'package:http/http.dart' as http;
+import '/ClinicFiles/Clinic.dart';
+import 'main.dart';
+import 'dart:convert';
 
 void main() {
   runApp(const clinicMap());
+}
+
+Future <List<Clinic>> fetchData() async {
+  final response =await http
+      .get(Uri.parse('http://' + urIp + '/convtjson.php'));
+  if (response.statusCode == 200) {
+    List jsonResponse = json.decode(response.body);
+    return jsonResponse.map((data) => new Clinic.fromJson(data)).toList();
+  } else {
+    throw Exception('Unexpected error occured!');
+  }
 }
 
 class clinicMap extends StatefulWidget {
@@ -16,13 +30,14 @@ class clinicMap extends StatefulWidget {
 class _MyAppState extends State<clinicMap> {
   final Map<String, Marker> _markers = {};
   Future<void> _onMapCreated(GoogleMapController controller) async {
-    final vacClinics = await locations.getClinics();
+    List<Clinic> clinics = await fetchData();
     setState(() {
       //_markers.clear();
-      for (final clinic in vacClinics.clinics) {
+      for (final clinic in clinics) {
         final marker = Marker(
           markerId: MarkerId(clinic.centerId),
-          position: LatLng(clinic.vacLatitude, clinic.vacLongitude),
+          position: LatLng(double.parse(clinic.vacLatitude),
+                            double.parse(clinic.vacLongitude)),
           infoWindow: InfoWindow(
             title:clinic.centerName,
             snippet: clinic.vacAddress,

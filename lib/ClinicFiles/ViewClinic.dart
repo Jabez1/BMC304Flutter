@@ -8,7 +8,7 @@ import 'package:assignment_clinic_finder/ClinicFiles/AddClinicPage.dart';
 
 Future <List<Clinic>> fetchData() async {
   final response =await http
-      .get(Uri.parse('http://192.168.1.105:8080/convtjson.php'));
+      .get(Uri.parse('http://' + urIp + '/convtjson.php'));
   if (response.statusCode == 200) {
     List jsonResponse = json.decode(response.body);
     return jsonResponse.map((data) => new Clinic.fromJson(data)).toList();
@@ -84,12 +84,12 @@ class _MyAppState extends State<ViewClinic> {
                         final item = data?[index];
                         final cenName = item!.getString();
                         return Dismissible(
-                            key: Key(item!.getString()),
+                            key: Key(item.getString()),
                             onDismissed:(direction){
                                if(direction == DismissDirection.endToStart){
                                 setState(() {
                                   data?.removeAt(index);
-                                  deleteClinic(item!.getId());
+                                  deleteClinic(item.getId());
                                 });
                                }
 
@@ -157,12 +157,12 @@ class _MyAppState extends State<ViewClinic> {
                           ),
                           child: Center(
                             child: ClinicCard(cenName: data![index].centerName,
-                                vacAddress: data![index].vacAddress,
-                                vacLad: data![index].vacLatitude,
-                                vacLong: data![index].vacLongitude,
-                                vacName : data![index].vaccineName,
-                                amountLeft : data![index].amountLeft,
-                                numPhone : data![index].numPhone),
+                                vacAddress: data[index].vacAddress,
+                                vacLad: data[index].vacLatitude,
+                                vacLong: data[index].vacLongitude,
+                                vacName : data[index].vaccineName,
+                                amountLeft : data[index].amountLeft,
+                                numPhone : data[index].numPhone),
                           ),
                         );
                       }
