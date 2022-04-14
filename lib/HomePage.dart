@@ -71,41 +71,59 @@ class _MyHomePageState extends State<HomePage> {
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
           // im kenji
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
             ElevatedButton(
                 child: Text('View Death Cases'),
                 style: ElevatedButton.styleFrom(
-                    primary: Colors.purple,
-                    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                    primary: Colors.blue,
+                    padding: EdgeInsets.only(top: 10, right: 10, left: 10, bottom: 10),
                     textStyle: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold)),
                 onPressed: () {Navigator.pushNamed(context, '/viewDeaths');}
             ),
-            ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/casesCharts');},
-                child: Text('View Case Charts')),
-            ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/viewCovid');},
-                child: Text('View Covid Cases')),
-            ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/clinicMap');},
-                child: Text('View Map')),
+
             ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/viewClinic');},
-                child: Text('View Clinic List')),
+                child: Text('View Clinic List'),
+                style: ElevatedButton.styleFrom(
+                primary: Colors.blue,
+                    padding: EdgeInsets.only(top: 5, right: 10, left: 10, bottom: 5),
+                    textStyle: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold)),
+            ),
+
+            ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/casesCharts');},
+                child: Text('View Case Charts'),
+                style: ElevatedButton.styleFrom(
+                primary: Colors.blue,
+                    padding: EdgeInsets.only(top: 5, right: 10, left: 10, bottom: 5),
+                textStyle: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold)),),
+
+            ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/viewCovid');},
+                child: Text('View Covid Cases'),
+                style: ElevatedButton.styleFrom(
+                primary: Colors.blue,
+                    padding: EdgeInsets.only(top: 5, right: 10, left: 10, bottom: 5),
+                textStyle: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold)),),
+
+            ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/clinicMap');},
+                child: Text('View Map'),
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.blue,
+                    padding: EdgeInsets.only(top: 5, right: 10, left: 10, bottom:10),
+                  textStyle: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold)),),
+
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

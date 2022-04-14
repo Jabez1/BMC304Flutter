@@ -57,18 +57,21 @@ class _MyAppState extends State<ViewClinic> {
       home: Scaffold(
         appBar: AppBar(
           title: Text('Vaccination Center List'),
-          actions:<Widget>[
-            ElevatedButton(
-                onPressed: ()=> {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => AddClinic()),
-                    //arguments: data?[index]
-                  )
-                },
-                child: const Text("Add")
+            leading: GestureDetector(
+              onTap: () { Navigator.pushNamed(context, '/'); },
+              child: Icon(
+                Icons.arrow_back, // add custom icons also
+              ),
             ),
-          ],
+            actions: <Widget> [Padding(
+                padding: EdgeInsets.only(right: 20.0),
+                child: GestureDetector(
+                  onTap: () {Navigator.pushNamed(context, '/addClinic');},
+                  child: Icon(
+                    Icons.add,
+                  ),
+                )
+            ),]
         ),
         body: Center(
           child: FutureBuilder <List<Clinic>>(
@@ -124,10 +127,10 @@ class _MyAppState extends State<ViewClinic> {
                                       actions:<Widget>[
                                         ElevatedButton(
                                           onPressed: ()=> {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(builder: (context) => AddClinic()),
-                                              //arguments: data?[index]
+                                            Navigator.pushNamed(
+                                                context,
+                                                '/updateClinic',
+                                                arguments: data?[index]
                                             )
                                           },
                                           child: const Text("Update")

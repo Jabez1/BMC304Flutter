@@ -1,8 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
+import '/../main.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'Clinic.dart';
+
+
 
 void main() => runApp(AddClinic());
 
@@ -28,11 +31,24 @@ createClinic(String cenName, String vacAdd, String vacLad,
 class AddClinic extends StatelessWidget {
   const AddClinic({Key? key}) : super(key: key);
 
+  static const String _title = 'Add New Center Info';
   @override
   Widget build(BuildContext context){
-    return const MaterialApp(
-      title: 'Insert Vaccination Center Details',
-      home: ClinicForm(),
+    return MaterialApp(
+      title: _title,
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text(_title),
+          leading: GestureDetector(
+            onTap: (){
+              Navigator.pop(context);
+            },
+            child: Icon(Icons.arrow_back
+            ),
+          ),
+        ),
+        body: const ClinicForm(),
+      ),
     );
   }
 }
@@ -70,17 +86,6 @@ class _MyCustomFormState extends State<ClinicForm>{
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('New Clinic Info'),
-        actions: <Widget>[
-          ElevatedButton(
-              onPressed: ()=> {
-                Navigator.maybePop(context)
-              },
-              child: const Text("Back")
-          )
-        ],
-      ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[

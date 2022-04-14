@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'src/locations.dart' as locations;
+import '/../main.dart';
 
 void main() {
   runApp(const clinicMap());
@@ -39,6 +40,13 @@ class _MyAppState extends State<clinicMap> {
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Nearby Vaccination Center'),
+          leading: GestureDetector(
+            onTap: (){
+              Navigator.pop(context);
+            },
+            child: Icon(Icons.arrow_back
+            ),
+          ),
           backgroundColor: Colors.lightBlue[700],
         ),
         body: GoogleMap(
