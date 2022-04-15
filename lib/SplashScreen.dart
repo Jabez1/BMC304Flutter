@@ -10,7 +10,7 @@ class SplashScreen extends StatelessWidget{
       splash: Icons.home,
       nextScreen: HomePage(),
       splashTransition: SplashTransition.fadeTransition,
-      pageTransitionType: PageTransitionType.scale,
+      pageTransitionType: PageTransitionType.rightToLeft,
       backgroundColor: Colors.blue
     );
   }

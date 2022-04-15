@@ -38,7 +38,7 @@ class clinicMap extends StatefulWidget {
 
 class _MyAppState extends State<clinicMap> {
   final Map<String, Marker> _markers = {};
-  late Future<List<Clinic>> futureClinics;
+  late Future<List<Clinic>> futureClinics = fetchData();
   Future<void> _onMapCreated(GoogleMapController controller) async {
     List<Clinic> clinics = await fetchData();
 
@@ -115,7 +115,7 @@ class _MyAppState extends State<clinicMap> {
                                     3.1519, 101.6711,
                                     double.parse(data[index].vacLatitude),
                                     double.parse(data[index].vacLongitude)
-                                ).toString()
+                                ).toStringAsFixed(2) //rounds the result to 2 d.p and converts to String
                             ),
                           );
                         },
