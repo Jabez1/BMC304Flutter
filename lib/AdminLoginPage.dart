@@ -60,7 +60,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
           TextFormField(
             controller: idController,
             decoration: const InputDecoration(
-                icon: const Icon(Icons.calendar_today),
+                icon: const Icon(Icons.person),
               hintText: 'Enter your username',
               labelText: 'Username',
             ),
@@ -74,7 +74,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
           TextFormField(
             controller: pwController,
             decoration: const InputDecoration(
-              icon: const Icon(Icons.person),
+              icon: const Icon(Icons.vpn_key_sharp),
               hintText: 'Enter your Password',
               labelText: 'Password',
             ),
@@ -92,7 +92,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
                 onPressed: () {
                   // It returns true if the form is valid, otherwise returns false
                   if (_formKey.currentState!.validate()) {
-                    Navigator.pushNamed(context, '/');
+                    Navigator.pushNamed(context, '/adminHomePage');
                     // If the form is valid, display a Snackbar.
                     Scaffold.of(context)
                         .showSnackBar(SnackBar(content: Text('Data is in processing.')));
@@ -105,7 +105,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
   }
 
   login(String id, String pw){
-    Navigator.pushNamed(context, '/');
+    Navigator.pushNamed(context, '/adminHomePage');
   }
 
 }

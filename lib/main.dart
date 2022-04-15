@@ -1,6 +1,7 @@
 import 'package:assignment_clinic_finder/ClinicFiles/AddClinicPage.dart';
 import 'package:assignment_clinic_finder/ClinicFiles/UpdateClinicPage.dart';
 import 'package:assignment_clinic_finder/ClinicFiles/ViewClinic.dart';
+import 'package:assignment_clinic_finder/adminHomePage.dart';
 import 'package:assignment_clinic_finder/covidVideoPage.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
         '/updateClinic': (context) => UpdateClinic(),
 
         '/videoPage': (context) => VideoPlayerApp(),
+        '/adminHomePage': (context) => adminHomePage(),
 
       },
     );

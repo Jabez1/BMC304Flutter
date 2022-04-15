@@ -1,27 +1,18 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
+import 'package:flutter_bounceable/flutter_bounceable.dart';
+import 'package:breathing_collection/breathing_collection.dart';
 
 void main() => runApp(const VideoPlayerApp());
 
 class VideoPlayerApp extends StatelessWidget {
   const VideoPlayerApp({Key? key}) : super(key: key);
-  //static const String _title = 'Video Player';
+
   @override
   Widget build(BuildContext context){
     return MaterialApp(
-      //title: _title,
       home: Scaffold(
-        //appBar: AppBar(
-          //title: const Text(_title),
-          //leading: GestureDetector(
-            //onTap: (){
-              //Navigator.pop(context);
-            //},
-            //child: Icon(Icons.arrow_back
-            //),
-          //),
-        //),
         body: const VideoPlayerScreen(),
       ),
     );
@@ -94,12 +85,13 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         },
       ),
 
+
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // Wrap the play or pause in a call to `setState`. This ensures the
           // correct icon is shown.
           setState(() {
-            // If the video is playing, pause it.
+             //If the video is playing, pause it.
             if (_controller.value.isPlaying) {
               _controller.pause();
             } else {

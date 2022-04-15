@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'Clinic.dart';
 import '../main.dart';
+import 'animated_button.dart';
 
 //void main() => runApp(UpdateClinic());
 
