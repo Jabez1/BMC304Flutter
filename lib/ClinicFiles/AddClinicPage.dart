@@ -14,7 +14,7 @@ createClinic(String cenName, String vacAdd, String vacLad,
     String vacLong, String vacName, String amtLeft, String noPhone) async{
 
   final response = await http.post(
-    Uri.parse('http://192.168.1.105:8080/clinicInsert.php'),
+    Uri.parse('http://'+ urIp + '/BMC304php/clinicInsert.php'),
     body:{
       'centerName':cenName,
       'vacAddress':vacAdd,
