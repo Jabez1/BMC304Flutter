@@ -98,7 +98,18 @@ class _MyAppState extends State<clinicMap> {
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     List<Clinic>? data = snapshot.data;
-
+                    //for each clinic, set the distance attribute using the calculateDistance method
+                    data?.forEach((element) {
+                      element.setDistance(calculateDistance(
+                          3.1519, 101.6711,
+                          double.parse(element.vacLatitude),
+                          double.parse(element.vacLongitude)
+                      ).toStringAsFixed(2)//rounds the result to 2 d.p and converts to String
+                      );});
+                    //Sort the list based on distance
+                    data?.sort((a,b) =>
+                        double.parse(a.distance as String).compareTo(
+                            double.parse(b.distance as String)));
                     return
                       ListView.builder(
                         itemCount: data?.length,
@@ -111,11 +122,7 @@ class _MyAppState extends State<clinicMap> {
                                 vacName: data[index].vaccineName,
                                 amountLeft: data[index].amountLeft,
                                 numPhone: data[index].numPhone,
-                                distance: calculateDistance(
-                                    3.1519, 101.6711,
-                                    double.parse(data[index].vacLatitude),
-                                    double.parse(data[index].vacLongitude)
-                                ).toStringAsFixed(2) //rounds the result to 2 d.p and converts to String
+                                distance: data[index].distance as String
                             ),
                           );
                         },
