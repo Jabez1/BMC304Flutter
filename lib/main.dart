@@ -78,7 +78,7 @@ class CovidCase extends Case {
 
   factory CovidCase.fromJson(Map<String, dynamic> json) {
     return CovidCase(
-      deathDate: DateTime.parse(json['countDate']),
+      deathDate: DateTime.parse(json['covidDate']),
       deathCount: int.parse(json['covidCount']),
     );
   }

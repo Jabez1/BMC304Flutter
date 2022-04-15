@@ -71,7 +71,7 @@ class ButtonPage extends StatelessWidget{
                     textStyle: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold)),
-                onPressed: () {Navigator.pushNamed(context, '/viewDeaths');}
+                onPressed: () {Navigator.pushNamed(context, '/viewDeath');}
             ),
 
             ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/viewClinic');},

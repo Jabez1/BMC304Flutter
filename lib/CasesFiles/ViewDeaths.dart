@@ -17,7 +17,7 @@ class _MyAppState extends State<ViewDeaths> {
   @override
   void initState() {
     super.initState();
-    futureDeathCase = fetchData();
+    futureDeathCase = fetchDeaths();
   }
 
   @override
@@ -146,7 +146,7 @@ class _MyAppState extends State<ViewDeaths> {
   }
 }
 
-Future <List<DeathCase>> fetchData() async {
+Future <List<DeathCase>> fetchDeaths() async {
   final response =await http
       .get(Uri.parse('http://' + urIp + '/BMC304php/deathCaseJson.php'));
   if (response.statusCode == 200) {

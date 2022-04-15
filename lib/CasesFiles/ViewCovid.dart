@@ -12,12 +12,12 @@ class ViewCovid extends StatefulWidget {
 }
 
 class _MyAppState extends State<ViewCovid> {
-  late Future <List<DeathCase>> futureDeathCase;
+  late Future <List<CovidCase>> futureCovidCase;
 
   @override
   void initState() {
     super.initState();
-    futureDeathCase = fetchData();
+    futureCovidCase = fetchCovid();
   }
 
   @override
@@ -45,17 +45,18 @@ class _MyAppState extends State<ViewCovid> {
 
         ),
         body: Center(
-          child: FutureBuilder <List<DeathCase>>(
-            future: futureDeathCase,
+          child: FutureBuilder <List<CovidCase>>(
+            future: futureCovidCase,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                List<DeathCase>? cases = snapshot.data;
+                List<CovidCase>? cases = snapshot.data;
 
                 return
                   ListView.builder(
                       itemCount: cases?.length,
                       itemBuilder: (BuildContext context, int index) {
                         final item = cases?[index];
+                        print(item.toString());
                         return Dismissible(
                           key: Key(item!.getDeathDate()),
                           onDismissed: (direction){
@@ -146,12 +147,12 @@ class _MyAppState extends State<ViewCovid> {
   }
 }
 
-Future <List<DeathCase>> fetchData() async {
+Future <List<CovidCase>> fetchCovid() async {
   final response =await http
       .get(Uri.parse('http://' + urIp + '/BMC304php/covidCaseJson.php'));
   if (response.statusCode == 200) {
     List jsonResponse = json.decode(response.body);
-    return jsonResponse.map((data) => new DeathCase.fromJson(data)).toList();
+    return jsonResponse.map((data) => new CovidCase.fromJson(data)).toList();
   } else {
     throw Exception('Unexpected error occurred!');
   }
