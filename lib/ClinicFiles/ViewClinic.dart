@@ -13,7 +13,7 @@ Future <List<Clinic>> fetchData() async {
     List jsonResponse = json.decode(response.body);
     return jsonResponse.map((data) => new Clinic.fromJson(data)).toList();
   } else {
-    throw Exception('Unexpected error occured!');
+    throw Exception('Unexpected error occurred!');
   }
 }
 
@@ -198,7 +198,7 @@ class ClinicCard extends StatelessWidget{
       height: 200,
       width: 400,
       child: Card(
-          child: new InkWell(
+          child: InkWell(
         onTap: (){
 
         },
