@@ -102,9 +102,10 @@ class _MyAppState extends State<clinicMap> {
   _addPolyLine(List<LatLng> polylineCoordinates) {
     PolylineId id = PolylineId("poly");
     Polyline polyline = Polyline(
-        polylineId: id,
-        color: Colors.red,
-        points: polylineCoordinates);
+      polylineId: id,
+      color: Colors.red,
+      points: polylineCoordinates,
+      width: 8,);
     polylines[id] = polyline;
     setState(() {});
   }
@@ -152,7 +153,7 @@ class _MyAppState extends State<clinicMap> {
                     //for each clinic, set the distance attribute using the calculateDistance method
                     data?.forEach((element) {
                       element.setDistance(calculateDistance(
-                          3.1519, 101.6711,
+                          startLocation.latitude, startLocation.longitude,
                           double.parse(element.vacLatitude),
                           double.parse(element.vacLongitude)
                       ).toStringAsFixed(2)//rounds the result to 2 d.p and converts to String
