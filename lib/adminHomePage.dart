@@ -88,15 +88,6 @@ class ButtonPage extends StatelessWidget{
                           fontWeight: FontWeight.bold)),
                 ),
 
-                ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/casesCharts');},
-                  child: Text('View Case Charts'),
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.blue,
-                      padding: EdgeInsets.only(top: 5, right: 15, left: 15, bottom: 5),
-                      textStyle: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold)),),
-
                 ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/viewCovid');},
                   child: Text('View Covid Cases'),
                   style: ElevatedButton.styleFrom(
@@ -106,14 +97,7 @@ class ButtonPage extends StatelessWidget{
                           fontSize: 30,
                           fontWeight: FontWeight.bold)),),
 
-                ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/clinicMap');},
-                  child: Text('View Map'),
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.blue,
-                      padding: EdgeInsets.only(top: 5, right: 67, left: 67, bottom:10),
-                      textStyle: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold)),),
+
               ],
             )
         )

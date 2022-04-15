@@ -19,8 +19,9 @@ import 'CasesFiles/UpdateCovid.dart';
 import 'AdminLoginPage.dart';
 import 'clinicMap.dart';
 import 'SplashScreen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-final String urIp = "192.168.42.217"; //Change ur IP here for easy php
+final String urIp = "192.168.1.105:8080"; //Change ur IP here for easy php
 
 void main() {
   runApp(MyApp());
