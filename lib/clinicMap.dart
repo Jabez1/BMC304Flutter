@@ -84,6 +84,8 @@ class _MyAppState extends State<clinicMap> {
             )
           ),
           body:  TabBarView(
+            //Disables the TabBar Swiping to not affect Map swiping
+            physics: NeverScrollableScrollPhysics(),
             children : <Widget>[
               GoogleMap(
                 onMapCreated: _onMapCreated,

@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
 
 class Case{
   final DateTime deathDate;
-  int deathCount;
+  final int deathCount;
 
   Case({required this.deathDate, required this.deathCount});
 

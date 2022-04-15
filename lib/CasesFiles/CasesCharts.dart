@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import '../main.dart';
 import 'ViewDeaths.dart';
 import 'ViewCovid.dart';
+import 'package:collection/collection.dart';
 
 class CasesCharts extends StatelessWidget {
   Future<List<CovidCase>> futureCovidCases = fetchCovid();
@@ -23,7 +24,7 @@ class CasesCharts extends StatelessWidget {
         tempBarColor =  charts.ColorUtil.fromDartColor(Colors.blue);
       }
       coloredList.add(CaseSeries(
-          date: DateFormat('d-M').format(covidList[i].deathDate),
+          date: covidList[i].deathDate,
           count: covidList[i].deathCount,
           barColor: tempBarColor
       ));
@@ -31,9 +32,10 @@ class CasesCharts extends StatelessWidget {
     return coloredList;
   }
 
-  List<CaseSeries> createCovidMonthlyChartList(List<CovidCase> covidCases){
-    List<CaseSeries> monthlyList = [];
-    List<CovidCase> covidList =  covidCases;
+  List<MonthlyCaseSeries> createCovidMonthlyChartList(List<CovidCase> covidCases){
+    List<MonthlyCaseSeries> monthlyList = [];
+    List<CovidCase> shallowCovidList =  List<CovidCase>.from(covidCases);
+    List<CovidCase> covidList =  List.generate(shallowCovidList.length,(index)=> shallowCovidList[index]);
 
     for(var i = 0; i < covidList.length; i++) {
       var tempBarColor =  charts.ColorUtil.fromDartColor(Colors.white);
@@ -43,14 +45,8 @@ class CasesCharts extends StatelessWidget {
         //Checks if in the list has another covidcase in the same year and month
         //Values that have already been checked and added will have a caseCount of less than 0
         if(covidList[i].deathDate.year == covidList[j].deathDate.year &&
-            covidList[i].deathDate.month == covidList[j].deathDate.month &&
-            covidList[i].deathCount > 0 && covidList[j].deathCount > 0) {
+            covidList[i].deathDate.month == covidList[j].deathDate.month) {
           totalCases += covidList[j].deathCount;
-
-          if(i!=j) {
-            //If the item is NOT comparing with itself, set deathCount to 0 to avoid repetition
-            covidList[j].deathCount = -1;
-          }
         }
       }
       //If the totalDeaths remains as 0, do not add to the list
@@ -62,11 +58,18 @@ class CasesCharts extends StatelessWidget {
         else {
           tempBarColor = charts.ColorUtil.fromDartColor(Colors.blue);
         }
-        monthlyList.add(CaseSeries(
-            date: DateFormat('M-yy').format(covidList[i].deathDate),
-            count: totalCases,
-            barColor: tempBarColor
-        ));
+
+        if (monthlyList.firstWhereOrNull(
+                (item) => item.date == DateFormat('MMM-yy').format(covidList[i].deathDate)) !=null ){
+          //dup found
+        }
+        else{
+          monthlyList.add(MonthlyCaseSeries(
+              date: DateFormat('MMM-yy').format(covidList[i].deathDate),
+              count: totalCases,
+              barColor: tempBarColor
+          ));
+        }
       }
     }
     return monthlyList;
@@ -85,7 +88,7 @@ class CasesCharts extends StatelessWidget {
         tempBarColor =  charts.ColorUtil.fromDartColor(Colors.blue);
       }
       coloredList.add(CaseSeries(
-          date: DateFormat('d-M').format(deathList[i].deathDate),
+          date: deathList[i].deathDate,
           count: deathList[i].deathCount,
           barColor: tempBarColor
       ));
@@ -93,9 +96,10 @@ class CasesCharts extends StatelessWidget {
     return coloredList;
   }
 
-  List<CaseSeries> createMonthlyChartList(List<DeathCase> deathCases){
-    List<CaseSeries> monthlyList = [];
-    List<DeathCase> deathList =  deathCases;
+  List<MonthlyCaseSeries> createMonthlyChartList(List<DeathCase> deathCases){
+    List<MonthlyCaseSeries> monthlyList = [];
+    List<DeathCase> shallowDeathList = List<DeathCase>.from(deathCases);
+    List<DeathCase> deathList =  List.generate(shallowDeathList.length,(index)=> shallowDeathList[index]);
 
     for(var i = 0; i < deathList.length; i++) {
       var tempBarColor =  charts.ColorUtil.fromDartColor(Colors.white);
@@ -105,30 +109,30 @@ class CasesCharts extends StatelessWidget {
         //Checks if in the list has another deathCase in the same year and month
         //Values that have already been checked and added will have a deathCount of less than 0
         if(deathList[i].deathDate.year == deathList[j].deathDate.year &&
-           deathList[i].deathDate.month == deathList[j].deathDate.month &&
-           deathList[i].deathCount > 0 && deathList[j].deathCount > 0) {
+           deathList[i].deathDate.month == deathList[j].deathDate.month) {
           totalDeaths += deathList[j].deathCount;
-
-          if(i!=j) {
-            //If the item is NOT comparing with itself, set deathCount to 0 to avoid repetition
-            deathList[j].deathCount = -1;
-          }
         }
       }
       //If the totalDeaths remains as 0, do not add to the list
       if(totalDeaths != 0) {
         //If totalDeaths are more than 500, make the bar red
-        if (totalDeaths > 500) {
+        if (totalDeaths > 1000) {
           tempBarColor = charts.ColorUtil.fromDartColor(Colors.red);
         }
         else {
           tempBarColor = charts.ColorUtil.fromDartColor(Colors.blue);
         }
-        monthlyList.add(CaseSeries(
-            date: DateFormat('M-yy').format(deathList[i].deathDate),
-            count: totalDeaths,
-            barColor: tempBarColor
-        ));
+        if (monthlyList.firstWhereOrNull(
+                (item) => item.date == DateFormat('MMM-yy').format(deathList[i].deathDate)) !=null ){
+          //dup found
+        }
+        else{
+          monthlyList.add(MonthlyCaseSeries(
+              date: DateFormat('MMM-yy').format(deathList[i].deathDate),
+              count: totalDeaths,
+              barColor: tempBarColor
+          ));
+        }
       }
     }
     return monthlyList;
@@ -155,10 +159,11 @@ class CasesCharts extends StatelessWidget {
                     future: futureCovidCases,
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
+                        final List<CovidCase>? cases = snapshot.data;
                         return Center(
                             child: CasesChartMaker(
-                              data: createCovidChartList(snapshot.data as List<CovidCase>),
-                              monthlyData : createCovidMonthlyChartList(snapshot.data as List<CovidCase>),
+                              data: createCovidChartList(cases as List<CovidCase>),
+                              monthlyData : createCovidMonthlyChartList(cases as List<CovidCase>),
                             )
                         );
                       } else if (snapshot.hasError) {
@@ -171,10 +176,11 @@ class CasesCharts extends StatelessWidget {
                     future: futureDeathCases,
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
+                        final List<DeathCase>? cases = snapshot.data;
                         return Center(
                             child: CasesChartMaker(
-                              data: createChartList(snapshot.data as List<DeathCase>),
-                              monthlyData : createMonthlyChartList(snapshot.data as List<DeathCase>),
+                              data: createChartList(cases as List<DeathCase>),
+                              monthlyData : createMonthlyChartList(cases as List<DeathCase>),
                             )
                         );
                       } else if (snapshot.hasError) {
@@ -193,14 +199,14 @@ class CasesCharts extends StatelessWidget {
 
 class CasesChartMaker extends StatelessWidget {
   final List<CaseSeries> data;
-  final List<CaseSeries> monthlyData;
+  final List<MonthlyCaseSeries> monthlyData;
 
   CasesChartMaker({required this.data, required this.monthlyData});
 
 
   @override
   Widget build(BuildContext context) {
-    List<charts.Series<CaseSeries, String>> series = [
+    List<charts.Series<CaseSeries, DateTime>> series = [
       charts.Series(
           id: "Deaths",
           data: data,
@@ -210,13 +216,13 @@ class CasesChartMaker extends StatelessWidget {
       )
     ];
     
-    List<charts.Series<CaseSeries, String>> monthlySeries = [
+    List<charts.Series<MonthlyCaseSeries, String>> monthlySeries = [
       charts.Series(
           id: "Deaths",
           data: monthlyData,
-          domainFn: (CaseSeries series, _) => series.date,
-          measureFn: (CaseSeries series, _) => series.count,
-          colorFn: (CaseSeries series, _) => series.barColor
+          domainFn: (MonthlyCaseSeries series, _) => series.date,
+          measureFn: (MonthlyCaseSeries series, _) => series.count,
+          colorFn: (MonthlyCaseSeries series, _) => series.barColor
       )
     ];
 
@@ -229,18 +235,24 @@ class CasesChartMaker extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Text(
-                "Covid Deaths for the past few days",
+                "Daily Covid Deaths for the past 3 months",
                 //style: Theme.of(context).textTheme.bodyText2,
               ),
               Expanded(
-                child: charts.BarChart(series, animate: true),
+                child: charts.TimeSeriesChart(series, animate: true,
+                    defaultRenderer: new charts.BarRendererConfig<DateTime>(),
+                    defaultInteractions: false,
+                    behaviors: [new charts.SelectNearest(), new charts.DomainHighlighter()] ),
               ),
               Text(
                 "Covid Deaths for the past few months",
                 //style: Theme.of(context).textTheme.bodyText2,
               ),
               Expanded(
-                child: charts.BarChart(monthlySeries, animate: true),
+                child: charts.BarChart(
+                    monthlySeries,
+                    animate: true,
+                    ),
               )
             ],
           ),
@@ -252,11 +264,25 @@ class CasesChartMaker extends StatelessWidget {
 
 
 class CaseSeries {
-  final String date;
+  final DateTime date;
   final int count;
   final charts.Color barColor;
 
   CaseSeries(
+      {
+        required this.date,
+        required this.count,
+        required this.barColor
+      }
+      );
+}
+
+class MonthlyCaseSeries {
+  final String date;
+  final int count;
+  final charts.Color barColor;
+
+  MonthlyCaseSeries(
       {
         required this.date,
         required this.count,
