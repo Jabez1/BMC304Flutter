@@ -143,7 +143,8 @@ class _MyAppState extends State<clinicMap> {
                   target: startLocation,
                   zoom: 15,
                  ),
-              markers: _markers.values.toSet(),
+                markers: _markers.values.toSet(),
+                polylines: Set<Polyline>.of(polylines.values),
                ),
               FutureBuilder <List<Clinic>>(
                 future: futureClinics,
