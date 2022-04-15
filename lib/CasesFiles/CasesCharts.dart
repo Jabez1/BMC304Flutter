@@ -9,6 +9,7 @@ class CasesCharts extends StatelessWidget {
   Future<List<CovidCase>> futureCovidCases = fetchCovid();
   Future<List<DeathCase>> futureDeathCases = fetchDeaths();
 
+  //Creates Lists for the ChartMaker whilst changing the bar color depending on the values
   List<CaseSeries> createCovidChartList(List<CovidCase> covidCases){
     List<CaseSeries> coloredList = [];
     List<CovidCase> covidList =  covidCases;

@@ -3,6 +3,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import '/ClinicFiles/Clinic.dart';
 import 'main.dart';
+import 'dart:math' show cos, sqrt, asin;
 import 'dart:convert';
 
 void main() {
@@ -16,8 +17,16 @@ Future <List<Clinic>> fetchData() async {
     List jsonResponse = json.decode(response.body);
     return jsonResponse.map((data) => new Clinic.fromJson(data)).toList();
   } else {
-    throw Exception('Unexpected error occured!');
+    throw Exception('Unexpected error occurred!');
   }
+}
+
+double calculateDistance(lat1, lon1, lat2, lon2){
+  var p = 0.017453292519943295;
+  var a = 0.5 - cos((lat2 - lat1) * p)/2 +
+      cos(lat1 * p) * cos(lat2 * p) *
+          (1 - cos((lon2 - lon1) * p))/2;
+  return 12742 * asin(sqrt(a));
 }
 
 class clinicMap extends StatefulWidget {
@@ -29,9 +38,12 @@ class clinicMap extends StatefulWidget {
 
 class _MyAppState extends State<clinicMap> {
   final Map<String, Marker> _markers = {};
+  late Future<List<Clinic>> futureClinics;
   Future<void> _onMapCreated(GoogleMapController controller) async {
     List<Clinic> clinics = await fetchData();
+
     setState(() {
+      futureClinics = fetchData();
       //_markers.clear();
       for (final clinic in clinics) {
         final marker = Marker(
@@ -50,28 +62,122 @@ class _MyAppState extends State<clinicMap> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Nearby Vaccination Center'),
-          leading: GestureDetector(
-            onTap: (){
-              Navigator.pop(context);
-            },
-            child: Icon(Icons.arrow_back
+    return  DefaultTabController(
+      length: 2,
+      child: MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(
+            title: const Text('Nearby Vaccination Center'),
+            leading: GestureDetector(
+              onTap: (){
+                Navigator.pop(context);
+              },
+              child: Icon(Icons.arrow_back
+              ),
+             ),
+            backgroundColor: Colors.lightBlue[700],
+            bottom: TabBar(
+                tabs:[
+                  Tab(icon: Icon(Icons.edit)),
+                  Tab(icon: Icon(Icons.edit)),
+                ]
+            )
+          ),
+          body:  TabBarView(
+            children : <Widget>[
+              GoogleMap(
+                onMapCreated: _onMapCreated,
+                initialCameraPosition: const CameraPosition(
+                  target: LatLng(3.1519, 101.6711),
+                  zoom: 10,
+                 ),
+              markers: _markers.values.toSet(),
+               ),
+              FutureBuilder <List<Clinic>>(
+                future: futureClinics,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    List<Clinic>? data = snapshot.data;
+
+                    return
+                      ListView.builder(
+                        itemCount: data?.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Center(
+                            child: ClinicMapCard(cenName: data![index].centerName,
+                                vacAddress: data[index].vacAddress,
+                                vacLad: data[index].vacLatitude,
+                                vacLong: data[index].vacLongitude,
+                                vacName: data[index].vaccineName,
+                                amountLeft: data[index].amountLeft,
+                                numPhone: data[index].numPhone,
+                                distance: calculateDistance(
+                                    3.1519, 101.6711,
+                                    double.parse(data[index].vacLatitude),
+                                    double.parse(data[index].vacLongitude)
+                                ).toString()
+                            ),
+                          );
+                        },
+                      );
+                  }
+                  return CircularProgressIndicator();
+              }
             ),
-          ),
-          backgroundColor: Colors.lightBlue[700],
-        ),
-        body: GoogleMap(
-          onMapCreated: _onMapCreated,
-          initialCameraPosition: const CameraPosition(
-            target: LatLng(3.1519, 101.6711),
-            zoom: 10,
-          ),
-          markers: _markers.values.toSet(),
+           ],
+         ),
         ),
       ),
+    );
+  }
+}
+
+class ClinicMapCard extends StatelessWidget{
+  const ClinicMapCard({Key? key, required this.cenName, required this.vacAddress,
+  required this.vacLad, required this.vacLong, required this.vacName,
+  required this.amountLeft, required this.numPhone, required this.distance}) : super(key: key);
+  final String cenName;
+  final String vacAddress;
+  final String vacLad;
+  final String vacLong;
+  final String vacName;
+  final String amountLeft;
+  final String numPhone;
+  final String distance;
+
+  Widget build(BuildContext context){
+    return Container(
+      padding: EdgeInsets.all(5),
+      height: 200,
+      width: 400,
+      child: Card(
+        child: InkWell(
+          onTap: (){
+
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            verticalDirection: VerticalDirection.down,
+            textBaseline: TextBaseline.alphabetic,
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              Text(
+                  "Center Name: "+this.cenName, style: TextStyle(
+                  fontWeight: FontWeight.bold
+                  )
+                ),
+              Text("Address: "+this.vacAddress, textAlign: TextAlign.left),
+              Text("Latitude: "+this.vacLad,textAlign: TextAlign.left),
+              Text("Longitude: "+this.vacLong,textAlign: TextAlign.left),
+              Text("Vaccine Name: "+this.vacName,textAlign: TextAlign.left),
+              Text("Amount Left: "+this.amountLeft,textAlign: TextAlign.left),
+              Text("Phone: "+this.numPhone,textAlign: TextAlign.left),
+              Text("Distance: "+this.distance +"km away",textAlign: TextAlign.left),
+            ],
+          ),
+        )
+      )
     );
   }
 }
