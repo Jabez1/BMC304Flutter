@@ -11,7 +11,7 @@ void main() {
 
 Future <List<Clinic>> fetchData() async {
   final response =await http
-      .get(Uri.parse('http://' + urIp + '/convtjson.php'));
+      .get(Uri.parse('http://192.168.1.105:8080/convtjson.php'));
   if (response.statusCode == 200) {
     List jsonResponse = json.decode(response.body);
     return jsonResponse.map((data) => new Clinic.fromJson(data)).toList();
@@ -54,6 +54,13 @@ class _MyAppState extends State<clinicMap> {
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Nearby Vaccination Center'),
+          leading: GestureDetector(
+            onTap: (){
+              Navigator.pop(context);
+            },
+            child: Icon(Icons.arrow_back
+            ),
+          ),
           backgroundColor: Colors.lightBlue[700],
         ),
         body: GoogleMap(
