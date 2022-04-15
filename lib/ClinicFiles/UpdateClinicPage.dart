@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'Clinic.dart';
-void main() => runApp(UpdateClinic());
+import '../main.dart';
+
+//void main() => runApp(UpdateClinic());
 
 class UpdateClinic extends StatelessWidget{
-  UpdateClinic({Key? key}) : super (key: key);
+  const UpdateClinic({Key? key}) : super (key: key);
   
   static const String _title = 'Update Clinic details';
   
@@ -20,9 +22,10 @@ class UpdateClinic extends StatelessWidget{
         appBar: AppBar(
           title: const Text(_title),
           leading: GestureDetector(
-            onTap:(){ Navigator.pushNamed(context, '/ViewClinic');},
-            child: Icon(
-              Icons.arrow_back,
+            onTap: (){
+              Navigator.pop(context);
+            },
+            child: Icon(Icons.arrow_back
             ),
           ),
         ),
@@ -104,57 +107,99 @@ class _MyClinicFormState extends State<MyClinicForm>{
       key: _formKey,
       child: Column(
         children: <Widget>[
-          TextField(
+          TextFormField(
             controller: cenNameController,
             decoration: const InputDecoration(
               hintText: 'Enter center name here',
               labelText: 'center name',
             ),
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'Please enter valid center name';
+              }
+              return null;
+            },
           ),
-          TextField(
+          TextFormField(
             controller: vacAddController,
             decoration: const InputDecoration(
               hintText: 'Enter address here',
               labelText: 'address',
             ),
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'Please enter valid address';
+              }
+              return null;
+            },
           ),
-          TextField(
+          TextFormField(
             controller: vacLadController,
             decoration: const InputDecoration(
               hintText: 'Enter latitude here',
               labelText: 'latitude',
             ),
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'Please enter valid latitude';
+              }
+              return null;
+            },
           ),
-          TextField(
+          TextFormField(
             controller: vacLongController,
             decoration: const InputDecoration(
               hintText: 'Enter longitude here',
               labelText: 'longitude',
             ),
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'Please enter valid longitude';
+              }
+              return null;
+            },
           ),
-          TextField(
+          TextFormField(
             controller: vacNameController,
             decoration: const InputDecoration(
               hintText: 'Enter vaccine name here',
               labelText: 'vaccine name',
             ),
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'Please enter valid vaccine name';
+              }
+              return null;
+            },
           ),
-          TextField(
+          TextFormField(
             controller: amtLeftController,
             decoration: const InputDecoration(
               hintText: 'Enter amount left here',
               labelText: 'amount available',
             ),
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'Please enter valid amount';
+              }
+              return null;
+            },
           ),
-          TextField(
+          TextFormField(
             controller: noPhoneController,
             decoration: const InputDecoration(
               hintText: 'Enter phone number here',
               labelText: 'phone number',
             ),
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'Please enter valid number';
+              }
+              return null;
+            },
           ),
           Container(
-            padding: const EdgeInsets.only(left: 150.0, top: 40.0),
+            padding: const EdgeInsets.only(left: 5.0, top: 40.0),
             child: ElevatedButton(
               child: const Text("Update"),
               onPressed: (){
@@ -166,7 +211,8 @@ class _MyClinicFormState extends State<MyClinicForm>{
                         noPhoneController.text);
                   });
                   Scaffold.of(context)
-                    .showSnackBar(SnackBar(content: Text('Vaccination Center Updated!')));
+                    .showSnackBar(SnackBar(content:
+                  Text('Vaccination Center Updated!')));
                   }
                 },
             )

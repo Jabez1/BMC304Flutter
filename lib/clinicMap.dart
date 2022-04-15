@@ -62,13 +62,39 @@ class _MyAppState extends State<clinicMap> {
 
   @override
   Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Nearby Vaccination Center'),
+          leading: GestureDetector(
+            onTap: (){
+              Navigator.pop(context);
+            },
+            child: Icon(Icons.arrow_back
+            ),
+          ),
+          backgroundColor: Colors.lightBlue[700],
+        ),
+        body: GoogleMap(
+          onMapCreated: _onMapCreated,
+          initialCameraPosition: const CameraPosition(
+            target: LatLng(3.1519, 101.6711),
+            zoom: 10,
+          ),
+          markers: _markers.values.toSet(),
     return  DefaultTabController(
       length: 2,
       child: MaterialApp(
         home: Scaffold(
           appBar: AppBar(
             title: const Text('Nearby Vaccination Center'),
-            backgroundColor: Colors.lightBlue[700],
+          leading: GestureDetector(
+            onTap: (){
+              Navigator.pop(context);
+            },
+            child: Icon(Icons.arrow_back
+            ),
+          ), backgroundColor: Colors.lightBlue[700],
             bottom: TabBar(
                 tabs:[
                   Tab(icon: Icon(Icons.edit)),
