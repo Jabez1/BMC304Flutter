@@ -1,6 +1,7 @@
 import 'package:assignment_clinic_finder/ClinicFiles/AddClinicPage.dart';
 import 'package:assignment_clinic_finder/ClinicFiles/UpdateClinicPage.dart';
 import 'package:assignment_clinic_finder/ClinicFiles/ViewClinic.dart';
+import 'package:assignment_clinic_finder/covidVideoPage.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'HomePage.dart';
@@ -14,7 +15,7 @@ import 'CasesFiles/UpdateCovid.dart';
 import 'AdminLoginPage.dart';
 import 'clinicMap.dart';
 
-final String urIp = "192.168.42.217"; //Change ur IP here for easy php
+final String urIp = "192.168.1.105:8080"; //Change ur IP here for easy php
 
 void main() {
   runApp(MyApp());
@@ -44,6 +45,8 @@ class MyApp extends StatelessWidget {
         '/viewClinic': (context) => ViewClinic(),
         '/addClinic': (context) => AddClinic(),
         '/updateClinic': (context) => UpdateClinic(),
+
+        '/videoPage': (context) => VideoPlayerApp(),
 
       },
     );
