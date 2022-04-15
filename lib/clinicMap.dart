@@ -42,7 +42,7 @@ class _MyAppState extends State<clinicMap> {
   PolylinePoints polylinePoints = PolylinePoints();
   double polyDistance =0.0;
   LatLng startLocation = LatLng(3.1775211976946025, 101.5489430677099);
-  String googleApiKey = "lmao";
+  String googleApiKey = "AIzaSyAUVAWffRPafAJG9pyqfchp7qP-qtoQWzA";
 
 
   late Future<List<Clinic>> futureClinics = fetchData();
