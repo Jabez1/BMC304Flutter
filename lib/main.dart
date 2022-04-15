@@ -1,3 +1,6 @@
+import 'ClinicFiles/AddClinicPage.dart';
+import 'ClinicFiles/UpdateClinicPage.dart';
+import 'ClinicFiles/ViewClinic.dart';
 import 'package:assignment_clinic_finder/ClinicFiles/AddClinicPage.dart';
 import 'package:assignment_clinic_finder/ClinicFiles/UpdateClinicPage.dart';
 import 'package:assignment_clinic_finder/ClinicFiles/ViewClinic.dart';
@@ -15,8 +18,9 @@ import 'CasesFiles/UpdateDeath.dart';
 import 'CasesFiles/UpdateCovid.dart';
 import 'AdminLoginPage.dart';
 import 'clinicMap.dart';
+import 'SplashScreen.dart';
 
-final String urIp = "192.168.1.105:8080"; //Change ur IP here for easy php
+final String urIp = "192.168.42.217"; //Change ur IP here for easy php
 
 void main() {
   runApp(MyApp());
@@ -29,8 +33,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      initialRoute: '/',
+      initialRoute: '/splash',
       routes: {
+        '/splash':(context) => SplashScreen(),
         '/': (context) => const HomePage(),
         '/viewDeath': (context) => ViewDeaths(),
         '/insertDeath': (context) => InsertDeath(),
@@ -57,7 +62,7 @@ class MyApp extends StatelessWidget {
 
 class Case{
   final DateTime deathDate;
-  int deathCount;
+  final int deathCount;
 
   Case({required this.deathDate, required this.deathCount});
 

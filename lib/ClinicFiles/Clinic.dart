@@ -7,6 +7,7 @@ class Clinic {
   final String vaccineName;
   final String amountLeft;
   final String numPhone;
+  String? distance;
 
 
   Clinic({required this.centerId, required this.centerName,
@@ -25,6 +26,10 @@ class Clinic {
       amountLeft: json['amount_left'],
       numPhone: json['phone'],
     );
+  }
+  
+  void setDistance(String distance){
+    this.distance=distance;
   }
 
   String getString() {
@@ -58,4 +63,6 @@ class Clinic {
 
   String getAmountLeft() {
     return this.amountLeft;
-  }}
+  }
+
+}

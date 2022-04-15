@@ -5,9 +5,10 @@ import '/ClinicFiles/Clinic.dart';
 import 'main.dart';
 import 'dart:math' show cos, sqrt, asin;
 import 'dart:convert';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 
 void main() {
-  runApp(const clinicMap());
+  runApp(clinicMap());
 }
 
 Future <List<Clinic>> fetchData() async {
@@ -15,7 +16,7 @@ Future <List<Clinic>> fetchData() async {
       .get(Uri.parse('http://' + urIp + '/convtjson.php'));
   if (response.statusCode == 200) {
     List jsonResponse = json.decode(response.body);
-    return jsonResponse.map((data) => new Clinic.fromJson(data)).toList();
+    return jsonResponse.map((data) => Clinic.fromJson(data)).toList();
   } else {
     throw Exception('Unexpected error occurred!');
   }
@@ -30,21 +31,29 @@ double calculateDistance(lat1, lon1, lat2, lon2){
 }
 
 class clinicMap extends StatefulWidget {
-  const clinicMap({Key? key}) : super(key: key);
-
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<clinicMap> {
   final Map<String, Marker> _markers = {};
-  late Future<List<Clinic>> futureClinics;
+  final Map<PolylineId, Polyline> polylines ={};
+  GoogleMapController? mapController;
+  PolylinePoints polylinePoints = PolylinePoints();
+  double polyDistance =0.0;
+  LatLng startLocation = LatLng(3.1775211976946025, 101.5489430677099);
+  String googleApiKey = "AIzaSyAUVAWffRPafAJG9pyqfchp7qP-qtoQWzA";
+
+
+  late Future<List<Clinic>> futureClinics = fetchData();
   Future<void> _onMapCreated(GoogleMapController controller) async {
     List<Clinic> clinics = await fetchData();
 
     setState(() {
       futureClinics = fetchData();
+      mapController = controller;
       //_markers.clear();
+
       for (final clinic in clinics) {
         final marker = Marker(
           markerId: MarkerId(clinic.centerId),
@@ -60,6 +69,47 @@ class _MyAppState extends State<clinicMap> {
     });
   }
 
+  _getPolyline(Clinic end) async {
+    List<LatLng> polylineCoordinates = [];
+    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
+        googleApiKey,
+        PointLatLng(startLocation.latitude, startLocation.longitude),
+        PointLatLng(
+          double.parse(end.vacLatitude),
+          double.parse(end.vacLongitude),
+        ),
+        travelMode: TravelMode.driving,
+        );
+    if (result.points.isNotEmpty) {
+      result.points.forEach((PointLatLng point) {
+        polylineCoordinates.add(LatLng(point.latitude, point.longitude));
+      });
+    }
+    double totalDistance = 0;
+    for(var i = 0; i < polylineCoordinates.length-1; i++){
+      totalDistance += calculateDistance(
+          polylineCoordinates[i].latitude,
+          polylineCoordinates[i].longitude,
+          polylineCoordinates[i+1].latitude,
+          polylineCoordinates[i+1].longitude);
+    }
+    setState(() {
+      polyDistance = totalDistance;
+    });
+    _addPolyLine(polylineCoordinates);
+  }
+
+  _addPolyLine(List<LatLng> polylineCoordinates) {
+    PolylineId id = PolylineId("poly");
+    Polyline polyline = Polyline(
+      polylineId: id,
+      color: Colors.red,
+      points: polylineCoordinates,
+      width: 8,);
+    polylines[id] = polyline;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return  DefaultTabController(
@@ -67,7 +117,7 @@ class _MyAppState extends State<clinicMap> {
       child: MaterialApp(
         home: Scaffold(
           appBar: AppBar(
-            title: const Text('Nearby Vaccination Center'),
+            title: Text('Nearby Vaccination Center'),
             leading: GestureDetector(
               onTap: (){
                 Navigator.pop(context);
@@ -78,44 +128,53 @@ class _MyAppState extends State<clinicMap> {
             backgroundColor: Colors.lightBlue[700],
             bottom: TabBar(
                 tabs:[
-                  Tab(icon: Icon(Icons.edit)),
-                  Tab(icon: Icon(Icons.edit)),
+                  Tab(icon: Icon(Icons.map)),
+                  Tab(icon: Icon(Icons.list)),
                 ]
             )
           ),
           body:  TabBarView(
+            //Disables the TabBar Swiping to not affect Map swiping
+            physics: NeverScrollableScrollPhysics(),
             children : <Widget>[
               GoogleMap(
                 onMapCreated: _onMapCreated,
-                initialCameraPosition: const CameraPosition(
-                  target: LatLng(3.1519, 101.6711),
-                  zoom: 10,
+                initialCameraPosition: CameraPosition(
+                  target: startLocation,
+                  zoom: 15,
                  ),
-              markers: _markers.values.toSet(),
+                markers: _markers.values.toSet(),
+                polylines: Set<Polyline>.of(polylines.values),
                ),
               FutureBuilder <List<Clinic>>(
                 future: futureClinics,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     List<Clinic>? data = snapshot.data;
-
+                    //for each clinic, set the distance attribute using the calculateDistance method
+                    data?.forEach((element) {
+                      element.setDistance(calculateDistance(
+                          startLocation.latitude, startLocation.longitude,
+                          double.parse(element.vacLatitude),
+                          double.parse(element.vacLongitude)
+                      ).toStringAsFixed(2)//rounds the result to 2 d.p and converts to String
+                      );});
+                    //Sort the list based on distance
+                    data?.sort((a,b) =>
+                        double.parse(a.distance as String).compareTo(
+                            double.parse(b.distance as String)));
+                    _getPolyline(data![0]);
                     return
                       ListView.builder(
-                        itemCount: data?.length,
+                        itemCount: data.length,
                         itemBuilder: (BuildContext context, int index) {
                           return Center(
-                            child: ClinicMapCard(cenName: data![index].centerName,
+                            child: ClinicMapCard(cenName: data[index].centerName,
                                 vacAddress: data[index].vacAddress,
-                                vacLad: data[index].vacLatitude,
-                                vacLong: data[index].vacLongitude,
                                 vacName: data[index].vaccineName,
                                 amountLeft: data[index].amountLeft,
                                 numPhone: data[index].numPhone,
-                                distance: calculateDistance(
-                                    3.1519, 101.6711,
-                                    double.parse(data[index].vacLatitude),
-                                    double.parse(data[index].vacLongitude)
-                                ).toString()
+                                distance: data[index].distance as String
                             ),
                           );
                         },
@@ -133,13 +192,10 @@ class _MyAppState extends State<clinicMap> {
 }
 
 class ClinicMapCard extends StatelessWidget{
-  const ClinicMapCard({Key? key, required this.cenName, required this.vacAddress,
-  required this.vacLad, required this.vacLong, required this.vacName,
+  ClinicMapCard({Key? key, required this.cenName, required this.vacAddress, required this.vacName,
   required this.amountLeft, required this.numPhone, required this.distance}) : super(key: key);
   final String cenName;
   final String vacAddress;
-  final String vacLad;
-  final String vacLong;
   final String vacName;
   final String amountLeft;
   final String numPhone;
@@ -147,8 +203,8 @@ class ClinicMapCard extends StatelessWidget{
 
   Widget build(BuildContext context){
     return Container(
-      padding: EdgeInsets.all(5),
-      height: 200,
+      padding: EdgeInsets.all(2),
+      height: 150,
       width: 400,
       child: Card(
         child: InkWell(
@@ -162,14 +218,12 @@ class ClinicMapCard extends StatelessWidget{
             textBaseline: TextBaseline.alphabetic,
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
-              Text(
-                  "Center Name: "+this.cenName, style: TextStyle(
+              Text(this.cenName,
+                  style: TextStyle(
                   fontWeight: FontWeight.bold
                   )
                 ),
-              Text("Address: "+this.vacAddress, textAlign: TextAlign.left),
-              Text("Latitude: "+this.vacLad,textAlign: TextAlign.left),
-              Text("Longitude: "+this.vacLong,textAlign: TextAlign.left),
+              Text("Address: "+this.vacAddress, textAlign: TextAlign.center),
               Text("Vaccine Name: "+this.vacName,textAlign: TextAlign.left),
               Text("Amount Left: "+this.amountLeft,textAlign: TextAlign.left),
               Text("Phone: "+this.numPhone,textAlign: TextAlign.left),
@@ -181,3 +235,4 @@ class ClinicMapCard extends StatelessWidget{
     );
   }
 }
+
