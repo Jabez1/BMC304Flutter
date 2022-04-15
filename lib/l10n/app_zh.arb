@@ -1,3 +1,31 @@
 {
- "appName" : "找诊所"
+     "appName" : "找诊所",
+
+     "login" : "登录",
+
+     "loginPage" : "登录页面",
+
+     "insertCase" : "Insert a New Case",
+
+     "manageCovidCases" : "Manage Covid Cases",
+
+     "manageDeathCases" : "Manage Death Cases",
+
+     "manageClinics" : "Manage Clinics",
+
+     "updateCase" : "Update a Case",
+
+     "covidStats" : "View Covid Statistics",
+
+     "findClinic" : "Find Nearest Clinic",
+
+     "submit" : "Submit",
+
+     "confirm" : "Confirm",
+
+     "cancel" : "Cancel",
+
+     "edit" : "Edit",
+
+     "delete" : "Delete"
 }

@@ -11,9 +11,7 @@ class InsertCovid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: _title,
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: const Text(_title),
           leading: GestureDetector(
@@ -24,7 +22,6 @@ class InsertCovid extends StatelessWidget {
           ),
         ),
         body: const MyCustomForm(),
-      ),
     );
   }
 }

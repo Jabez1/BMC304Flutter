@@ -1,3 +1,32 @@
 {
-    "appName" : "Cari Klinik"
+    "appName" : "Cari Klinik",
+
+    "login" : "Login",
+
+    "loginPage" : "Login Page",
+
+    "insertCase" : "Insert a New Case",
+
+    "manageCovidCases" : "Manage Covid Cases",
+
+    "manageDeathCases" : "Manage Death Cases",
+
+    "manageClinics" : "Manage Clinics",
+
+    "updateCase" : "Update a Case",
+
+    "covidStats" : "Covid Statistics",
+
+    "findClinic" : "Find Nearest Clinic",
+
+    "submit" : "Submit",
+
+    "confirm" : "Confirm",
+
+    "cancel" : "Cancel",
+
+    "edit" : "Edit",
+
+    "delete" : "Delete"
+
 }

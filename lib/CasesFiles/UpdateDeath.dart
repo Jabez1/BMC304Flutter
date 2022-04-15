@@ -14,9 +14,7 @@ class UpdateDeath extends StatelessWidget {
 
     final dCaseArg = ModalRoute.of(context)!.settings.arguments as DeathCase;
 
-    return MaterialApp(
-      title: _title,
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: const Text(_title),
           leading: GestureDetector(
@@ -27,7 +25,6 @@ class UpdateDeath extends StatelessWidget {
           ),
         ),
         body: MyCustomForm(dCase: dCaseArg),
-      ),
     );
   }
 }

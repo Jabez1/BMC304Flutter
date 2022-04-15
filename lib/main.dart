@@ -1,13 +1,11 @@
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'ClinicFiles/AddClinicPage.dart';
 import 'ClinicFiles/UpdateClinicPage.dart';
 import 'ClinicFiles/ViewClinic.dart';
-import 'package:assignment_clinic_finder/ClinicFiles/AddClinicPage.dart';
-import 'package:assignment_clinic_finder/ClinicFiles/UpdateClinicPage.dart';
-import 'package:assignment_clinic_finder/ClinicFiles/ViewClinic.dart';
-import 'package:assignment_clinic_finder/adminHomePage.dart';
-import 'package:assignment_clinic_finder/covidVideoPage.dart';
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'adminHomePage.dart';
+import 'covidVideoPage.dart';
 import 'HomePage.dart';
 import 'CasesFiles/ViewDeaths.dart';
 import 'CasesFiles/ViewCovid.dart';
@@ -33,7 +31,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Routing Page',
+      localizationsDelegates: [
+        AppLocalizations.delegate, // Add this line
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale('en', ''),
+        Locale('ms', ''),
+        Locale('zh', ''),
+      ],
       initialRoute: '/splash',
       routes: {
         '/splash':(context) => SplashScreen(),

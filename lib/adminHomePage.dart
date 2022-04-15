@@ -1,55 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:assignment_clinic_finder/covidVideoPage.dart';
-import 'package:flutter_bounceable/flutter_bounceable.dart';
-import 'package:audio_session/audio_session.dart';
-import 'package:flutter/services.dart';
-import 'package:just_audio/just_audio.dart';
-import 'common.dart';
-import 'package:rxdart/rxdart.dart';
 
 
 class adminHomePage extends StatefulWidget {
   const adminHomePage({Key? key}) : super(key: key);
 
   @override
-  State<adminHomePage> createState() => _MyadminHomePageState();
+  State<adminHomePage> createState() => _MyAdminHomePageState();
 }
 
-class _MyadminHomePageState extends State<adminHomePage> {
+class _MyAdminHomePageState extends State<adminHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 1,
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: Text("Admin Home Page"),
-          bottom: const TabBar(
-            tabs: [
-              Tab(icon: Icon(Icons.view_list_rounded)),
-            ],
-          ),
-          automaticallyImplyLeading: false,
-          actions: <Widget>[
-            Padding(
-                padding: EdgeInsets.only(right: 20.0),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/loginPage');
-                  },
-                  child: Icon(
-                    Icons.login,
-                    size: 26.0,
-                  ),
-                )
+          leading: GestureDetector(
+            onTap: (){
+              Navigator.pushNamed(context, '/');
+            },
+            child: Icon(Icons.arrow_back
             ),
-          ],
+          ),
         ),
-        body: TabBarView(children: <Widget>[
-          ButtonPage(),
-        ],
-        ),
-      ),
+        body: ButtonPage(),
     );
   }
 }
@@ -60,9 +34,6 @@ class ButtonPage extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      //appBar: AppBar(
-      //title: const Text('Home'),
-      //),
         body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -72,9 +43,13 @@ class ButtonPage extends StatelessWidget{
                     style: ElevatedButton.styleFrom(
                         primary: Colors.blue,
                         padding: EdgeInsets.only(top: 10, right: 10, left: 10, bottom: 10),
+                        fixedSize: const Size(300, 100),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50)),
                         textStyle: TextStyle(
                             fontSize: 30,
-                            fontWeight: FontWeight.bold)),
+                            fontWeight: FontWeight.bold
+                        )),
                     onPressed: () {Navigator.pushNamed(context, '/viewDeath');}
                 ),
 
@@ -83,20 +58,25 @@ class ButtonPage extends StatelessWidget{
                   style: ElevatedButton.styleFrom(
                       primary: Colors.blue,
                       padding: EdgeInsets.only(top: 5, right: 28, left: 28, bottom: 5),
+                      fixedSize: const Size(300, 100),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50)),
                       textStyle: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold)),
                 ),
 
                 ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/viewCovid');},
-                  child: Text('View Covid Cases'),
+                  child: Text('Manage Covid Cases', textAlign: TextAlign.center),
                   style: ElevatedButton.styleFrom(
                       primary: Colors.blue,
                       padding: EdgeInsets.only(top: 5, right: 13, left: 13, bottom: 5),
+                      fixedSize: const Size(300, 100),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50)),
                       textStyle: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold)),),
-
 
               ],
             )

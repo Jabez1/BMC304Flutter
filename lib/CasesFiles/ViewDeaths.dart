@@ -22,9 +22,7 @@ class _MyAppState extends State<ViewDeaths> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter API and ListView Example',
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: Text('List of Death Cases'),
           leading: GestureDetector(
@@ -141,7 +139,6 @@ class _MyAppState extends State<ViewDeaths> {
             },
           ),
         ),
-      ),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:assignment_clinic_finder/covidVideoPage.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:assignment_clinic_finder/audioPage.dart';
 
 //yes this is the default page lol
@@ -18,7 +19,7 @@ class _MyHomePageState extends State<HomePage> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Home Page"),
+          title: Text(AppLocalizations.of(context)!.appName),
           bottom: const TabBar(
             tabs: [
               Tab(icon: Icon(Icons.view_list_rounded)),
@@ -63,50 +64,26 @@ class ButtonPage extends StatelessWidget{
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                ElevatedButton(
-                    child: Text('View Death Cases'),
-                    style: ElevatedButton.styleFrom(
-                        primary: Colors.blue,
-                        padding: EdgeInsets.only(top: 10, right: 10, left: 10, bottom: 10),
-                        textStyle: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold)),
-                    onPressed: () {Navigator.pushNamed(context, '/viewDeath');}
-                ),
-
-                ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/viewClinic');},
-                  child: Text('View Clinic List'),
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.blue,
-                      padding: EdgeInsets.only(top: 5, right: 28, left: 28, bottom: 5),
-                      textStyle: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold)),
-                ),
-
                 ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/casesCharts');},
-                  child: Text('View Case Charts'),
+                  child: Text(AppLocalizations.of(context)!.covidStats, textAlign: TextAlign.center),
                   style: ElevatedButton.styleFrom(
                       primary: Colors.blue,
                       padding: EdgeInsets.only(top: 5, right: 15, left: 15, bottom: 5),
-                      textStyle: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold)),),
-
-                ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/viewCovid');},
-                  child: Text('View Covid Cases'),
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.blue,
-                      padding: EdgeInsets.only(top: 5, right: 13, left: 13, bottom: 5),
+                      fixedSize: const Size(300, 100),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50)),
                       textStyle: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold)),),
 
                 ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/clinicMap');},
-                  child: Text('View Map'),
+                  child: Text(AppLocalizations.of(context)!.findClinic, textAlign: TextAlign.center),
                   style: ElevatedButton.styleFrom(
                       primary: Colors.blue,
                       padding: EdgeInsets.only(top: 5, right: 67, left: 67, bottom:5),
+                      fixedSize: const Size(300, 100),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50)),
                       textStyle: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold)),),

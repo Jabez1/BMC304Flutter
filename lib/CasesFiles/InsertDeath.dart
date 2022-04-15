@@ -7,15 +7,11 @@ import '../main.dart';
 class InsertDeath extends StatelessWidget {
   const InsertDeath({Key? key}) : super(key: key);
 
-  static const String _title = 'Insert Death Cases for a date';
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: _title,
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
-          title: const Text(_title),
+          title: const Text("Insert New Case"),
           leading: GestureDetector(
             onTap: () { Navigator.pop(context);},
             child: Icon(
@@ -24,7 +20,6 @@ class InsertDeath extends StatelessWidget {
           ),
         ),
         body: const MyCustomForm(),
-      ),
     );
   }
 }

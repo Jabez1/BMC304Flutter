@@ -1,6 +1,4 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
-import 'main.dart';
 
 class AdminLoginPage extends StatelessWidget {
   const AdminLoginPage({Key? key}) : super(key: key);
@@ -9,9 +7,7 @@ class AdminLoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: _title,
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: const Text(_title),
           leading: GestureDetector(
@@ -22,7 +18,6 @@ class AdminLoginPage extends StatelessWidget {
           ),
         ),
         body: const MyCustomForm(),
-      ),
     );
   }
 }
@@ -93,9 +88,6 @@ class _MyCustomFormState extends State<MyCustomForm> {
                   // It returns true if the form is valid, otherwise returns false
                   if (_formKey.currentState!.validate()) {
                     Navigator.pushNamed(context, '/adminHomePage');
-                    // If the form is valid, display a Snackbar.
-                    Scaffold.of(context)
-                        .showSnackBar(SnackBar(content: Text('Data is in processing.')));
                   }
                 },
               )),
@@ -103,9 +95,4 @@ class _MyCustomFormState extends State<MyCustomForm> {
       ),
     );
   }
-
-  login(String id, String pw){
-    Navigator.pushNamed(context, '/adminHomePage');
-  }
-
 }
