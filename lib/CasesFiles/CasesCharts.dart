@@ -17,7 +17,7 @@ class CasesCharts extends StatelessWidget {
 
     for (var i = 0; i < covidList.length; i++) {
       var tempBarColor =  charts.ColorUtil.fromDartColor(Colors.white);
-      if(covidList[i].deathCount > 100){
+      if(covidList[i].deathCount > 20000){
         tempBarColor =  charts.ColorUtil.fromDartColor(Colors.red);
       }
       else{
@@ -52,7 +52,7 @@ class CasesCharts extends StatelessWidget {
       //If the totalDeaths remains as 0, do not add to the list
       if(totalCases != 0) {
         //If totalDeaths are more than 500, make the bar red
-        if (totalCases > 10000) {
+        if (totalCases > 600000) {
           tempBarColor = charts.ColorUtil.fromDartColor(Colors.red);
         }
         else {
@@ -145,11 +145,11 @@ class CasesCharts extends StatelessWidget {
       child: Scaffold(
           appBar: AppBar(
               backgroundColor: Colors.blue,
-              title: Text("Covid Deaths"),
+              title: Text("Statistics"),
               bottom: TabBar(
                   tabs:[
-                    Tab(icon: Icon(Icons.edit)),
-                    Tab(icon: Icon(Icons.edit)),
+                    Tab(icon: Icon(Icons.bar_chart), text: "New Covid Cases"),
+                    Tab(icon: Icon(Icons.insert_chart), text:"New Covid Deaths"),
                   ]
               )
           ),
@@ -164,6 +164,8 @@ class CasesCharts extends StatelessWidget {
                             child: CasesChartMaker(
                               data: createCovidChartList(cases as List<CovidCase>),
                               monthlyData : createCovidMonthlyChartList(cases as List<CovidCase>),
+                              dailyTitle: "Daily New Covid Cases for the past 3 months",
+                              monthlyTitle: "Monthly Covid Cases for the past 3 months",
                             )
                         );
                       } else if (snapshot.hasError) {
@@ -181,6 +183,8 @@ class CasesCharts extends StatelessWidget {
                             child: CasesChartMaker(
                               data: createChartList(cases as List<DeathCase>),
                               monthlyData : createMonthlyChartList(cases as List<DeathCase>),
+                              dailyTitle: "Daily Covid Deaths for the past 3 months",
+                              monthlyTitle: "Monthly Covid Deaths for the past 3 months",
                             )
                         );
                       } else if (snapshot.hasError) {
@@ -200,8 +204,11 @@ class CasesCharts extends StatelessWidget {
 class CasesChartMaker extends StatelessWidget {
   final List<CaseSeries> data;
   final List<MonthlyCaseSeries> monthlyData;
+  final String dailyTitle;
+  final String monthlyTitle;
 
-  CasesChartMaker({required this.data, required this.monthlyData});
+  CasesChartMaker({required this.data, required this.monthlyData,
+          required this.dailyTitle, required this.monthlyTitle});
 
 
   @override
@@ -227,7 +234,7 @@ class CasesChartMaker extends StatelessWidget {
     ];
 
     return Container(
-      height: 500,
+      height: 700,
       padding: EdgeInsets.all(20),
       child: Card(
         child: Padding(
@@ -235,8 +242,9 @@ class CasesChartMaker extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Text(
-                "Daily Covid Deaths for the past 3 months",
-                //style: Theme.of(context).textTheme.bodyText2,
+                dailyTitle,
+                style: TextStyle(
+                fontWeight: FontWeight.bold)
               ),
               Expanded(
                 child: charts.TimeSeriesChart(series, animate: true,
@@ -245,8 +253,9 @@ class CasesChartMaker extends StatelessWidget {
                     behaviors: [new charts.SelectNearest(), new charts.DomainHighlighter()] ),
               ),
               Text(
-                "Covid Deaths for the past few months",
-                //style: Theme.of(context).textTheme.bodyText2,
+                monthlyTitle,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold)
               ),
               Expanded(
                 child: charts.BarChart(
