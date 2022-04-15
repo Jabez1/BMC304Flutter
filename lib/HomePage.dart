@@ -3,7 +3,7 @@ import 'package:assignment_clinic_finder/covidVideoPage.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:assignment_clinic_finder/audioPage.dart';
 
-//yes this is the default page lol
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -80,7 +80,7 @@ class ButtonPage extends StatelessWidget{
                   child: Text(AppLocalizations.of(context)!.findClinic, textAlign: TextAlign.center),
                   style: ElevatedButton.styleFrom(
                       primary: Colors.blue,
-                      padding: EdgeInsets.only(top: 5, right: 67, left: 67, bottom:5),
+                      padding: EdgeInsets.only(top: 5, right: 5, left: 5, bottom:5),
                       fixedSize: const Size(300, 100),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50)),

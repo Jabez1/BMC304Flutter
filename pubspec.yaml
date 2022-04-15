@@ -48,6 +48,8 @@ dependencies:
   charts_flutter: ^0.12.0
   animated_splash_screen: ^1.2.0
   video_player: ^2.3.0
+  just_audio: ^0.9.20
+  audio_service: ^0.18.4
   flutter_bounceable: ^1.0.2
   breathing_collection: ^1.0.0+3
 
