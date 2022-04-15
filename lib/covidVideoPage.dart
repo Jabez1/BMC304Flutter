@@ -2,16 +2,28 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-void main() => runApp(VideoPlayerApp());
+void main() => runApp(const VideoPlayerApp());
 
 class VideoPlayerApp extends StatelessWidget {
-  VideoPlayerApp({Key? key}) : super(key: key);
-
+  const VideoPlayerApp({Key? key}) : super(key: key);
+  //static const String _title = 'Video Player';
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Video Player Demo',
-      home: VideoPlayerScreen(),
+  Widget build(BuildContext context){
+    return MaterialApp(
+      //title: _title,
+      home: Scaffold(
+        //appBar: AppBar(
+          //title: const Text(_title),
+          //leading: GestureDetector(
+            //onTap: (){
+              //Navigator.pop(context);
+            //},
+            //child: Icon(Icons.arrow_back
+            //),
+          //),
+        //),
+        body: const VideoPlayerScreen(),
+      ),
     );
   }
 }
@@ -35,7 +47,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     // offers several different constructors to play videos from assets, files,
     // or the internet.
     _controller = VideoPlayerController.network(
-      'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
+      'https://www.cdc.gov/coronavirus/2019-ncov/videos/what-to-expect-at-covid-19-vaccination-appt/what-to-expect-at-covid-19-vaccination-appt.mp4',
     );
 
     // Initialize the controller and store the Future for later use.
@@ -81,6 +93,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
           }
         },
       ),
+
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // Wrap the play or pause in a call to `setState`. This ensures the
