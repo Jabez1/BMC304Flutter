@@ -133,67 +133,71 @@ class _MyAppState extends State<clinicMap> {
                 ]
             )
           ),
-          body:  TabBarView(
-            //Disables the TabBar Swiping to not affect Map swiping
-            physics: NeverScrollableScrollPhysics(),
-            children : <Widget>[
-              GoogleMap(
-                onMapCreated: _onMapCreated,
-                initialCameraPosition: CameraPosition(
-                  target: startLocation,
-                  zoom: 15,
-                 ),
-                markers: _markers.values.toSet(),
-                polylines: Set<Polyline>.of(polylines.values),
-               ),
-              FutureBuilder <List<Clinic>>(
-                future: futureClinics,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    List<Clinic>? data = snapshot.data;
-                    //for each clinic, set the distance attribute using the calculateDistance method
-                    data?.forEach((element) {
-                      element.setDistance(calculateDistance(
-                          startLocation.latitude, startLocation.longitude,
-                          double.parse(element.vacLatitude),
-                          double.parse(element.vacLongitude)
-                      ).toStringAsFixed(2)//rounds the result to 2 d.p and converts to String
-                      );});
-                    //Sort the list based on distance
-                    data?.sort((a,b) =>
-                        double.parse(a.distance as String).compareTo(
-                            double.parse(b.distance as String)));
-                    _getPolyline(data![0]);
-                    return AnimationLimiter(
-                        child: ListView.builder(
-                        itemCount: data.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return AnimationConfiguration.staggeredList(
-                            position: index,
-                            duration: const Duration(milliseconds: 375),
-                            child: SlideAnimation(
-                              verticalOffset: 50.0,
-                              child: FadeInAnimation(
-                                child: ClinicMapCard(
-                                    cenName: data[index].centerName,
-                                    vacAddress: data[index].vacAddress,
-                                    vacName: data[index].vaccineName,
-                                    amountLeft: data[index].amountLeft,
-                                    numPhone: data[index].numPhone,
-                                    distance: data[index].distance as String
-                                  ),
+          body: FutureBuilder <List<Clinic>>(
+            future: futureClinics,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                List<Clinic>? data = snapshot.data;
+                //for each clinic, set the distance attribute using the calculateDistance method
+                data?.forEach((element) {
+                  element.setDistance(calculateDistance(
+                      startLocation.latitude, startLocation.longitude,
+                      double.parse(element.vacLatitude),
+                      double.parse(element.vacLongitude)
+                  ).toStringAsFixed(2)//rounds the result to 2 d.p and converts to String
+                  );});
+                //Sort the list based on distance
+                data?.sort((a,b) =>
+                    double.parse(a.distance as String).compareTo(
+                        double.parse(b.distance as String)));
+                _getPolyline(data![0]);
+                return TabBarView(
+                  //Disables the TabBar Swiping to not affect Map swiping
+                  physics: NeverScrollableScrollPhysics(),
+                  children : <Widget>[
+                  GoogleMap(
+                  onMapCreated: _onMapCreated,
+                  initialCameraPosition: CameraPosition(
+                    target: startLocation,
+                    zoom: 15,
+                  ),
+                  markers: _markers.values.toSet(),
+                  polylines: Set<Polyline>.of(polylines.values),
+                ),
+              AnimationLimiter(
+                    child: ListView.builder(
+                    itemCount: data.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return AnimationConfiguration.staggeredList(
+                        position: index,
+                        duration: const Duration(milliseconds: 375),
+                        child: SlideAnimation(
+                          verticalOffset: 50.0,
+                          child: FadeInAnimation(
+                            child: ClinicMapCard(
+                                cenName: data[index].centerName,
+                                vacAddress: data[index].vacAddress,
+                                vacName: data[index].vaccineName,
+                                amountLeft: data[index].amountLeft,
+                                numPhone: data[index].numPhone,
+                                distance: data[index].distance as String
                               ),
-                            ),
-                          );
-                        },
-                      )
-                    );}
+                          ),
+                        ),
+                      );
+                    },
+                  )
+              ),
+                  ]
+                );
+              }
+
                   return CircularProgressIndicator();
               }
             ),
-           ],
-         ),
-        ),
+
+      ),
+
     );
   }
 }
