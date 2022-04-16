@@ -9,7 +9,7 @@
 
      "password" : "密码",
 
-     "insertCase" : "插入一个新案例",
+     "insertCase" : "插入新案例",
 
      "manageCovidCases" : "管理 Covid 病例",
 
@@ -41,9 +41,9 @@
 
      "updateCenter" : "更新中心信息",
 
-     "centerUpSuccess" : "疫苗接种中心更新了!",
+     "centerUpSuccess" : "疫苗接种中心更新 !",
 
-     "viewCenter" : "疫苗接种中心列表",
+     "viewCenter" : "疫苗接种中心名单",
 
      "dismiss" : "已被解雇了",
 
@@ -89,7 +89,7 @@
 
      "enterDate" : "输入日期",
 
-     "enterNumberCovid" : "新冠病毒的数量",
+     "enterNumberCovid" : "输入 Covid 的编号",
 
      "date" : "日期",
 
@@ -97,9 +97,9 @@
 
      "dateValid" : "请输入日期",
 
-     "covidCount" : "Covid 计数",
+     "covidCount" : "新冠病毒计数",
 
-     "numberValid" : "请输入有效数字",
+     "numberValid" : "请输入有效号码",
 
      "caseAddedSuccess" : "已添加案例！",
 
@@ -107,13 +107,13 @@
 
      "requireValid" : "这里需要一个值",
 
-     "statistics" : "统计",
+     "statistics" : "统计数据",
 
-     "newCases": "新的 Covid 病例",
+     "newCases" : "新的 Covid 病例",
 
-     "newDeath": "新的 Covid 死亡",
+     "newDeath" : "新的 Covid 死亡人数",
 
-     "dailyCaseTitle" : "过去 3 个月的每日 Covid 新病例",
+     "dailyCaseTitle" : "过去 3 个月的每日新增 Covid 病例",
 
      "monthlyCaseTitle" : "过去 3 个月的每月 Covid 病例",
 
@@ -121,21 +121,21 @@
 
      "monthlyDeathTitle" : "过去 3 个月的每月 Covid 死亡人数",
 
-     "updateDeathTitle" : "更新某个日期的死亡案例",
+     "updateDeathTitle" : "更新日期的死亡案例",
 
      "insertCaseTitle" : "插入新案例",
 
-     "insertDeathTitle" : "插入一个日期的死亡案例",
+     "insertDeathTitle" : "插入日期的死亡案例",
 
-     "listCovid" : "Covid 病例列表",
+     "listCovid" : "Covid病例清单",
 
-     "dateCovidCases" : "新冠病例日期: ",
+     "dateCovidCases" : "Covid案件的日期: ",
 
-     "newCovidCount": "新的 Covid 病例数: ",
+     "newCovidCount" : "新的 Covid 病例数: ",
 
-     "listDeath" : "死亡案例列表",
+     "listDeath" : "死亡病例清单",
 
-     "dateDeathCases": "死亡日期: ",
+     "dateDeathCases" : "死亡日期: ",
 
-     "newDeathCount": "死亡人数: "
+     "newDeathCount" : "死亡人数:"
 }

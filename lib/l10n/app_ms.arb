@@ -1,151 +1,151 @@
 {
     "appName" : "Cari Klinik",
 
-    "login" : "Login",
+    "login" : "log masuk",
 
-    "loginPage" : "Login Page",
+    "loginPage" : "Halaman Log Masuk",
 
-    "insertCase" : "Insert a New Case",
+    "insertCase" : "Masukkan Kes Baharu",
 
-    "manageCovidCases" : "Manage Covid Cases",
+    "manageCovidCases" : "Urusan Kes Covid",
 
-    "manageDeathCases" : "Manage Death Cases",
+    "manageDeathCases" : "Urusan Kes Kematian",
 
-    "manageClinics" : "Manage Clinics",
+    "manageClinics" : "Urusan Kliniks",
 
-    "updateCase" : "Update a Case",
+    "updateCase" : "Kemas Kini Kes",
 
-    "covidStats" : "Covid Statistics",
+    "covidStats" : "Perangkaan Covid",
 
-    "findClinic" : "Find Nearest Clinic",
+    "findClinic" : "Cari Klinik Terdekat",
 
-    "submit" : "Submit",
+    "submit" : "Hantar",
 
-    "confirm" : "Confirm",
+    "confirm" : "Sah",
 
-    "cancel" : "Cancel",
+    "cancel" : "Batal",
 
-    "edit" : "Edit",
+    "edit" : "Sunting",
 
-    "delete" : "Delete",
+    "delete" : "Padam",
 
-    "update" : "Update",
+    "update" : "Kemas kini",
 
-    "enterUsername" : "Enter your username",
+    "enterUsername" : "Masukkan nama pengguna anda",
 
-    "enterPassword" : "Enter your password",
+    "enterPassword" : "Masukkan kata laluan anda",
 
-    "username" : "username",
+    "username" : "nama pengguna",
 
-    "password" : "password",
+    "password" : "kata laluan",
 
-    "validUser" : "Please enter your username",
+    "validUser" : "Sila masukkan nama pengguna anda",
 
-    "validPass" : "Please enter your password",
+    "validPass" : "Sila masukkan kata laluan anda",
 
-    "addNewCenterInfo" : "Add New Center Info",
+    "addNewCenterInfo" : "Tambah Maklumat Pusat Baharu",
 
-    "centerSuccess" : "Vaccination Center Added Successfully . . .",
+    "centerSuccess" : "Pusat Vaksinasi Berjaya Ditambah . . .",
 
-    "updateCenter" : "Update Center Info",
+    "updateCenter" : "Kemas Kini Maklumat Pusat",
 
-    "centerUpSuccess" : "Vaccination Center Updated !",
+    "centerUpSuccess" : "Pusat Vaksinasi Dikemaskini !",
 
-    "viewCenter" : "Vaccination Center List",
+    "viewCenter" : "Senarai Pusat Vaksinasi",
 
-    "dismiss" : "had been dismissed",
+    "dismiss" : "telah dipadamkan",
 
-    "confirmDelete" : "Delete Confirmation",
+    "confirmDelete" : "Padamkan Pengesahan",
 
-    "questionDeleteCenter" : "Are you sure you wish to delete this center info ?",
+    "questionDeleteCenter" : "Adakah anda pasti mahu memadamkan maklumat pusat ini ?",
 
-    "questionDeleteItem" : "Are you sure you wish to delete this item?",
+    "questionDeleteItem" : "Adakah anda pasti mahu memadamkan item ini ?",
 
-    "confirmUpdate" : "Update Confirmation",
+    "confirmUpdate" : "Kemas kini Pengesahan",
 
-    "questionUpCenter" : "Are you sure you wish to update this center info ?",
+    "questionUpCenter" : "Adakah anda pasti ingin mengemas kini maklumat pusat ini ?",
 
-    "questionUpItem" : "Are you sure you wish to update this item ?",
+    "questionUpItem" : "Adakah anda pasti ingin mengemas kini item ini ?",
 
-    "centerName" : "Center Name",
+    "centerName" : "Nama Pusat",
 
-    "address" : "Address",
+    "address" : "Alamat",
 
-    "latitude" : "Latitude",
+    "latitude" : "Latitud",
 
-    "longitude" : "Longitude",
+    "longitude" : "Longitud",
 
-    "vaccineName" : "Vaccine Name",
+    "vaccineName" : "Nama Vaksin",
 
-    "amountLeft" : "Amount Left",
+    "amountLeft" : "Jumlah yang Tinggal",
 
-    "phone" : "Phone",
+    "phone" : "Nombor telefon",
 
-    "enterCenter" : "Enter center name here",
+    "enterCenter" : "Masukkan nama pusat di sini",
 
-    "enterAddress" : "Enter address here",
+    "enterAddress" : "Masukkan alamat di sini",
 
-    "enterLatitude" : "Enter latitude here",
+    "enterLatitude" : "Masukkan latitud di sini",
 
-    "enterLongitude" : "Enter longitude here",
+    "enterLongitude" : "Masukkan longitud di sini",
 
-    "enterVaccine" : "Enter vaccine name here",
+    "enterVaccine" : "Masukkan nama vaksin di sini",
 
-    "enterAmount" : "Enter amount left here",
+    "enterAmount" : "Masukkan jumlah yang tinggal di sini",
 
-    "enterPhone" : "Enter phone here",
+    "enterPhone" : "Masukkan nombor telefon di sini",
 
-    "enterDate" : "Enter the date",
+    "enterDate" : "Masukkan tarikh",
 
-    "enterNumberCovid" : "Enter the number of Covid",
+    "enterNumberCovid" : "Masukkan bilangan kes Covid",
 
-    "date" : "Date",
+    "date" : "Tarikh",
 
-    "dateNotselect" : "Date not selected",
+    "dateNotselect" : "Tarikh tidak dipilih",
 
-    "dateValid" : "Please enter a date",
+    "dateValid" : "Sila masukkan tarikh",
 
-    "covidCount" : "Covid count",
+    "covidCount" : "Kiraan covid",
 
-    "deathCount" : "Death count",
+    "deathCount" : "Kiraan kematian",
 
-    "numberValid" : "Please enter valid number",
+    "numberValid" : "Sila masukkan nombor yang sah",
 
-    "caseAddedSuccess" : "Case has been Added!",
+    "caseAddedSuccess" : "Kes telah Ditambah!",
 
-    "caseUpdate" : "Case Updated!",
+    "caseUpdate" : "Kes Dikemas Kini!",
 
-    "requireValid" : "require a value here",
+    "requireValid" : "memerlukan nilai di sini",
 
-    "statistics" : "Statistics",
+    "statistics" : "Perangkaan",
 
-    "newCases" : "New Covid Cases",
+    "newCases" : "Kes Covid Baharu",
 
-    "newDeath" : "New Covid Deaths",
+    "newDeath" : "Kematian Covid Baharu",
 
-    "dailyCaseTitle" : "Daily New Covid Cases for the past 3 months",
+    "dailyCaseTitle" : "Kes Covid Baharu Harian selama 3 bulan yang lalu",
 
-    "monthlyCaseTitle" : "Monthly Covid Cases for the past 3 months",
+    "monthlyCaseTitle" : "Kes Covid Bulanan selama 3 bulan yang lalu",
 
-    "dailyDeathTitle" : "Daily Covid Deaths for the past 3 months",
+    "dailyDeathTitle" : "Kematian Covid Harian selama 3 bulan yang lalu",
 
-    "monthlyDeathTitle" : "Monthly Covid Deaths for the past 3 months",
+    "monthlyDeathTitle" : "Kematian Covid Bulanan selama 3 bulan yang lalu",
 
-    "updateDeathTitle" : "Update Death Cases for a date",
+    "updateDeathTitle" : "Kemas kini Kes Kematian untuk satu tarikh",
 
-    "insertCaseTitle" : "Insert New Case",
+    "insertCaseTitle" : "Masukkan Kes Baharu",
 
-    "insertDeathTitle" : "Insert Death Cases for a date",
+    "insertDeathTitle" : "Masukkan Kes Kematian untuk tarikh",
 
-    "listCovid" : "List of Covid Cases",
+    "listCovid" : "Senarai Kes Covid",
 
-    "dateCovidCases" : "Date of Covid Cases: ",
+    "dateCovidCases" : "Tarikh Kes Covid: ",
 
-    "newCovidCount" : "New Covid Case Count: ",
+    "newCovidCount" : "Kiraan Kes Covid Baharu: ",
 
-    "listDeath" : "List of Death Cases",
+    "listDeath" : "Senarai Kes Kematian",
 
-    "dateDeathCases" : "Date of Deaths: ",
+    "dateDeathCases" : "Tarikh Kematian: ",
 
-    "newDeathCount" : "Death Count:"
+    "newDeathCount" : "Kiraan Kematian:"
 }
