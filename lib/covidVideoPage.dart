@@ -1,20 +1,14 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
-import 'package:flutter_bounceable/flutter_bounceable.dart';
-import 'package:breathing_collection/breathing_collection.dart';
-
-void main() => runApp(const VideoPlayerApp());
 
 class VideoPlayerApp extends StatelessWidget {
   const VideoPlayerApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context){
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         body: const VideoPlayerScreen(),
-      ),
     );
   }
 }
@@ -85,8 +79,8 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         },
       ),
 
-
-      floatingActionButton: FloatingActionButton(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton.large(
         onPressed: () {
           // Wrap the play or pause in a call to `setState`. This ensures the
           // correct icon is shown.
@@ -103,6 +97,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         // Display the correct icon depending on the state of the player.
         child: Icon(
           _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
+          size: 60,
         ),
       ),
     );

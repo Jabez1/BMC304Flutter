@@ -7,7 +7,7 @@ class SplashScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return AnimatedSplashScreen(
-      splash: Icons.health_and_safety,
+      splash:  Icon(Icons.health_and_safety, size: 200),
       nextScreen: HomePage(),
       splashTransition: SplashTransition.fadeTransition,
       pageTransitionType: PageTransitionType.rightToLeft,
