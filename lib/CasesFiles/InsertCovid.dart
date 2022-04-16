@@ -72,8 +72,8 @@ class _MyCustomFormState extends State<MyCustomForm> {
         children: <Widget>[
           TextFormField(
             controller: dateController,
-            decoration: const InputDecoration(
-              icon: const Icon(Icons.calendar_today),
+            decoration: InputDecoration(
+              icon: Icon(Icons.calendar_today),
               hintText: 'Enter the Date',
               labelText: AppLocalizations.of(context)!.date,
             ),
@@ -103,10 +103,10 @@ class _MyCustomFormState extends State<MyCustomForm> {
           ),
           TextFormField(
             controller: countController,
-            decoration: const InputDecoration(
-              icon: const Icon(Icons.person),
-              hintText: 'Enter the number of Covid',
-              labelText: AppLocalizations.of(context)!.count,
+            decoration: InputDecoration(
+              icon: Icon(Icons.person),
+              hintText: 'Enter the number of Covid Cases',
+              labelText: AppLocalizations.of(context)!.newCovidCount,
             ),
             inputFormatters: <TextInputFormatter>[
               FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),

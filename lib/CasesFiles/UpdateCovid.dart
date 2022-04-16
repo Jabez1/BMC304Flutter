@@ -12,7 +12,7 @@ class UpdateCovid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final dCaseArg = ModalRoute.of(context)!.settings.arguments as DeathCase;
+    final dCaseArg = ModalRoute.of(context)!.settings.arguments as CovidCase;
 
     return Scaffold(
         appBar: AppBar(
@@ -47,8 +47,8 @@ updateCovidCase(String date, String count) async{
 
 class MyCustomForm extends StatefulWidget {
 
-  //Pass the DeathCase object to the form
-  final DeathCase dCase;
+  //Pass the CovidCase object to the form
+  final CovidCase dCase;
 
   const MyCustomForm({Key? key, required this.dCase}) : super(key: key);
 
@@ -64,7 +64,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
   final dateController = TextEditingController();
   final countController = TextEditingController();
 
-  //Adds the Death Case Initial Values to the Form
+  //Adds the Covid Case Initial Values to the Form
   @override
   void initState() {
     super.initState();
@@ -108,7 +108,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
                   print(formattedDate);
                 });}
               else{
-                print(AppLocalizations.of(context)!.dateNotselect);
+                print(AppLocalizations.of(context)!.dateNotSelect);
               }
             },
             validator: (value) {

@@ -1,10 +1,8 @@
 import 'package:assignment_clinic_finder/ClinicFiles/Clinic.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'Clinic.dart';
 import '../main.dart';
-import 'animated_button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 //void main() => runApp(UpdateClinic());
@@ -17,8 +15,7 @@ class UpdateClinic extends StatelessWidget{
   Widget build(BuildContext context){
     final cInfoArg = ModalRoute.of(context)!.settings.arguments as Clinic;
     
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: Text(AppLocalizations.of(context)!.updateCenter),
           leading: GestureDetector(
@@ -30,16 +27,16 @@ class UpdateClinic extends StatelessWidget{
           ),
         ),
         body: MyClinicForm(cInfo: cInfoArg),
-      ),
     );
   }
 }
 
-updateClinic(String cenName, String vacAdd, String vacLad,
+updateClinic(String cenID, String cenName, String vacAdd, String vacLad,
     String vacLong, String vacName, String amtLeft, String noPhone) async{
   final response = await http.post(
     Uri.parse('http://'+ urIp +'/BMC304php/clinicUpdate.php'),
     body:{
+      'centerId':cenID,
       'centerName':cenName,
       'vacAddress':vacAdd,
       'vacLatitude':vacLad,
@@ -59,6 +56,7 @@ updateClinic(String cenName, String vacAdd, String vacLad,
 
 class MyClinicForm extends StatefulWidget{
   final Clinic cInfo;
+
   
   const MyClinicForm({Key? key, required this.cInfo}) : super(key: key);
   
@@ -78,10 +76,10 @@ class _MyClinicFormState extends State<MyClinicForm>{
   final noPhoneController = TextEditingController();
   
   @override
-  void iniState(){
+  void initState(){
     super.initState();
     cenNameController.text = widget.cInfo.getString();
-    vacNameController.text = widget.cInfo.getAddress();
+    vacAddController.text = widget.cInfo.getAddress();
     vacLadController.text = widget.cInfo.getLadtitude();
     vacLongController.text = widget.cInfo.getLongitude();
     vacNameController.text = widget.cInfo.getVaccineName();
@@ -205,7 +203,7 @@ class _MyClinicFormState extends State<MyClinicForm>{
               onPressed: (){
                 if(_formKey.currentState!.validate()){
                   setState(() {
-                    updateClinic(cenNameController.text, vacAddController.text,
+                    updateClinic(widget.cInfo.getId(), cenNameController.text, vacAddController.text,
                         vacLadController.text, vacLongController.text,
                         vacNameController.text, amtLeftController.text,
                         noPhoneController.text);

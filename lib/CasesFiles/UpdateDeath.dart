@@ -111,7 +111,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
                   print(formattedDate);
                 });}
               else{
-                print(AppLocalizations.of(context)!.dateNotselect);
+                print(AppLocalizations.of(context)!.dateNotSelect);
               }
             },
             validator: (value) {
@@ -126,7 +126,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
             decoration: InputDecoration(
               icon: Icon(Icons.person),
               hintText: 'Enter the number of deaths',
-              labelText: AppLocalizations.of(context)!.count,
+              labelText: AppLocalizations.of(context)!.newDeathCount,
             ),
             inputFormatters: <TextInputFormatter>[
               FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),

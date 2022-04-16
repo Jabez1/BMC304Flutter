@@ -51,7 +51,7 @@ dependencies:
   just_audio: ^0.9.20
   audio_service: ^0.18.4
   flutter_bounceable: ^1.0.2
-  breathing_collection: ^1.0.0+3
+  flutter_staggered_animations: ^1.0.0
 
 dev_dependencies:
   flutter_test:

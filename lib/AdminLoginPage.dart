@@ -56,7 +56,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
             decoration: InputDecoration(
                 icon: Icon(Icons.person),
               hintText: 'Enter your username',
-              labelText: 'AppLocalizations.of(context)!.username',
+              labelText: AppLocalizations.of(context)!.username,
             ),
             validator: (value) {
               if (value!.isEmpty) {
@@ -68,10 +68,10 @@ class _MyCustomFormState extends State<MyCustomForm> {
           TextFormField(
             controller: pwController,
             obscureText: true,
-            decoration: const InputDecoration(
-              icon: const Icon(Icons.vpn_key_sharp),
+            decoration: InputDecoration(
+              icon: Icon(Icons.vpn_key_sharp),
               hintText: 'Enter your Password',
-              labelText: 'AppLocalizations.of(context)!.password',
+              labelText: AppLocalizations.of(context)!.password,
             ),
             validator: (value) {
               if (value!.isEmpty) {

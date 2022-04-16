@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:assignment_clinic_finder/ClinicFiles/Clinic.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:assignment_clinic_finder/ClinicFiles/AddClinicPage.dart';
 
 Future <List<Clinic>> fetchData() async {
   final response =await http
@@ -18,8 +17,6 @@ Future <List<Clinic>> fetchData() async {
   }
 }
 
-void main() => runApp(ViewClinic());
-
 class ViewClinic extends StatefulWidget {
   ViewClinic({Key? key}) : super(key: key);
 
@@ -29,7 +26,7 @@ class ViewClinic extends StatefulWidget {
 
 deleteClinic(String cenID) async {
   final response = await http.post(
-    Uri.parse('http://' + urIp + '/clinicDelete.php'),
+    Uri.parse('http://' + urIp + '/BMC304/clinicDelete.php'),
     body: {
       'centerId':cenID
     }
@@ -53,9 +50,7 @@ class _MyAppState extends State<ViewClinic> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Vaccination Center List',
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: Text(AppLocalizations.of(context)!.viewCenter),
             leading: GestureDetector(
@@ -80,7 +75,6 @@ class _MyAppState extends State<ViewClinic> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 List<Clinic>? data = snapshot.data;
-
                 return
                   ListView.builder(
                       itemCount: data?.length,
@@ -179,7 +173,6 @@ class _MyAppState extends State<ViewClinic> {
             },
           ),
         ),
-      ),
     );
   }
 }
@@ -214,18 +207,18 @@ class ClinicCard extends StatelessWidget{
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             Text(
-                AppLocalizations.of(context)!.centerName +this.cenName,
+                AppLocalizations.of(context)!.centerName +": " + this.cenName,
                 textAlign: TextAlign.center,
                 style: TextStyle(
               fontWeight: FontWeight.bold
              )
             ),
-            Text(AppLocalizations.of(context)!.address+":"+this.vacAddress, textAlign: TextAlign.left),
-            Text(AppLocalizations.of(context)!.latitude+":" +this.vacLad,textAlign: TextAlign.left),
-            Text(AppLocalizations.of(context)!.longitude+":" +this.vacLong,textAlign: TextAlign.left),
-            Text(AppLocalizations.of(context)!.vaccineName+":" +this.vacName,textAlign: TextAlign.left),
-            Text(AppLocalizations.of(context)!.amountLeft+":" +this.amountLeft,textAlign: TextAlign.left),
-            Text(AppLocalizations.of(context)!.phone+":" +this.numPhone,textAlign: TextAlign.left),
+            Text(AppLocalizations.of(context)!.address+": "+this.vacAddress, textAlign: TextAlign.center),
+            Text(AppLocalizations.of(context)!.latitude+": " +this.vacLad,textAlign: TextAlign.left),
+            Text(AppLocalizations.of(context)!.longitude+": " +this.vacLong,textAlign: TextAlign.left),
+            Text(AppLocalizations.of(context)!.vaccineName+": " +this.vacName,textAlign: TextAlign.left),
+            Text(AppLocalizations.of(context)!.amountLeft+": " +this.amountLeft,textAlign: TextAlign.left),
+            Text(AppLocalizations.of(context)!.phone+": " +this.numPhone,textAlign: TextAlign.left),
             ],
           ),
         )

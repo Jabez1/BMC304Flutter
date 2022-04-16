@@ -8,6 +8,10 @@
 
     "loginPage" : "Login Page",
 
+    "username" : "Username",
+
+    "password" : "Password",
+
     "insertCase" : "Insert a New Case",
 
     "manageCovidCases" : "Manage Covid Cases",
@@ -92,7 +96,7 @@
 
     "date" : "Date",
 
-    "dateNotselect" : "Date not selected",
+    "dateNotSelect" : "Date not selected",
 
     "dateValid" : "Please enter a date",
 

@@ -1,6 +1,9 @@
 {
   "ms": [
-    "addNewCenterInfo"
+    "username",
+    "password",
+    "addNewCenterInfo",
+    "dateNotSelect"
   ],
 
   "zh": [
