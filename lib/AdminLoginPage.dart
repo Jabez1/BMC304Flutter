@@ -55,12 +55,12 @@ class _MyCustomFormState extends State<MyCustomForm> {
             controller: idController,
             decoration: InputDecoration(
                 icon: Icon(Icons.person),
-              hintText: 'Enter your username',
+              hintText: AppLocalizations.of(context)!.enterUsername,
               labelText: AppLocalizations.of(context)!.username,
             ),
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Please enter your username';
+                return AppLocalizations.of(context)!.validUser;
               }
               return null;
             },
@@ -69,13 +69,13 @@ class _MyCustomFormState extends State<MyCustomForm> {
             controller: pwController,
             obscureText: true,
             decoration: InputDecoration(
-              icon: Icon(Icons.vpn_key_sharp),
-              hintText: 'Enter your Password',
+              icon: const Icon(Icons.vpn_key_sharp),
+              hintText: AppLocalizations.of(context)!.enterPassword,
               labelText: AppLocalizations.of(context)!.password,
             ),
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Please enter your password';
+                return AppLocalizations.of(context)!.validPass;
               }
               return null;
             },
@@ -83,7 +83,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
           Container(
               padding: const EdgeInsets.only(left: 150.0, top: 40.0),
               child: ElevatedButton(
-                child: const Text('Submit'),
+                child: Text(AppLocalizations.of(context)!.submit),
                 onPressed: () {
                   // It returns true if the form is valid, otherwise returns false
                   if (_formKey.currentState!.validate()) {

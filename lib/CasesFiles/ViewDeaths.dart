@@ -28,7 +28,7 @@ class _MyAppState extends State<ViewDeaths> {
         appBar: AppBar(
           title: Text(AppLocalizations.of(context)!.listDeath),
           leading: GestureDetector(
-            onTap: () { Navigator.pushNamed(context, '/'); },
+            onTap: () { Navigator.pushNamed(context, '/adminHomePage'); },
             child: Icon(
               Icons.arrow_back, // add custom icons also
             ),

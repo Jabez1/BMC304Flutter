@@ -1,12 +1,10 @@
 {
-  "ms": [
-    "username",
-    "password",
-    "addNewCenterInfo",
-    "dateNotSelect"
-  ],
-
   "zh": [
-    "addNewCenterInfo"
+    "enterUsername",
+    "enterPassword",
+    "validUser",
+    "validPass",
+    "addNewCenterInfo",
+    "deathCount"
   ]
 }

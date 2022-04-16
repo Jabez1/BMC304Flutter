@@ -93,7 +93,7 @@ class _MyAppState extends State<ViewClinic> {
 
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(content:
-                              Text("$cenName" + AppLocalizations.of(context)!.dismiss)));
+                              Text('$cenName' + AppLocalizations.of(context)!.dismiss)));
                             },
                           confirmDismiss: (DismissDirection direction) async {
                               return await showDialog(
@@ -197,7 +197,6 @@ class ClinicCard extends StatelessWidget{
       child: Card(
           child: InkWell(
         onTap: (){
-
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

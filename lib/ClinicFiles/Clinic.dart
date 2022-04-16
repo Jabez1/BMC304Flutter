@@ -45,7 +45,7 @@ class Clinic {
     return this.vacAddress;
   }
 
-  String getLadtitude() {
+  String getLatitude() {
     return this.vacLatitude;
   }
 

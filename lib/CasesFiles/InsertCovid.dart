@@ -73,7 +73,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
           TextFormField(
             controller: dateController,
             decoration: InputDecoration(
-              icon: Icon(Icons.calendar_today),
+              icon: const Icon(Icons.calendar_today),
               hintText: 'Enter the Date',
               labelText: AppLocalizations.of(context)!.date,
             ),
@@ -104,9 +104,9 @@ class _MyCustomFormState extends State<MyCustomForm> {
           TextFormField(
             controller: countController,
             decoration: InputDecoration(
-              icon: Icon(Icons.person),
-              hintText: 'Enter the number of Covid Cases',
-              labelText: AppLocalizations.of(context)!.newCovidCount,
+              icon: const Icon(Icons.person),
+              hintText: 'Enter the number of Covid',
+              labelText: AppLocalizations.of(context)!.covidCount,
             ),
             inputFormatters: <TextInputFormatter>[
               FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),

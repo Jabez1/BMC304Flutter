@@ -31,12 +31,11 @@ class UpdateClinic extends StatelessWidget{
   }
 }
 
-updateClinic(String cenID, String cenName, String vacAdd, String vacLad,
+updateClinic(String cenName, String vacAdd, String vacLad,
     String vacLong, String vacName, String amtLeft, String noPhone) async{
   final response = await http.post(
     Uri.parse('http://'+ urIp +'/BMC304php/clinicUpdate.php'),
     body:{
-      'centerId':cenID,
       'centerName':cenName,
       'vacAddress':vacAdd,
       'vacLatitude':vacLad,
@@ -56,7 +55,6 @@ updateClinic(String cenID, String cenName, String vacAdd, String vacLad,
 
 class MyClinicForm extends StatefulWidget{
   final Clinic cInfo;
-
   
   const MyClinicForm({Key? key, required this.cInfo}) : super(key: key);
   
@@ -80,7 +78,7 @@ class _MyClinicFormState extends State<MyClinicForm>{
     super.initState();
     cenNameController.text = widget.cInfo.getString();
     vacAddController.text = widget.cInfo.getAddress();
-    vacLadController.text = widget.cInfo.getLadtitude();
+    vacLadController.text = widget.cInfo.getLatitude();
     vacLongController.text = widget.cInfo.getLongitude();
     vacNameController.text = widget.cInfo.getVaccineName();
     amtLeftController.text = widget.cInfo.getAmountLeft();
@@ -203,7 +201,7 @@ class _MyClinicFormState extends State<MyClinicForm>{
               onPressed: (){
                 if(_formKey.currentState!.validate()){
                   setState(() {
-                    updateClinic(widget.cInfo.getId(), cenNameController.text, vacAddController.text,
+                    updateClinic(cenNameController.text, vacAddController.text,
                         vacLadController.text, vacLongController.text,
                         vacNameController.text, amtLeftController.text,
                         noPhoneController.text);
