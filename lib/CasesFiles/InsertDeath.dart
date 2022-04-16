@@ -14,7 +14,7 @@ class InsertDeath extends StatelessWidget {
         appBar: AppBar(
           title: Text(AppLocalizations.of(context)!.insertCaseTitle),
           leading: GestureDetector(
-            onTap: () { Navigator.pop(context);},
+            onTap: () { Navigator.pushNamed(context, '/viewDeath');},
             child: Icon(
               Icons.arrow_back, // add custom icons also
             ),

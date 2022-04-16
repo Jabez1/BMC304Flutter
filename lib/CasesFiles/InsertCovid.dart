@@ -14,7 +14,7 @@ class InsertCovid extends StatelessWidget {
         appBar: AppBar(
           title: Text(AppLocalizations.of(context)!.insertCase),
           leading: GestureDetector(
-            onTap: () { Navigator.pop(context);},
+            onTap: () {Navigator.pushNamed(context, '/viewCovid');},
             child: Icon(
               Icons.arrow_back, // add custom icons also
             ),

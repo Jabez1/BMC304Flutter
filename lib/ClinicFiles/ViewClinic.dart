@@ -58,8 +58,7 @@ class _MyAppState extends State<ViewClinic> {
             if (snapshot.hasData) {
               List<Clinic>? data = snapshot.data;
               return AnimationLimiter(
-                  child:
-                  ListView.builder(
+                  child: ListView.builder(
                   itemCount: data?.length,
                   itemBuilder: (BuildContext context, int index) {
                     final item = data?[index];

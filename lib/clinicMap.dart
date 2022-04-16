@@ -165,8 +165,7 @@ class _MyAppState extends State<clinicMap> {
                             double.parse(b.distance as String)));
                     _getPolyline(data![0]);
                     return AnimationLimiter(
-                        child:
-                      ListView.builder(
+                        child: ListView.builder(
                         itemCount: data.length,
                         itemBuilder: (BuildContext context, int index) {
                           return AnimationConfiguration.staggeredList(

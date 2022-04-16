@@ -21,7 +21,7 @@ class UpdateClinic extends StatelessWidget{
           title: Text(AppLocalizations.of(context)!.updateCenter),
           leading: GestureDetector(
             onTap: (){
-              Navigator.pushNamed(context, '/viewClinic');;
+              Navigator.pushNamed(context, '/viewClinic');
             },
             child: Icon(Icons.arrow_back
             ),
