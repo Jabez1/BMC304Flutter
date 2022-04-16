@@ -75,7 +75,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
             decoration: const InputDecoration(
               icon: const Icon(Icons.calendar_today),
               hintText: 'Enter the Date',
-              labelText: 'AppLocalizations.of(context)!.date',
+              labelText: AppLocalizations.of(context)!.date,
             ),
             readOnly: true,
             onTap: () async {
@@ -106,7 +106,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
             decoration: const InputDecoration(
               icon: const Icon(Icons.person),
               hintText: 'Enter the number of Covid',
-              labelText: 'AppLocalizations.of(context)!.count',
+              labelText: AppLocalizations.of(context)!.count,
             ),
             inputFormatters: <TextInputFormatter>[
               FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
@@ -122,7 +122,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
           Container(
               padding: const EdgeInsets.only(left: 150.0, top: 40.0),
               child: ElevatedButton(
-                child: Text(AppLocalizations.of(context)!.insert),
+                child: Text(AppLocalizations.of(context)!.submit),
                 onPressed: () {
                   // It returns true if the form is valid, otherwise returns false
                   if (_formKey.currentState!.validate()) {

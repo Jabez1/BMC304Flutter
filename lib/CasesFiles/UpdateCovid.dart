@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import '../main.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:assignment_clinic_finder/CasesFiles/Case.dart';
 
 class UpdateCovid extends StatelessWidget {
   const UpdateCovid({Key? key}) : super(key: key);

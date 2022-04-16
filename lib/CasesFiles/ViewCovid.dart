@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../main.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:assignment_clinic_finder/CasesFiles/Case.dart';
 
 class ViewCovid extends StatefulWidget {
   ViewCovid({Key? key}) : super(key: key);
