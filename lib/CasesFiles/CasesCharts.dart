@@ -5,6 +5,7 @@ import '../main.dart';
 import 'ViewDeaths.dart';
 import 'ViewCovid.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CasesCharts extends StatelessWidget {
   Future<List<CovidCase>> futureCovidCases = fetchCovid();
@@ -145,11 +146,11 @@ class CasesCharts extends StatelessWidget {
       child: Scaffold(
           appBar: AppBar(
               backgroundColor: Colors.blue,
-              title: Text("Statistics"),
+              title: Text(AppLocalizations.of(context)!.statistics),
               bottom: TabBar(
                   tabs:[
-                    Tab(icon: Icon(Icons.bar_chart), text: "New Covid Cases"),
-                    Tab(icon: Icon(Icons.insert_chart), text:"New Covid Deaths"),
+                    Tab(icon: Icon(Icons.bar_chart), text: AppLocalizations.of(context)!.newCases),
+                    Tab(icon: Icon(Icons.insert_chart), text: AppLocalizations.of(context)!.newDeath),
                   ]
               )
           ),
@@ -164,8 +165,8 @@ class CasesCharts extends StatelessWidget {
                             child: CasesChartMaker(
                               data: createCovidChartList(cases as List<CovidCase>),
                               monthlyData : createCovidMonthlyChartList(cases as List<CovidCase>),
-                              dailyTitle: "Daily New Covid Cases for the past 3 months",
-                              monthlyTitle: "Monthly Covid Cases for the past 3 months",
+                              dailyTitle: AppLocalizations.of(context)!.dailyCaseTitle,
+                              monthlyTitle: AppLocalizations.of(context)!.monthlyCaseTitle,
                             )
                         );
                       } else if (snapshot.hasError) {
@@ -183,8 +184,8 @@ class CasesCharts extends StatelessWidget {
                             child: CasesChartMaker(
                               data: createChartList(cases as List<DeathCase>),
                               monthlyData : createMonthlyChartList(cases as List<DeathCase>),
-                              dailyTitle: "Daily Covid Deaths for the past 3 months",
-                              monthlyTitle: "Monthly Covid Deaths for the past 3 months",
+                              dailyTitle: AppLocalizations.of(context)!.dailyDeathTitle,
+                              monthlyTitle: AppLocalizations.of(context)!.monthlyDeathTitle,
                             )
                         );
                       } else if (snapshot.hasError) {

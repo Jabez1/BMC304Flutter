@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../main.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ViewCovid extends StatefulWidget {
   ViewCovid({Key? key}) : super(key: key);
@@ -24,9 +25,9 @@ class _MyAppState extends State<ViewCovid> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: Text('List of Covid Cases'),
+            title: Text(AppLocalizations.of(context)!.listCovid),
             leading: GestureDetector(
-              onTap: () { Navigator.pushNamed(context, '/'); },
+              onTap: () { Navigator.pushNamed(context, '/adminHomePage'); },
               child: Icon(
                 Icons.arrow_back, // add custom icons also
               ),
@@ -71,24 +72,24 @@ class _MyAppState extends State<ViewCovid> {
                               builder: (BuildContext context) {
                                 if(direction == DismissDirection.startToEnd){
                                   return AlertDialog(
-                                    title: const Text("Delete Confirmation"),
-                                    content: const Text("Are you sure you wish to delete this item?"),
+                                    title: Text(AppLocalizations.of(context)!.confirmDelete),
+                                    content: Text(AppLocalizations.of(context)!.questionDeleteItem),
                                     actions: <Widget>[
                                       ElevatedButton(
                                           onPressed: () => Navigator.of(context).pop(true),
-                                          child: const Text("DELETE")
+                                          child: Text(AppLocalizations.of(context)!.delete)
                                       ),
                                       ElevatedButton(
                                         onPressed: () => Navigator.of(context).pop(false),
-                                        child: const Text("CANCEL"),
+                                        child: Text(AppLocalizations.of(context)!.cancel),
                                       ),
                                     ],
                                   );
                                 }
                                 else{
                                   return AlertDialog(
-                                    title: const Text("Edit Confirmation"),
-                                    content: const Text("Are you sure you wish to edit this item?"),
+                                    title: Text(AppLocalizations.of(context)!.confirmUpdate),
+                                    content: Text(AppLocalizations.of(context)!.questionUpItem),
                                     actions: <Widget>[
                                       ElevatedButton(
                                           onPressed: () => {
@@ -98,11 +99,11 @@ class _MyAppState extends State<ViewCovid> {
                                                 arguments: cases?[index]
                                             )
                                           },
-                                          child: const Text("EDIT")
+                                          child: Text(AppLocalizations.of(context)!.edit)
                                       ),
                                       ElevatedButton(
                                         onPressed: () => Navigator.of(context).pop(false),
-                                        child: const Text("CANCEL"),
+                                        child: Text(AppLocalizations.of(context)!.cancel),
                                       ),
                                     ],
                                   );
@@ -190,10 +191,10 @@ class DeathCaseCard extends StatelessWidget{
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children:<Widget>[
                       Text(
-                        "Date of Covid Cases: "+ this.date,
+                        AppLocalizations.of(context)!.dateCovidCases + this.date,
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      Text("New Covid Case Count: " + this.count.toString()),
+                      Text(AppLocalizations.of(context)!.newCovidCount + this.count.toString()),
                     ]
                 )
             )

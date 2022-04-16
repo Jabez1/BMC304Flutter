@@ -3,11 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import '../main.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class UpdateCovid extends StatelessWidget {
   const UpdateCovid({Key? key}) : super(key: key);
-
-  static const String _title = 'Update Death Cases for a date';
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +15,7 @@ class UpdateCovid extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text(_title),
+          title: Text(AppLocalizations.of(context)!.updateDeathTitle),
           leading: GestureDetector(
             onTap: () { Navigator.pushNamed(context, '/ViewCovid'); },
             child: Icon(
@@ -89,10 +88,10 @@ class _MyCustomFormState extends State<MyCustomForm> {
         children: <Widget>[
           TextFormField(
             controller: dateController,
-            decoration: const InputDecoration(
+            decoration:  InputDecoration(
               icon: const Icon(Icons.calendar_today),
-              hintText: 'Enter the Date',
-              labelText: 'Date',
+              hintText: AppLocalizations.of(context)!.enterDate,
+              labelText: AppLocalizations.of(context)!.date,
             ),
             readOnly: true,
             onTap: () async {
@@ -108,12 +107,12 @@ class _MyCustomFormState extends State<MyCustomForm> {
                   print(formattedDate);
                 });}
               else{
-                print("Date not selected");
+                print(AppLocalizations.of(context)!.dateNotselect);
               }
             },
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Please enter a date';
+                return AppLocalizations.of(context)!.dateValid;
               }
               return null;
             },
@@ -122,8 +121,8 @@ class _MyCustomFormState extends State<MyCustomForm> {
             controller: countController,
             decoration: const InputDecoration(
               icon: const Icon(Icons.person),
-              hintText: 'Enter the number of deaths',
-              labelText: 'Death Count',
+              hintText: AppLocalizations.of(context)!.enterNumberCovid,
+              labelText: AppLocalizations.of(context)!.covidCount,
             ),
             inputFormatters: <TextInputFormatter>[
               FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
@@ -131,7 +130,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
             keyboardType: TextInputType.number,
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Please enter valid number';
+                return AppLocalizations.of(context)!.numberValid;
               }
               return null;
             },
@@ -139,7 +138,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
           Container(
               padding: const EdgeInsets.only(left: 150.0, top: 40.0),
               child: ElevatedButton(
-                child: const Text('Update'),
+                child: Text(AppLocalizations.of(context)!.update),
                 onPressed: () {
                   // It returns true if the form is valid, otherwise returns false
                   if (_formKey.currentState!.validate()) {
@@ -149,7 +148,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
                     });
                     // If the form is valid, display a Snackbar.
                     Scaffold.of(context)
-                        .showSnackBar(SnackBar(content: Text('Case Updated!')));
+                        .showSnackBar(SnackBar(content: Text(AppLocalizations.of(context)!.caseUpdate)));
                   }
                 },
               )),

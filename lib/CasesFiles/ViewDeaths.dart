@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../main.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ViewDeaths extends StatefulWidget {
   ViewDeaths({Key? key}) : super(key: key);
@@ -24,7 +25,7 @@ class _MyAppState extends State<ViewDeaths> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('List of Death Cases'),
+          title: Text(AppLocalizations.of(context)!.listDeath),
           leading: GestureDetector(
             onTap: () { Navigator.pushNamed(context, '/'); },
             child: Icon(
@@ -70,24 +71,24 @@ class _MyAppState extends State<ViewDeaths> {
                               builder: (BuildContext context) {
                                 if(direction == DismissDirection.startToEnd){
                                   return AlertDialog(
-                                    title: const Text("Delete Confirmation"),
-                                    content: const Text("Are you sure you wish to delete this item?"),
+                                    title: Text(AppLocalizations.of(context)!.confirmDelete),
+                                    content: Text(AppLocalizations.of(context)!.questionDeleteItem),
                                     actions: <Widget>[
                                       ElevatedButton(
                                           onPressed: () => Navigator.of(context).pop(true),
-                                          child: const Text("DELETE")
+                                          child: Text(AppLocalizations.of(context)!.delete)
                                       ),
                                       ElevatedButton(
                                         onPressed: () => Navigator.of(context).pop(false),
-                                        child: const Text("CANCEL"),
+                                        child: Text(AppLocalizations.of(context)!.cancel),
                                       ),
                                     ],
                                   );
                                 }
                                 else{
                                   return AlertDialog(
-                                    title: const Text("Edit Confirmation"),
-                                    content: const Text("Are you sure you wish to edit this item?"),
+                                    title: Text(AppLocalizations.of(context)!.confirmUpdate),
+                                    content: Text(AppLocalizations.of(context)!.questionUpItem),
                                     actions: <Widget>[
                                       ElevatedButton(
                                         onPressed: () => {
@@ -97,11 +98,11 @@ class _MyAppState extends State<ViewDeaths> {
                                               arguments: cases?[index]
                                           )
                                         },
-                                        child: const Text("EDIT")
+                                          child: Text(AppLocalizations.of(context)!.edit)
                                       ),
                                       ElevatedButton(
                                         onPressed: () => Navigator.of(context).pop(false),
-                                        child: const Text("CANCEL"),
+                                        child: Text(AppLocalizations.of(context)!.cancel),
                                       ),
                                     ],
                                   );
@@ -189,10 +190,10 @@ class DeathCaseCard extends StatelessWidget{
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children:<Widget>[
                       Text(
-                        "Date of Deaths: "+ this.date,
+                        AppLocalizations.of(context)!.dateDeathCases + this.date,
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      Text("Death Count: " + this.count.toString()),
+                      Text( AppLocalizations.of(context)!.newDeathCount + this.count.toString()),
                     ]
                 )
             )
