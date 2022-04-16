@@ -35,7 +35,15 @@
 
      "update" : "更新",
 
-     "AddNewCenterInfo" : "添加新中心信息",
+     "enterUsername" : "输入您的用户名",
+
+     "enterPassword" : "输入您的密码",
+
+     "validUser" : "请输入您的用户名",
+
+     "validPass": "请输入您的密码",
+
+     "addNewCenterInfo" : "添加新中心信息",
 
      "centerSuccess" : "疫苗接种中心添加成功! ! !",
 
@@ -91,6 +99,8 @@
 
      "enterNumberCovid" : "输入 Covid 的编号",
 
+     "enterNumberDeath" : "输入死亡人数",
+
      "date" : "日期",
 
      "dateNotSelect" : "未选择日期",
@@ -98,6 +108,8 @@
      "dateValid" : "请输入日期",
 
      "covidCount" : "新冠病毒计数",
+
+     "deathCount" : "死亡人数",
 
      "numberValid" : "请输入有效号码",
 

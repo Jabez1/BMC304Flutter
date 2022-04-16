@@ -1,16 +1,1 @@
-{
-  "ms": [
-    "enterNumberDeath",
-    "dateNotSelect"
-  ],
-
-  "zh": [
-    "enterUsername",
-    "enterPassword",
-    "validUser",
-    "validPass",
-    "addNewCenterInfo",
-    "enterNumberDeath",
-    "deathCount"
-  ]
-}
+{}

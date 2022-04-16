@@ -15,7 +15,7 @@ class _MyAdminHomePageState extends State<adminHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Admin Home Page"),
+          title: Text(AppLocalizations.of(context)!.adminHomePage),
           leading: GestureDetector(
             onTap: (){
               Navigator.pushNamed(context, '/');

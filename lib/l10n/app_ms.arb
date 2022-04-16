@@ -39,6 +39,8 @@
 
     "password" : "kata laluan",
 
+
+
     "validUser" : "Sila masukkan nama pengguna anda",
 
     "validPass" : "Sila masukkan kata laluan anda",
@@ -99,9 +101,11 @@
 
     "enterNumberCovid" : "Masukkan bilangan kes Covid",
 
+    "enterNumberDeath" : "Masukkan bilangan kematian",
+
     "date" : "Tarikh",
 
-    "dateNotselect" : "Tarikh tidak dipilih",
+    "dateNotSelect" : "Tarikh tidak dipilih",
 
     "dateValid" : "Sila masukkan tarikh",
 
