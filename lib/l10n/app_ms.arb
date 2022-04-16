@@ -147,5 +147,15 @@
 
     "dateDeathCases" : "Tarikh Kematian: ",
 
-    "newDeathCount" : "Kiraan Kematian:"
+    "newDeathCount" : "Kiraan Kematian:",
+
+    "adminHomePage" : "Halaman Utama Pentadbir",
+
+    "viewDeathCase" : "Lihat Kes Kematian",
+
+    "viewClinicList" : "Lihat Senarai Klinik",
+
+    "adjustVolume" : "Larasan Kelantangan",
+
+    "adjustSpeed" : "Larasan Kelajuan"
 }

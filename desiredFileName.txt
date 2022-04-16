@@ -1,5 +1,6 @@
 {
   "ms": [
+    "enterNumberDeath",
     "dateNotSelect"
   ],
 
@@ -9,6 +10,7 @@
     "validUser",
     "validPass",
     "addNewCenterInfo",
+    "enterNumberDeath",
     "deathCount"
   ]
 }

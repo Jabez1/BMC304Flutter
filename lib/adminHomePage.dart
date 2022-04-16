@@ -39,7 +39,7 @@ class ButtonPage extends StatelessWidget{
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 ElevatedButton(
-                    child: Text('View Death Cases'),
+                    child: Text(AppLocalizations.of(context)!.viewDeathCase),
                     style: ElevatedButton.styleFrom(
                         primary: Colors.blue,
                         padding: EdgeInsets.only(top: 10, right: 10, left: 10, bottom: 10),
@@ -54,7 +54,7 @@ class ButtonPage extends StatelessWidget{
                 ),
 
                 ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/viewClinic');},
-                  child: Text('View Clinic List'),
+                  child: Text(AppLocalizations.of(context)!.viewClinicList),
                   style: ElevatedButton.styleFrom(
                       primary: Colors.blue,
                       padding: EdgeInsets.only(top: 5, right: 28, left: 28, bottom: 5),
@@ -67,7 +67,7 @@ class ButtonPage extends StatelessWidget{
                 ),
 
                 ElevatedButton(onPressed: (){Navigator.pushNamed(context, '/viewCovid');},
-                  child: Text('Manage Covid Cases', textAlign: TextAlign.center),
+                  child: Text(AppLocalizations.of(context)!.manageCovidCases, textAlign: TextAlign.center),
                   style: ElevatedButton.styleFrom(
                       primary: Colors.blue,
                       padding: EdgeInsets.only(top: 5, right: 13, left: 13, bottom: 5),

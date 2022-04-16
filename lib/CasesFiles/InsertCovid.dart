@@ -74,7 +74,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
             controller: dateController,
             decoration: InputDecoration(
               icon: const Icon(Icons.calendar_today),
-              hintText: 'Enter the Date',
+              hintText: AppLocalizations.of(context)!.enterDate,
               labelText: AppLocalizations.of(context)!.date,
             ),
             readOnly: true,
@@ -91,12 +91,12 @@ class _MyCustomFormState extends State<MyCustomForm> {
                   print(formattedDate);
                 });}
               else{
-                print("Date not selected");
+                print(AppLocalizations.of(context)!.dateNotSelect);
               }
             },
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Please enter a date';
+                return AppLocalizations.of(context)!.dateValid;
               }
               return null;
             },
@@ -105,7 +105,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
             controller: countController,
             decoration: InputDecoration(
               icon: const Icon(Icons.person),
-              hintText: 'Enter the number of Covid',
+              hintText: AppLocalizations.of(context)!.enterNumberCovid,
               labelText: AppLocalizations.of(context)!.covidCount,
             ),
             inputFormatters: <TextInputFormatter>[
@@ -114,7 +114,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
             keyboardType: TextInputType.number,
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Please enter valid number';
+                return AppLocalizations.of(context)!.numberValid;
               }
               return null;
             },
@@ -131,7 +131,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
                     });
                     // If the form is valid, display a Snackbar.
                     Scaffold.of(context)
-                        .showSnackBar(SnackBar(content: Text('Case has been Added!')));
+                        .showSnackBar(SnackBar(content: Text(AppLocalizations.of(context)!.caseAddedSuccess)));
                   }
                 },
               )),
