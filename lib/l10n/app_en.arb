@@ -34,6 +34,18 @@
 
     "update" : "Update",
 
+    "enterUsername" : "Enter your username",
+
+    "enterPassword" : "Enter your password",
+
+    "username" : "username",
+
+    "password" : "password",
+
+    "validUser" : "Please enter your username",
+
+    "validPass" : "Please enter your password",
+
     "addNewCenterInfo" : "Add New Center Info",
 
     "centerSuccess" : "Vaccination Center Added Successfully . . .",
@@ -97,6 +109,8 @@
     "dateValid" : "Please enter a date",
 
     "covidCount" : "Covid count",
+
+    "deathCount" : "Death count",
 
     "numberValid" : "Please enter valid number",
 

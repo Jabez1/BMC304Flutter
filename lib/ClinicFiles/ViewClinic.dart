@@ -53,9 +53,7 @@ class _MyAppState extends State<ViewClinic> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Vaccination Center List',
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: Text(AppLocalizations.of(context)!.viewCenter),
             leading: GestureDetector(
@@ -99,7 +97,7 @@ class _MyAppState extends State<ViewClinic> {
 
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(content:
-                              Text("$cenName" + AppLocalizations.of(context)!.dismiss)));
+                              Text('$cenName' + AppLocalizations.of(context)!.dismiss)));
                             },
                           confirmDismiss: (DismissDirection direction) async {
                               return await showDialog(
@@ -179,7 +177,6 @@ class _MyAppState extends State<ViewClinic> {
             },
           ),
         ),
-      ),
     );
   }
 }
@@ -204,7 +201,6 @@ class ClinicCard extends StatelessWidget{
       child: Card(
           child: InkWell(
         onTap: (){
-
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

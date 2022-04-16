@@ -17,8 +17,7 @@ class UpdateClinic extends StatelessWidget{
   Widget build(BuildContext context){
     final cInfoArg = ModalRoute.of(context)!.settings.arguments as Clinic;
     
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: Text(AppLocalizations.of(context)!.updateCenter),
           leading: GestureDetector(
@@ -30,7 +29,6 @@ class UpdateClinic extends StatelessWidget{
           ),
         ),
         body: MyClinicForm(cInfo: cInfoArg),
-      ),
     );
   }
 }
@@ -78,11 +76,11 @@ class _MyClinicFormState extends State<MyClinicForm>{
   final noPhoneController = TextEditingController();
   
   @override
-  void iniState(){
+  void initState(){
     super.initState();
     cenNameController.text = widget.cInfo.getString();
-    vacNameController.text = widget.cInfo.getAddress();
-    vacLadController.text = widget.cInfo.getLadtitude();
+    vacAddController.text = widget.cInfo.getAddress();
+    vacLadController.text = widget.cInfo.getLatitude();
     vacLongController.text = widget.cInfo.getLongitude();
     vacNameController.text = widget.cInfo.getVaccineName();
     amtLeftController.text = widget.cInfo.getAmountLeft();

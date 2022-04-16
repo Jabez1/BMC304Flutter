@@ -12,7 +12,7 @@ class UpdateCovid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final dCaseArg = ModalRoute.of(context)!.settings.arguments as DeathCase;
+    final dCaseArg = ModalRoute.of(context)!.settings.arguments as CovidCase;
 
     return Scaffold(
         appBar: AppBar(
@@ -48,7 +48,7 @@ updateCovidCase(String date, String count) async{
 class MyCustomForm extends StatefulWidget {
 
   //Pass the DeathCase object to the form
-  final DeathCase dCase;
+  final CovidCase dCase;
 
   const MyCustomForm({Key? key, required this.dCase}) : super(key: key);
 

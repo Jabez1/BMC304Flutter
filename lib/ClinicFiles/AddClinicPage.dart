@@ -33,10 +33,9 @@ class AddClinic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context){
-    return MaterialApp(
-      home: Scaffold(
+    return  Scaffold(
         appBar: AppBar(
-          title: Text('AppLocalizations.of(context)!.AddNewCenterInfo'),
+          title: Text(AppLocalizations.of(context)!.addNewCenterInfo),
           leading: GestureDetector(
             onTap: (){
               Navigator.pop(context);
@@ -46,7 +45,6 @@ class AddClinic extends StatelessWidget {
           ),
         ),
         body: const ClinicForm(),
-      ),
     );
   }
 }

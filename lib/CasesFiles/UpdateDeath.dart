@@ -21,7 +21,7 @@ class UpdateDeath extends StatelessWidget {
         appBar: AppBar(
           title: const Text(_title),
           leading: GestureDetector(
-            onTap: () { Navigator.pushNamed(context, '/ViewDeaths'); },
+            onTap: () { Navigator.pushNamed(context, '/viewDeath'); },
             child: Icon(
               Icons.arrow_back, // add custom icons also
             ),
@@ -126,7 +126,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
             decoration: InputDecoration(
               icon: Icon(Icons.person),
               hintText: 'Enter the number of deaths',
-              labelText: AppLocalizations.of(context)!.count,
+              labelText: AppLocalizations.of(context)!.deathCount,
             ),
             inputFormatters: <TextInputFormatter>[
               FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
@@ -134,7 +134,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
             keyboardType: TextInputType.number,
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Please enter valid number';
+                return AppLocalizations.of(context)!.numberValid;
               }
               return null;
             },
@@ -142,7 +142,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
           Container(
               padding: const EdgeInsets.only(left: 150.0, top: 40.0),
               child: ElevatedButton(
-                child: const Text('Update'),
+                child: Text(AppLocalizations.of(context)!.update),
                 onPressed: () {
                   // It returns true if the form is valid, otherwise returns false
                   if (_formKey.currentState!.validate()) {
@@ -152,7 +152,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
                     });
                     // If the form is valid, display a Snackbar.
                     Scaffold.of(context)
-                        .showSnackBar(SnackBar(content: Text('Case Updated!')));
+                        .showSnackBar(SnackBar(content: Text(AppLocalizations.of(context)!.caseUpdate)));
                   }
                 },
               )),

@@ -131,7 +131,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
                     });
                     // If the form is valid, display a Snackbar.
                     Scaffold.of(context)
-                        .showSnackBar(SnackBar(content: Text(AppLocalizations.of(context)!.caseAddedSucess)));
+                        .showSnackBar(SnackBar(content: Text(AppLocalizations.of(context)!.caseAddedSuccess)));
                   }
                 },
               )),
