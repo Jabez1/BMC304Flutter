@@ -20,8 +20,7 @@ class _MyAdminHomePageState extends State<adminHomePage> {
             onTap: (){
               Navigator.pushNamed(context, '/');
             },
-            child: Icon(Icons.arrow_back
-            ),
+            child: Icon(Icons.arrow_back),
           ),
         ),
         body: ButtonPage(),

@@ -141,7 +141,7 @@ class _MyClinicFormState extends State<MyClinicForm>{
                 labelText: AppLocalizations.of(context)!.latitude,
               ),
               inputFormatters: <TextInputFormatter>[
-                FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                FilteringTextInputFormatter.allow(RegExp(r'(^\d*\.?\d*)')),
               ],
               keyboardType: TextInputType.number,
               validator: (value) {
@@ -158,7 +158,7 @@ class _MyClinicFormState extends State<MyClinicForm>{
                 labelText: AppLocalizations.of(context)!.longitude,
               ),
               inputFormatters: <TextInputFormatter>[
-                FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                FilteringTextInputFormatter.allow(RegExp(r'(^\d*\.?\d*)')),
               ],
               keyboardType: TextInputType.number,
               validator: (value) {
