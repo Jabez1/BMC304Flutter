@@ -4,6 +4,7 @@ import '/../main.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'Clinic.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 
@@ -31,14 +32,12 @@ createClinic(String cenName, String vacAdd, String vacLad,
 class AddClinic extends StatelessWidget {
   const AddClinic({Key? key}) : super(key: key);
 
-  static const String _title = 'Add New Center Info';
   @override
   Widget build(BuildContext context){
     return MaterialApp(
-      title: _title,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text(_title),
+          title: Text(AppLocalizations.of(context)!.AddNewCenterInfo),
           leading: GestureDetector(
             onTap: (){
               Navigator.pop(context);
@@ -63,6 +62,7 @@ class ClinicForm extends StatefulWidget{
 class _MyCustomFormState extends State<ClinicForm>{
 
   Future<Clinic>? _futureClinic;
+  final _formKey = GlobalKey<FormState>();
   final cenNameController = TextEditingController();
   final vacAddController = TextEditingController();
   final vacLadController = TextEditingController();
@@ -86,57 +86,100 @@ class _MyCustomFormState extends State<ClinicForm>{
   @override
   Widget build(BuildContext context){
     return Scaffold(
+      key: _formKey,
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            TextField(
+            TextFormField(
               controller: cenNameController,
-              decoration: const InputDecoration(
-                hintText: 'Enter center name here',
-                labelText: 'center name',
+              decoration: InputDecoration(
+                hintText: AppLocalizations.of(context)!.enterCenter,
+                labelText: AppLocalizations.of(context)!.centerName,
               ),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppLocalizations.of(context)!.requireValid;
+                }
+                return null;
+              },
             ),
-            TextField(
+            TextFormField(
               controller: vacAddController,
-              decoration: const InputDecoration(
-                hintText: 'Enter address here',
-                labelText: 'address',
+              decoration: InputDecoration(
+                hintText: AppLocalizations.of(context)!.enterAddress,
+                labelText: AppLocalizations.of(context)!.address,
               ),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppLocalizations.of(context)!.requireValid;
+                }
+                return null;
+              },
             ),
-            TextField(
+            TextFormField(
               controller: vacLadController,
-              decoration: const InputDecoration(
-                hintText: 'Enter latitude here',
-                labelText: 'latitude',
+              decoration: InputDecoration(
+                hintText: AppLocalizations.of(context)!.enterLatitude,
+                labelText: AppLocalizations.of(context)!.latitude,
               ),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppLocalizations.of(context)!.requireValid;
+                }
+                return null;
+              },
             ),
-            TextField(
+            TextFormField(
               controller: vacLongController,
-              decoration: const InputDecoration(
-                hintText: 'Enter longitude here',
-                labelText: 'longitude',
+              decoration: InputDecoration(
+                hintText: AppLocalizations.of(context)!.enterLongitude,
+                labelText: AppLocalizations.of(context)!.longitude,
               ),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppLocalizations.of(context)!.requireValid;
+                }
+                return null;
+              },
             ),
-            TextField(
+            TextFormField(
               controller: vacNameController,
-              decoration: const InputDecoration(
-                hintText: 'Enter vaccine name here',
-                labelText: 'vaccine name',
+              decoration: InputDecoration(
+                hintText: AppLocalizations.of(context)!.enterVaccine,
+                labelText: AppLocalizations.of(context)!.vaccineName,
               ),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppLocalizations.of(context)!.requireValid;
+                }
+                return null;
+              },
             ),
-            TextField(
+            TextFormField(
               controller: amtLeftController,
-              decoration: const InputDecoration(
-                hintText: 'Enter amount left here',
-                labelText: 'amount available',
+              decoration: InputDecoration(
+                hintText: AppLocalizations.of(context)!.enterAmount,
+                labelText: AppLocalizations.of(context)!.amountLeft,
               ),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppLocalizations.of(context)!.requireValid;
+                }
+                return null;
+              },
             ),
-            TextField(
+            TextFormField(
               controller: noPhoneController,
-              decoration: const InputDecoration(
-                hintText: 'Enter phone number here',
-                labelText: 'phone number',
+              decoration: InputDecoration(
+                hintText: AppLocalizations.of(context)!.enterPhone,
+                labelText: AppLocalizations.of(context)!.phone,
               ),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppLocalizations.of(context)!.requireValid;
+                }
+                return null;
+              },
             ),
           ],
         ),
@@ -145,23 +188,23 @@ class _MyCustomFormState extends State<ClinicForm>{
         backgroundColor: Colors.blueAccent,
         child: const Icon(Icons.add),
         onPressed:(){
-          setState(() {
-            createClinic(cenNameController.text, vacAddController.text,
-                vacLadController.text, vacLongController.text,
-                vacNameController.text, amtLeftController.text,
-                noPhoneController.text);
-          });
-
-          showDialog(
-            context: context,
-            builder: (context){
-              return AlertDialog(
-                content: Text("Vaccination Center Added Successfully. . ."),
-              );
-            },
-          );
+          if(_formKey.currentState!.validate()){
+            setState(() {
+              createClinic(cenNameController.text, vacAddController.text,
+                  vacLadController.text, vacLongController.text,
+                  vacNameController.text, amtLeftController.text,
+                  noPhoneController.text);
+            });
+            showDialog(
+              context: context,
+              builder: (context){
+                return AlertDialog(
+                  content: Text(AppLocalizations.of(context)!.centerSucsess),
+                );
+              },
+            );
+          }
         },
-        tooltip: 'Show me the value!',
       ),
     );
   }

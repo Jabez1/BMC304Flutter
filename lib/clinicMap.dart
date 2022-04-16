@@ -13,7 +13,7 @@ void main() {
 
 Future <List<Clinic>> fetchData() async {
   final response =await http
-      .get(Uri.parse('http://' + urIp + '/convtjson.php'));
+      .get(Uri.parse('http://' + urIp + '/BMC304php/convtjson.php'));
   if (response.statusCode == 200) {
     List jsonResponse = json.decode(response.body);
     return jsonResponse.map((data) => Clinic.fromJson(data)).toList();

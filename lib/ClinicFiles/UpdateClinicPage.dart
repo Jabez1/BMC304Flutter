@@ -5,23 +5,22 @@ import 'package:http/http.dart' as http;
 import 'Clinic.dart';
 import '../main.dart';
 import 'animated_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 //void main() => runApp(UpdateClinic());
 
 class UpdateClinic extends StatelessWidget{
   const UpdateClinic({Key? key}) : super (key: key);
-  
-  static const String _title = 'Update Clinic details';
+
   
   @override
   Widget build(BuildContext context){
     final cInfoArg = ModalRoute.of(context)!.settings.arguments as Clinic;
     
     return MaterialApp(
-      title: _title,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text(_title),
+          title: Text(AppLocalizations.of(context)!.updateCenter),
           leading: GestureDetector(
             onTap: (){
               Navigator.pop(context);
@@ -110,91 +109,91 @@ class _MyClinicFormState extends State<MyClinicForm>{
         children: <Widget>[
           TextFormField(
             controller: cenNameController,
-            decoration: const InputDecoration(
-              hintText: 'Enter center name here',
-              labelText: 'center name',
+            decoration: InputDecoration(
+              hintText: AppLocalizations.of(context)!.enterCenter,
+              labelText: AppLocalizations.of(context)!.centerName,
             ),
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Please enter valid center name';
+                return AppLocalizations.of(context)!.requireValid;
               }
               return null;
             },
           ),
           TextFormField(
             controller: vacAddController,
-            decoration: const InputDecoration(
-              hintText: 'Enter address here',
-              labelText: 'address',
+            decoration: InputDecoration(
+              hintText: AppLocalizations.of(context)!.enterAddress,
+              labelText: AppLocalizations.of(context)!.address,
             ),
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Please enter valid address';
+                return AppLocalizations.of(context)!.requireValid;
               }
               return null;
             },
           ),
           TextFormField(
             controller: vacLadController,
-            decoration: const InputDecoration(
-              hintText: 'Enter latitude here',
-              labelText: 'latitude',
+            decoration: InputDecoration(
+              hintText: AppLocalizations.of(context)!.enterLatitude,
+              labelText: AppLocalizations.of(context)!.latitude,
             ),
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Please enter valid latitude';
+                return AppLocalizations.of(context)!.requireValid;
               }
               return null;
             },
           ),
           TextFormField(
             controller: vacLongController,
-            decoration: const InputDecoration(
-              hintText: 'Enter longitude here',
-              labelText: 'longitude',
+            decoration: InputDecoration(
+              hintText: AppLocalizations.of(context)!.enterLongitude,
+              labelText: AppLocalizations.of(context)!.longitude,
             ),
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Please enter valid longitude';
+                return AppLocalizations.of(context)!.requireValid;
               }
               return null;
             },
           ),
           TextFormField(
             controller: vacNameController,
-            decoration: const InputDecoration(
-              hintText: 'Enter vaccine name here',
-              labelText: 'vaccine name',
+            decoration: InputDecoration(
+              hintText: AppLocalizations.of(context)!.enterVaccine,
+              labelText: AppLocalizations.of(context)!.vaccineName,
             ),
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Please enter valid vaccine name';
+                return AppLocalizations.of(context)!.requireValid;
               }
               return null;
             },
           ),
           TextFormField(
             controller: amtLeftController,
-            decoration: const InputDecoration(
-              hintText: 'Enter amount left here',
-              labelText: 'amount available',
+            decoration: InputDecoration(
+              hintText: AppLocalizations.of(context)!.enterAmount,
+              labelText: AppLocalizations.of(context)!.amountLeft,
             ),
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Please enter valid amount';
+                return AppLocalizations.of(context)!.requireValid;
               }
               return null;
             },
           ),
           TextFormField(
             controller: noPhoneController,
-            decoration: const InputDecoration(
-              hintText: 'Enter phone number here',
-              labelText: 'phone number',
+            decoration: InputDecoration(
+              hintText: AppLocalizations.of(context)!.enterPhone,
+              labelText: AppLocalizations.of(context)!.phone,
             ),
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Please enter valid number';
+                return AppLocalizations.of(context)!.requireValid;
               }
               return null;
             },
@@ -202,7 +201,7 @@ class _MyClinicFormState extends State<MyClinicForm>{
           Container(
             padding: const EdgeInsets.only(left: 5.0, top: 40.0),
             child: ElevatedButton(
-              child: const Text("Update"),
+              child: Text(AppLocalizations.of(context)!.update),
               onPressed: (){
                 if(_formKey.currentState!.validate()){
                   setState(() {
@@ -213,7 +212,7 @@ class _MyClinicFormState extends State<MyClinicForm>{
                   });
                   Scaffold.of(context)
                     .showSnackBar(SnackBar(content:
-                  Text('Vaccination Center Updated!')));
+                  Text(AppLocalizations.of(context)!.centerUpSuccess)));
                   }
                 },
             )

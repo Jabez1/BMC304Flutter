@@ -4,6 +4,7 @@ import '/../main.dart';
 import 'package:flutter/material.dart';
 import 'package:assignment_clinic_finder/ClinicFiles/Clinic.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:assignment_clinic_finder/ClinicFiles/AddClinicPage.dart';
 
 Future <List<Clinic>> fetchData() async {
@@ -53,12 +54,11 @@ class _MyAppState extends State<ViewClinic> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Vaccination Center List',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Vaccination Center List'),
+          title: Text(AppLocalizations.of(context)!.viewCenter),
             leading: GestureDetector(
-              onTap: () { Navigator.pushNamed(context, '/'); },
+              onTap: () { Navigator.pushNamed(context, '/adminHomePage'); },
               child: Icon(
                 Icons.arrow_back, // add custom icons also
               ),
@@ -98,7 +98,7 @@ class _MyAppState extends State<ViewClinic> {
 
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(content:
-                              Text('$cenName had been dismissed')));
+                              Text("$cenName" + AppLocalizations.of(context)!.dismiss)));
                             },
                           confirmDismiss: (DismissDirection direction) async {
                               return await showDialog(
@@ -106,24 +106,24 @@ class _MyAppState extends State<ViewClinic> {
                                 builder: (BuildContext context){
                                   if(direction == DismissDirection.endToStart){
                                     return AlertDialog(
-                                      title: const Text("Delete Confirmation"),
-                                      content: const Text("Are you sure you wish to delete this center info ?"),
+                                      title: Text(AppLocalizations.of(context)!.confirmDelete),
+                                      content: Text(AppLocalizations.of(context)!.questionDeleteCenter),
                                       actions: <Widget>[
                                         ElevatedButton(
                                           onPressed:() => Navigator.of(context).pop(true),
-                                          child: const Text("Delete")
+                                          child: Text(AppLocalizations.of(context)!.delete)
                                         ),
                                         ElevatedButton(
                                             onPressed:() => Navigator.of(context).pop(false),
-                                            child: const Text("Cancel"),
+                                            child: Text(AppLocalizations.of(context)!.cancel),
                                         ),
                                       ],
                                     );
                                   }
                                   else{
                                     return AlertDialog (
-                                      title: const Text("Update Confirmation"),
-                                      content: const Text("Are you sure you wish to update this center info ?"),
+                                      title: Text(AppLocalizations.of(context)!.confirmUpdate),
+                                      content: Text(AppLocalizations.of(context)!.questionUpCenter),
                                       actions:<Widget>[
                                         ElevatedButton(
                                           onPressed: ()=> {
@@ -133,11 +133,11 @@ class _MyAppState extends State<ViewClinic> {
                                                 arguments: data?[index]
                                             )
                                           },
-                                          child: const Text("Update")
+                                          child: Text(AppLocalizations.of(context)!.update)
                                         ),
                                         ElevatedButton(
                                             onPressed: ()=> Navigator.of(context).pop(false),
-                                            child: const Text("Cancel"),
+                                            child: Text(AppLocalizations.of(context)!.cancel),
                                         ),
                                       ],
                                     );
@@ -213,16 +213,16 @@ class ClinicCard extends StatelessWidget{
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             Text(
-              "Center Name: "+this.cenName, style: TextStyle(
+                AppLocalizations.of(context)!.centerName +this.cenName, style: TextStyle(
               fontWeight: FontWeight.bold
             )
             ),
-            Text("Address: "+this.vacAddress, textAlign: TextAlign.left),
-            Text("Latitude: "+this.vacLad,textAlign: TextAlign.left),
-            Text("Longitude: "+this.vacLong,textAlign: TextAlign.left),
-            Text("Vaccine Name: "+this.vacName,textAlign: TextAlign.left),
-            Text("Amount Left: "+this.amountLeft,textAlign: TextAlign.left),
-            Text("Phone: "+this.numPhone,textAlign: TextAlign.left),
+            Text(AppLocalizations.of(context)!.address+":"+this.vacAddress, textAlign: TextAlign.left),
+            Text(AppLocalizations.of(context)!.latitude+":" +this.vacLad,textAlign: TextAlign.left),
+            Text(AppLocalizations.of(context)!.longitude+":" +this.vacLong,textAlign: TextAlign.left),
+            Text(AppLocalizations.of(context)!.vaccineName+":" +this.vacName,textAlign: TextAlign.left),
+            Text(AppLocalizations.of(context)!.amountLeft+":" +this.amountLeft,textAlign: TextAlign.left),
+            Text(AppLocalizations.of(context)!.phone+":" +this.numPhone,textAlign: TextAlign.left),
             ],
           ),
         )
