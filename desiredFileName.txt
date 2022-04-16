@@ -1,9 +1,1 @@
-{
-  "ms": [
-    "addNewCenterInfo"
-  ],
-
-  "zh": [
-    "addNewCenterInfo"
-  ]
-}
+{}

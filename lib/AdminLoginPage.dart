@@ -16,13 +16,13 @@ class AdminLoginPage extends StatelessWidget {
             ),
           ),
         ),
-        body: const MyCustomForm(),
+        body: MyCustomForm(),
     );
   }
 }
 
 class MyCustomForm extends StatefulWidget {
-  const MyCustomForm({Key? key}) : super(key: key);
+  MyCustomForm({Key? key}) : super(key: key);
 
   @override
   _MyCustomFormState createState() => _MyCustomFormState();
@@ -53,10 +53,10 @@ class _MyCustomFormState extends State<MyCustomForm> {
         children: <Widget>[
           TextFormField(
             controller: idController,
-            decoration: const InputDecoration(
-                icon: const Icon(Icons.person),
+            decoration: InputDecoration(
+                icon: Icon(Icons.person),
               hintText: 'Enter your username',
-              labelText: AppLocalizations.of(context)!.username,
+              labelText: 'AppLocalizations.of(context)!.username',
             ),
             validator: (value) {
               if (value!.isEmpty) {
@@ -71,7 +71,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
             decoration: const InputDecoration(
               icon: const Icon(Icons.vpn_key_sharp),
               hintText: 'Enter your Password',
-              labelText: AppLocalizations.of(context)!.password,
+              labelText: 'AppLocalizations.of(context)!.password',
             ),
             validator: (value) {
               if (value!.isEmpty) {

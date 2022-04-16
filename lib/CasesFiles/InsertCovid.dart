@@ -8,12 +8,11 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class InsertCovid extends StatelessWidget {
   const InsertCovid({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(AppLocalizations.of(context)!.insertDeathTitle),
+          title: Text(AppLocalizations.of(context)!.insertCase),
           leading: GestureDetector(
             onTap: () { Navigator.pop(context);},
             child: Icon(
@@ -73,10 +72,10 @@ class _MyCustomFormState extends State<MyCustomForm> {
         children: <Widget>[
           TextFormField(
             controller: dateController,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               icon: const Icon(Icons.calendar_today),
-              hintText: AppLocalizations.of(context)!.enterDate,
-              labelText: AppLocalizations.of(context)!.date,
+              hintText: 'Enter the Date',
+              labelText: 'AppLocalizations.of(context)!.date',
             ),
             readOnly: true,
             onTap: () async {
@@ -92,22 +91,22 @@ class _MyCustomFormState extends State<MyCustomForm> {
                   print(formattedDate);
                 });}
               else{
-                print(AppLocalizations.of(context)!.dateNotselect);
+                print("Date not selected");
               }
             },
             validator: (value) {
               if (value!.isEmpty) {
-                return AppLocalizations.of(context)!.dateValid;
+                return 'Please enter a date';
               }
               return null;
             },
           ),
           TextFormField(
             controller: countController,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               icon: const Icon(Icons.person),
-              hintText: AppLocalizations.of(context)!.enterNumberCovid,
-              labelText: AppLocalizations.of(context)!.covidCount,
+              hintText: 'Enter the number of Covid',
+              labelText: 'AppLocalizations.of(context)!.count',
             ),
             inputFormatters: <TextInputFormatter>[
               FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
@@ -115,7 +114,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
             keyboardType: TextInputType.number,
             validator: (value) {
               if (value!.isEmpty) {
-                return AppLocalizations.of(context)!.numberValid;
+                return 'Please enter valid number';
               }
               return null;
             },
@@ -123,7 +122,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
           Container(
               padding: const EdgeInsets.only(left: 150.0, top: 40.0),
               child: ElevatedButton(
-                child: Text(AppLocalizations.of(context)!.submit),
+                child: Text(AppLocalizations.of(context)!.insert),
                 onPressed: () {
                   // It returns true if the form is valid, otherwise returns false
                   if (_formKey.currentState!.validate()) {
@@ -132,7 +131,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
                     });
                     // If the form is valid, display a Snackbar.
                     Scaffold.of(context)
-                        .showSnackBar(SnackBar(content: Text(AppLocalizations.of(context)!.caseAddedSuccess)));
+                        .showSnackBar(SnackBar(content: Text('Case has been Added!')));
                   }
                 },
               )),

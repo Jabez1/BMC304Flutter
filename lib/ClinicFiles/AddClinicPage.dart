@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import '/../main.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -37,7 +36,7 @@ class AddClinic extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text(AppLocalizations.of(context)!.AddNewCenterInfo),
+          title: Text('AppLocalizations.of(context)!.AddNewCenterInfo'),
           leading: GestureDetector(
             onTap: (){
               Navigator.pop(context);
@@ -199,7 +198,7 @@ class _MyCustomFormState extends State<ClinicForm>{
               context: context,
               builder: (context){
                 return AlertDialog(
-                  content: Text(AppLocalizations.of(context)!.centerSucsess),
+                  content: Text('AppLocalizations.of(context)!.centerSucsess'),
                 );
               },
             );
