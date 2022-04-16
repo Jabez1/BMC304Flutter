@@ -21,9 +21,9 @@
 
      "covidStats" : "Covid Statistics",
 
-     "findClinic" : "Find Clinic Nearby",
+     "findClinic" : "Find Nearest Clinic",
 
-     "insert" : "Insert",
+     "submit" : "Submit",
 
      "confirm" : "Confirm",
 
@@ -35,7 +35,7 @@
 
      "update" : "Update",
 
-     "addNewCenterInfo" : "Add New Center Info",
+     "AddNewCenterInfo" : "Add New Center Info",
 
      "centerSuccess" : "Vaccination Center Added Successfully . . .",
 
@@ -51,9 +51,13 @@
 
      "questionDeleteCenter" : "Are you sure you wish to delete this center info ?",
 
+     "questionDeleteItem" : "Are you sure you wish to delete this item?",
+
      "confirmUpdate" : "Update Confirmation",
 
      "questionUpCenter" : "Are you sure you wish to update this center info ?",
+
+     "questionUpItem" : "Are you sure you wish to update this item ?",
 
      "centerName" : "Center Name",
 
@@ -83,13 +87,55 @@
 
      "enterPhone" : "Enter phone here",
 
-     "requireValid" : "require a value here",
+     "enterDate" : "Enter the date",
 
-     "newCovid" : "New Covid Cases",
-
-     "newDeaths" : "New Covid Deaths",
+     "enterNumberCovid" : "Enter the number of Covid",
 
      "date" : "Date",
 
-     "count" : "Count"
+     "dateNotselect" : "Date not selected",
+
+     "dateValid" : "Please enter a date",
+
+     "covidCount" : "Covid count",
+
+     "numberValid" : "Please enter valid number",
+
+     "caseAddedSuccess" : "Case has been Added!",
+
+     "caseUpdate" : "Case Updated!",
+
+     "requireValid" : "require a value here",
+
+     "statistics" : "Statistics",
+
+     "newCases" : "New Covid Cases",
+
+     "newDeath" : "New Covid Deaths",
+
+     "dailyCaseTitle" : "Daily New Covid Cases for the past 3 months",
+
+     "monthlyCaseTitle" : "Monthly Covid Cases for the past 3 months",
+
+     "dailyDeathTitle" : "Daily Covid Deaths for the past 3 months",
+
+     "monthlyDeathTitle" : "Monthly Covid Deaths for the past 3 months",
+
+     "updateDeathTitle" : "Update Death Cases for a date",
+
+     "insertCaseTitle" : "Insert New Case",
+
+     "insertDeathTitle" : "Insert Death Cases for a date",
+
+     "listCovid" : "List of Covid Cases",
+
+     "dateCovidCases" : "Date of Covid Cases: ",
+
+     "newCovidCount" : "New Covid Case Count: ",
+
+     "listDeath" : "List of Death Cases",
+
+     "dateDeathCases" : "Date of Deaths: ",
+
+     "newDeathCount" : "Death Count:"
 }

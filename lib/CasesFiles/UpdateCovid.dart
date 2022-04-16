@@ -3,22 +3,20 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import '../main.dart';
-import 'Case.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:assignment_clinic_finder/CasesFiles/Case.dart';
 
 class UpdateCovid extends StatelessWidget {
   const UpdateCovid({Key? key}) : super(key: key);
 
-  static const String _title = 'Update Death Cases for a date';
-
   @override
   Widget build(BuildContext context) {
 
-    final cCaseArg = ModalRoute.of(context)!.settings.arguments as CovidCase;
+    final dCaseArg = ModalRoute.of(context)!.settings.arguments as DeathCase;
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text(_title),
+          title: Text(AppLocalizations.of(context)!.updateDeathTitle),
           leading: GestureDetector(
             onTap: () { Navigator.pushNamed(context, '/ViewCovid'); },
             child: Icon(
@@ -26,7 +24,7 @@ class UpdateCovid extends StatelessWidget {
             ),
           ),
         ),
-        body: MyCustomForm(cCase: cCaseArg),
+        body: MyCustomForm(dCase: dCaseArg),
     );
   }
 }
@@ -49,10 +47,10 @@ updateCovidCase(String date, String count) async{
 
 class MyCustomForm extends StatefulWidget {
 
-  //Pass the CovidCase object to the form
-  final CovidCase cCase;
+  //Pass the DeathCase object to the form
+  final DeathCase dCase;
 
-  const MyCustomForm({Key? key, required this.cCase}) : super(key: key);
+  const MyCustomForm({Key? key, required this.dCase}) : super(key: key);
 
   @override
   _MyCustomFormState createState() => _MyCustomFormState();
@@ -70,8 +68,8 @@ class _MyCustomFormState extends State<MyCustomForm> {
   @override
   void initState() {
     super.initState();
-    dateController.text = widget.cCase.getDeathDate();
-    countController.text = widget.cCase.deathCount.toString();
+    dateController.text = widget.dCase.getDeathDate();
+    countController.text = widget.dCase.deathCount.toString();
   }
 
   @override
@@ -91,9 +89,9 @@ class _MyCustomFormState extends State<MyCustomForm> {
         children: <Widget>[
           TextFormField(
             controller: dateController,
-            decoration: InputDecoration(
-              icon: Icon(Icons.calendar_today),
-              hintText: 'Enter the Date',
+            decoration:  InputDecoration(
+              icon: const Icon(Icons.calendar_today),
+              hintText: AppLocalizations.of(context)!.enterDate,
               labelText: AppLocalizations.of(context)!.date,
             ),
             readOnly: true,
@@ -110,12 +108,12 @@ class _MyCustomFormState extends State<MyCustomForm> {
                   print(formattedDate);
                 });}
               else{
-                print("Date not selected");
+                print(AppLocalizations.of(context)!.dateNotselect);
               }
             },
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Please enter a date';
+                return AppLocalizations.of(context)!.dateValid;
               }
               return null;
             },
@@ -123,9 +121,9 @@ class _MyCustomFormState extends State<MyCustomForm> {
           TextFormField(
             controller: countController,
             decoration: InputDecoration(
-              icon: Icon(Icons.person),
-              hintText: 'Enter the number of deaths',
-              labelText: AppLocalizations.of(context)!.count,
+              icon: const Icon(Icons.person),
+              hintText: AppLocalizations.of(context)!.enterNumberCovid,
+              labelText: AppLocalizations.of(context)!.covidCount,
             ),
             inputFormatters: <TextInputFormatter>[
               FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
@@ -133,7 +131,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
             keyboardType: TextInputType.number,
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Please enter valid number';
+                return AppLocalizations.of(context)!.numberValid;
               }
               return null;
             },
@@ -151,7 +149,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
                     });
                     // If the form is valid, display a Snackbar.
                     Scaffold.of(context)
-                        .showSnackBar(SnackBar(content: Text('Case Updated!')));
+                        .showSnackBar(SnackBar(content: Text(AppLocalizations.of(context)!.caseUpdate)));
                   }
                 },
               )),

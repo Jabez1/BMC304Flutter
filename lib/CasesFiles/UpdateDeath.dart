@@ -6,6 +6,7 @@ import '../main.dart';
 import 'Case.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+
 class UpdateDeath extends StatelessWidget {
   const UpdateDeath({Key? key}) : super(key: key);
 
@@ -91,10 +92,10 @@ class _MyCustomFormState extends State<MyCustomForm> {
         children: <Widget>[
           TextFormField(
             controller: dateController,
-            decoration: const InputDecoration(
+            decoration:  InputDecoration(
               icon: const Icon(Icons.calendar_today),
-              hintText: 'Enter the Date',
-              labelText: 'Date',
+              hintText: AppLocalizations.of(context)!.enterDate,
+              labelText: AppLocalizations.of(context)!.date,
             ),
             readOnly: true,
             onTap: () async {
@@ -110,7 +111,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
                   print(formattedDate);
                 });}
               else{
-                print("Date not selected");
+                print(AppLocalizations.of(context)!.dateNotselect);
               }
             },
             validator: (value) {
