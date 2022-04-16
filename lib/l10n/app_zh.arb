@@ -9,133 +9,133 @@
 
      "password" : "密码",
 
-     "insertCase" : "Insert a New Case",
+     "insertCase" : "插入新案例",
 
-     "manageCovidCases" : "Manage Covid Cases",
+     "manageCovidCases" : "管理 Covid 案例",
 
-     "manageDeathCases" : "Manage Death Cases",
+     "manageDeathCases" : "管理死亡案例",
 
-     "manageClinics" : "Manage Clinics",
+     "manageClinics" : "管理诊所",
 
-     "updateCase" : "Update a Case",
+     "updateCase" : "更新案例",
 
-     "covidStats" : "Covid Statistics",
+     "covidStats" : "Covid统计数据",
 
-     "findClinic" : "Find Nearest Clinic",
+     "findClinic" : "查找最近的诊所",
 
-     "submit" : "Submit",
+     "submit" : "提交",
 
-     "confirm" : "Confirm",
+     "confirm" : "确认",
 
-     "cancel" : "Cancel",
+     "cancel" : "取消",
 
-     "edit" : "Edit",
+     "edit" : "编辑",
 
-     "delete" : "Delete",
+     "delete" : "删除",
 
-     "update" : "Update",
+     "update" : "更新",
 
-     "AddNewCenterInfo" : "Add New Center Info",
+     "AddNewCenterInfo" : "添加新中心信息",
 
-     "centerSuccess" : "Vaccination Center Added Successfully . . .",
+     "centerSuccess" : "疫苗接种中心添加成功 . . .",
 
-     "updateCenter" : "Update Center Info",
+     "updateCenter" : "更新中心信息",
 
-     "centerUpSuccess" : "Vaccination Center Updated !",
+     "centerUpSuccess" : "疫苗接种中心更新 !",
 
-     "viewCenter" : "Vaccination Center List",
+     "viewCenter" : "疫苗接种中心名单",
 
-     "dismiss" : "had been dismissed",
+     "dismiss" : "已被解雇",
 
-     "confirmDelete" : "Delete Confirmation",
+     "confirmDelete" : "删除确认",
 
-     "questionDeleteCenter" : "Are you sure you wish to delete this center info ?",
+     "questionDeleteCenter" : "您确定要删除此中心信息吗 ?",
 
-     "questionDeleteItem" : "Are you sure you wish to delete this item?",
+     "questionDeleteItem" : "您确定要删除此项目吗?",
 
-     "confirmUpdate" : "Update Confirmation",
+     "confirmUpdate" : "更新确认",
 
-     "questionUpCenter" : "Are you sure you wish to update this center info ?",
+     "questionUpCenter" : "您确定要更新此中心信息吗 ?",
 
-     "questionUpItem" : "Are you sure you wish to update this item ?",
+     "questionUpItem" : "您确定要更新此项目吗 ?",
 
-     "centerName" : "Center Name",
+     "centerName" : "中心名称",
 
-     "address" : "Address",
+     "address" : "地址",
 
-     "latitude" : "Latitude",
+     "latitude" : "纬度",
 
-     "longitude" : "Longitude",
+     "longitude" : "经度",
 
-     "vaccineName" : "Vaccine Name",
+     "vaccineName" : "疫苗名称",
 
-     "amountLeft" : "Amount Left",
+     "amountLeft" : "剩余金额",
 
-     "phone" : "Phone",
+     "phone" : "电话",
 
-     "enterCenter" : "Enter center name here",
+     "enterCenter" : "在此输入中心名称",
 
-     "enterAddress" : "Enter address here",
+     "enterAddress" : "在此输入地址",
 
-     "enterLatitude" : "Enter latitude here",
+     "enterLatitude" : "在此处输入纬度",
 
-     "enterLongitude" : "Enter longitude here",
+     "enterLongitude" : "在此处输入经度",
 
-     "enterVaccine" : "Enter vaccine name here",
+     "enterVaccine" : "在此输入疫苗名称",
 
-     "enterAmount" : "Enter amount left here",
+     "enterAmount" : "在此处输入剩余金额",
 
-     "enterPhone" : "Enter phone here",
+     "enterPhone" : "在此输入电话",
 
-     "enterDate" : "Enter the date",
+     "enterDate" : "输入日期",
 
-     "enterNumberCovid" : "Enter the number of Covid",
+     "enterNumberCovid" : "输入 Covid 的编号",
 
-     "date" : "Date",
+     "date" : "日期",
 
-     "dateNotselect" : "Date not selected",
+     "dateNotselect" : "未选择日期",
 
-     "dateValid" : "Please enter a date",
+     "dateValid" : "请输入日期",
 
-     "covidCount" : "Covid count",
+     "covidCount" : "新冠病毒计数",
 
-     "numberValid" : "Please enter valid number",
+     "numberValid" : "请输入有效号码",
 
-     "caseAddedSuccess" : "Case has been Added!",
+     "caseAddedSuccess" : "已添加案例!",
 
-     "caseUpdate" : "Case Updated!",
+     "caseUpdate" : "案例更新!",
 
-     "requireValid" : "require a value here",
+     "requireValid" : "这里需要一个值",
 
-     "statistics" : "Statistics",
+     "statistics" : "统计数据",
 
-     "newCases" : "New Covid Cases",
+     "newCases" : "新的 Covid 病例",
 
-     "newDeath" : "New Covid Deaths",
+     "newDeath" : "新的 Covid 死亡人数",
 
-     "dailyCaseTitle" : "Daily New Covid Cases for the past 3 months",
+     "dailyCaseTitle" : "过去 3 个月的每日新增 Covid 病例",
 
-     "monthlyCaseTitle" : "Monthly Covid Cases for the past 3 months",
+     "monthlyCaseTitle" : "过去 3 个月的每月 Covid 病例",
 
-     "dailyDeathTitle" : "Daily Covid Deaths for the past 3 months",
+     "dailyDeathTitle" : "过去 3 个月的每日 Covid 死亡人数",
 
-     "monthlyDeathTitle" : "Monthly Covid Deaths for the past 3 months",
+     "monthlyDeathTitle" : "过去 3 个月的每月 Covid 死亡人数",
 
-     "updateDeathTitle" : "Update Death Cases for a date",
+     "updateDeathTitle" : "更新日期的死亡案例",
 
-     "insertCaseTitle" : "Insert New Case",
+     "insertCaseTitle" : "插入新案例",
 
-     "insertDeathTitle" : "Insert Death Cases for a date",
+     "insertDeathTitle" : "插入日期的死亡案例",
 
-     "listCovid" : "List of Covid Cases",
+     "listCovid" : "Covid病例清单",
 
-     "dateCovidCases" : "Date of Covid Cases: ",
+     "dateCovidCases" : "Covid案件的日期: ",
 
-     "newCovidCount" : "New Covid Case Count: ",
+     "newCovidCount" : "新的 Covid 病例数: ",
 
-     "listDeath" : "List of Death Cases",
+     "listDeath" : "死亡病例清单",
 
-     "dateDeathCases" : "Date of Deaths: ",
+     "dateDeathCases" : "死亡日期: ",
 
-     "newDeathCount" : "Death Count:"
+     "newDeathCount" : "死亡人数:"
 }
