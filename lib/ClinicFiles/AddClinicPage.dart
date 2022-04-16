@@ -193,7 +193,7 @@ class _MyCustomFormState extends State<ClinicForm>{
               },
             ),
             Container(
-                padding: const EdgeInsets.only(left: 150.0, top: 40.0),
+                padding: const EdgeInsets.only(left: 20.0, top: 40.0),
                 child: ElevatedButton(
                   child: Text(AppLocalizations.of(context)!.submit),
                   onPressed: () {
@@ -219,7 +219,7 @@ class _MyCustomFormState extends State<ClinicForm>{
                       );
                       // If the form is valid, display a Snackbar.
                       Scaffold.of(context)
-                          .showSnackBar(SnackBar(content: Text('Case has been Added!')));
+                          .showSnackBar(SnackBar(content: Text(AppLocalizations.of(context)!.centerSuccess)));
                     }
                   },
                 )),

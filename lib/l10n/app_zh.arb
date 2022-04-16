@@ -137,5 +137,15 @@
 
      "dateDeathCases" : "死亡日期: ",
 
-     "newDeathCount" : "死亡人数:"
+     "newDeathCount" : "死亡人数:",
+
+     "adminHomePage" : "管理员主页",
+
+     "viewDeathCase" : "查看死亡案例",
+
+     "viewClinicList" : "查看诊所列表",
+
+     "adjustVolume" : "调整音量",
+
+     "adjustSpeed" : "调整速度"
 }

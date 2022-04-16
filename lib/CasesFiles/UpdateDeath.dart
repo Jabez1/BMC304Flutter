@@ -10,7 +10,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class UpdateDeath extends StatelessWidget {
   const UpdateDeath({Key? key}) : super(key: key);
 
-  static const String _title = 'Update Death Cases for a date';
+
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class UpdateDeath extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text(_title),
+          title: Text(AppLocalizations.of(context)!.updateDeathTitle),
           leading: GestureDetector(
             onTap: () { Navigator.pushNamed(context, '/viewDeath'); },
             child: Icon(
@@ -116,7 +116,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
             },
             validator: (value) {
               if (value!.isEmpty) {
-                return 'Please enter a date';
+                return AppLocalizations.of(context)!.dateValid;
               }
               return null;
             },
@@ -125,7 +125,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
             controller: countController,
             decoration: InputDecoration(
               icon: Icon(Icons.person),
-              hintText: 'Enter the number of deaths',
+              hintText: AppLocalizations.of(context)!.enterNumberDeath,
               labelText: AppLocalizations.of(context)!.deathCount,
             ),
             inputFormatters: <TextInputFormatter>[

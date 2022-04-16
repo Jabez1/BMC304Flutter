@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:just_audio/just_audio.dart';
 import 'common.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MusicPlayer extends StatefulWidget {
   @override
@@ -118,7 +119,7 @@ class ControlButtons extends StatelessWidget {
           onPressed: () {
             showSliderDialog(
               context: context,
-              title: "Adjust volume",
+              title: AppLocalizations.of(context)!.adjustVolume,
               divisions: 10,
               min: 0.0,
               max: 1.0,
@@ -177,7 +178,7 @@ class ControlButtons extends StatelessWidget {
             onPressed: () {
               showSliderDialog(
                 context: context,
-                title: "Adjust speed",
+                title: AppLocalizations.of(context)!.adjustSpeed,
                 divisions: 10,
                 min: 0.5,
                 max: 1.5,

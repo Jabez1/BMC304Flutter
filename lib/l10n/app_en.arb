@@ -42,10 +42,6 @@
 
     "enterPassword" : "Enter your password",
 
-    "username" : "username",
-
-    "password" : "password",
-
     "validUser" : "Please enter your username",
 
     "validPass" : "Please enter your password",
@@ -106,6 +102,8 @@
 
     "enterNumberCovid" : "Enter the number of Covid",
 
+    "enterNumberDeath" : "Enter the number of deaths",
+
     "date" : "Date",
 
     "dateNotSelect" : "Date not selected",
@@ -154,5 +152,16 @@
 
     "dateDeathCases" : "Date of Deaths: ",
 
-    "newDeathCount" : "Death Count:"
+    "newDeathCount" : "Death Count:",
+
+    "adminHomePage" : "Admin Home Page",
+
+    "viewDeathCase" : "View Death Cases",
+
+    "viewClinicList" : "View Clinic List",
+
+    "adjustVolume" : "Adjust Volume",
+
+    "adjustSpeed" : "Adjust Speed"
+
 }
