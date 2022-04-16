@@ -5,6 +5,10 @@
 
     "loginPage" : "Login Page",
 
+    "username" : "Username",
+
+    "password" : "Password",
+
     "insertCase" : "Insert a New Case",
 
     "manageCovidCases" : "Manage Covid Cases",
@@ -17,9 +21,9 @@
 
     "covidStats" : "Covid Statistics",
 
-    "findClinic" : "Find Nearest Clinic",
+    "findClinic" : "Find Clinic Nearby",
 
-    "submit" : "Submit",
+    "insert" : "Insert",
 
     "confirm" : "Confirm",
 
@@ -31,7 +35,7 @@
 
     "update" : "Update",
 
-    "AddNewCenterInfo" : "Add New Center Info",
+    "addNewCenterInfo" : "Add New Center Info",
 
     "centerSuccess" : "Vaccination Center Added Successfully . . .",
 
@@ -79,5 +83,13 @@
 
     "enterPhone" : "Enter phone here",
 
-    "requireValid" : "require a value here"
+    "requireValid" : "require a value here",
+
+    "newCovid" : "New Covid Cases",
+
+    "newDeaths" : "New Covid Deaths",
+
+    "date" : "Date",
+
+    "count" : "Count"
 }

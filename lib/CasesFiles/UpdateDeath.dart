@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import '../main.dart';
 import 'Case.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class UpdateDeath extends StatelessWidget {
   const UpdateDeath({Key? key}) : super(key: key);
@@ -121,10 +122,10 @@ class _MyCustomFormState extends State<MyCustomForm> {
           ),
           TextFormField(
             controller: countController,
-            decoration: const InputDecoration(
-              icon: const Icon(Icons.person),
+            decoration: InputDecoration(
+              icon: Icon(Icons.person),
               hintText: 'Enter the number of deaths',
-              labelText: 'Death Count',
+              labelText: AppLocalizations.of(context)!.count,
             ),
             inputFormatters: <TextInputFormatter>[
               FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),

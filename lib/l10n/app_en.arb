@@ -38,7 +38,7 @@
 
     "update" : "Update",
 
-    "AddNewCenterInfo" : "Add New Center Info",
+    "addNewCenterInfo" : "Add New Center Info",
 
     "centerSuccess" : "Vaccination Center Added Successfully . . .",
 

@@ -91,8 +91,8 @@ class _MyCustomFormState extends State<MyCustomForm> {
         children: <Widget>[
           TextFormField(
             controller: dateController,
-            decoration: const InputDecoration(
-              icon: const Icon(Icons.calendar_today),
+            decoration: InputDecoration(
+              icon: Icon(Icons.calendar_today),
               hintText: 'Enter the Date',
               labelText: AppLocalizations.of(context)!.date,
             ),
@@ -122,8 +122,8 @@ class _MyCustomFormState extends State<MyCustomForm> {
           ),
           TextFormField(
             controller: countController,
-            decoration: const InputDecoration(
-              icon: const Icon(Icons.person),
+            decoration: InputDecoration(
+              icon: Icon(Icons.person),
               hintText: 'Enter the number of deaths',
               labelText: AppLocalizations.of(context)!.count,
             ),
@@ -141,7 +141,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
           Container(
               padding: const EdgeInsets.only(left: 150.0, top: 40.0),
               child: ElevatedButton(
-                child: const Text('Update'),
+                child: Text(AppLocalizations.of(context)!.update),
                 onPressed: () {
                   // It returns true if the form is valid, otherwise returns false
                   if (_formKey.currentState!.validate()) {
