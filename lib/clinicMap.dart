@@ -56,9 +56,9 @@ class _MyAppState extends State<clinicMap> {
 
       for (final clinic in clinics) {
         final marker = Marker(
-          markerId: MarkerId(clinic.centerId),
-          position: LatLng(double.parse(clinic.vacLatitude),
-                            double.parse(clinic.vacLongitude)),
+          markerId: MarkerId(clinic.getId().toString()),
+          position: LatLng(double.parse(clinic.getLatitude()),
+                            double.parse(clinic.getLongitude())),
           infoWindow: InfoWindow(
             title:clinic.centerName,
             snippet: clinic.vacAddress,

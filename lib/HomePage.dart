@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:assignment_clinic_finder/covidVideoPage.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:assignment_clinic_finder/audioPage.dart';
+import 'package:assignment_clinic_finder/MusicPlayer.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
 
 
@@ -101,7 +101,7 @@ class ButtonPage extends StatelessWidget{
                             fontSize: 30,
                             fontWeight: FontWeight.bold)),),
                 ),
-                MyApp(),
+                MusicPlayer(),
               ],
             )
         )

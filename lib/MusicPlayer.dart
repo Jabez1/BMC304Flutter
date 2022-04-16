@@ -5,12 +5,12 @@ import 'package:just_audio/just_audio.dart';
 import 'common.dart';
 import 'package:rxdart/rxdart.dart';
 
-class MyApp extends StatefulWidget {
+class MusicPlayer extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
+class _MyAppState extends State<MusicPlayer> with WidgetsBindingObserver {
   final _player = AudioPlayer();
 
   @override

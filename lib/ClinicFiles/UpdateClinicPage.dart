@@ -1,5 +1,6 @@
 import 'package:assignment_clinic_finder/ClinicFiles/Clinic.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'Clinic.dart';
 import '../main.dart';
@@ -20,7 +21,7 @@ class UpdateClinic extends StatelessWidget{
           title: Text(AppLocalizations.of(context)!.updateCenter),
           leading: GestureDetector(
             onTap: (){
-              Navigator.pop(context);
+              Navigator.pushNamed(context, '/viewClinic');;
             },
             child: Icon(Icons.arrow_back
             ),
@@ -31,11 +32,12 @@ class UpdateClinic extends StatelessWidget{
   }
 }
 
-updateClinic(String cenName, String vacAdd, String vacLad,
+updateClinic(String cenId, String cenName, String vacAdd, String vacLad,
     String vacLong, String vacName, String amtLeft, String noPhone) async{
   final response = await http.post(
     Uri.parse('http://'+ urIp +'/BMC304php/clinicUpdate.php'),
     body:{
+      'centerId': cenId,
       'centerName':cenName,
       'vacAddress':vacAdd,
       'vacLatitude':vacLad,
@@ -99,121 +101,142 @@ class _MyClinicFormState extends State<MyClinicForm>{
   
   @override
   Widget build(BuildContext context){
-    return Form(
+    return  Form(
       key: _formKey,
-      child: Column(
-        children: <Widget>[
-          TextFormField(
-            controller: cenNameController,
-            decoration: InputDecoration(
-              hintText: AppLocalizations.of(context)!.enterCenter,
-              labelText: AppLocalizations.of(context)!.centerName,
+      child: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          children: <Widget>[
+            TextFormField(
+              controller: cenNameController,
+              decoration: InputDecoration(
+                hintText: AppLocalizations.of(context)!.enterCenter,
+                labelText: AppLocalizations.of(context)!.centerName,
+              ),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppLocalizations.of(context)!.requireValid;
+                }
+                return null;
+              },
             ),
-            validator: (value) {
-              if (value!.isEmpty) {
-                return AppLocalizations.of(context)!.requireValid;
-              }
-              return null;
-            },
-          ),
-          TextFormField(
-            controller: vacAddController,
-            decoration: InputDecoration(
-              hintText: AppLocalizations.of(context)!.enterAddress,
-              labelText: AppLocalizations.of(context)!.address,
+            TextFormField(
+              controller: vacAddController,
+              maxLines: 3,
+              decoration: InputDecoration(
+                hintText: AppLocalizations.of(context)!.enterAddress,
+                labelText: AppLocalizations.of(context)!.address,
+              ),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppLocalizations.of(context)!.requireValid;
+                }
+                return null;
+              },
             ),
-            validator: (value) {
-              if (value!.isEmpty) {
-                return AppLocalizations.of(context)!.requireValid;
-              }
-              return null;
-            },
-          ),
-          TextFormField(
-            controller: vacLadController,
-            decoration: InputDecoration(
-              hintText: AppLocalizations.of(context)!.enterLatitude,
-              labelText: AppLocalizations.of(context)!.latitude,
+            TextFormField(
+              controller: vacLadController,
+              decoration: InputDecoration(
+                hintText: AppLocalizations.of(context)!.enterLatitude,
+                labelText: AppLocalizations.of(context)!.latitude,
+              ),
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+              ],
+              keyboardType: TextInputType.number,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppLocalizations.of(context)!.requireValid;
+                }
+                return null;
+              },
             ),
-            validator: (value) {
-              if (value!.isEmpty) {
-                return AppLocalizations.of(context)!.requireValid;
-              }
-              return null;
-            },
-          ),
-          TextFormField(
-            controller: vacLongController,
-            decoration: InputDecoration(
-              hintText: AppLocalizations.of(context)!.enterLongitude,
-              labelText: AppLocalizations.of(context)!.longitude,
+            TextFormField(
+              controller: vacLongController,
+              decoration: InputDecoration(
+                hintText: AppLocalizations.of(context)!.enterLongitude,
+                labelText: AppLocalizations.of(context)!.longitude,
+              ),
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+              ],
+              keyboardType: TextInputType.number,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppLocalizations.of(context)!.requireValid;
+                }
+                return null;
+              },
             ),
-            validator: (value) {
-              if (value!.isEmpty) {
-                return AppLocalizations.of(context)!.requireValid;
-              }
-              return null;
-            },
-          ),
-          TextFormField(
-            controller: vacNameController,
-            decoration: InputDecoration(
-              hintText: AppLocalizations.of(context)!.enterVaccine,
-              labelText: AppLocalizations.of(context)!.vaccineName,
+            TextFormField(
+              controller: vacNameController,
+              decoration: InputDecoration(
+                hintText: AppLocalizations.of(context)!.enterVaccine,
+                labelText: AppLocalizations.of(context)!.vaccineName,
+              ),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppLocalizations.of(context)!.requireValid;
+                }
+                return null;
+              },
             ),
-            validator: (value) {
-              if (value!.isEmpty) {
-                return AppLocalizations.of(context)!.requireValid;
-              }
-              return null;
-            },
-          ),
-          TextFormField(
-            controller: amtLeftController,
-            decoration: InputDecoration(
-              hintText: AppLocalizations.of(context)!.enterAmount,
-              labelText: AppLocalizations.of(context)!.amountLeft,
+            TextFormField(
+              controller: amtLeftController,
+              decoration: InputDecoration(
+                hintText: AppLocalizations.of(context)!.enterAmount,
+                labelText: AppLocalizations.of(context)!.amountLeft,
+              ),
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+              ],
+              keyboardType: TextInputType.number,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppLocalizations.of(context)!.requireValid;
+                }
+                return null;
+              },
             ),
-            validator: (value) {
-              if (value!.isEmpty) {
-                return AppLocalizations.of(context)!.requireValid;
-              }
-              return null;
-            },
-          ),
-          TextFormField(
-            controller: noPhoneController,
-            decoration: InputDecoration(
-              hintText: AppLocalizations.of(context)!.enterPhone,
-              labelText: AppLocalizations.of(context)!.phone,
+            TextFormField(
+              controller: noPhoneController,
+              decoration: InputDecoration(
+                hintText: AppLocalizations.of(context)!.enterPhone,
+                labelText: AppLocalizations.of(context)!.phone,
+              ),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppLocalizations.of(context)!.requireValid;
+                }
+                return null;
+              },
             ),
-            validator: (value) {
-              if (value!.isEmpty) {
-                return AppLocalizations.of(context)!.requireValid;
-              }
-              return null;
-            },
-          ),
-          Container(
-            padding: const EdgeInsets.only(left: 5.0, top: 40.0),
-            child: ElevatedButton(
-              child: Text(AppLocalizations.of(context)!.update),
-              onPressed: (){
-                if(_formKey.currentState!.validate()){
-                  setState(() {
-                    updateClinic(cenNameController.text, vacAddController.text,
-                        vacLadController.text, vacLongController.text,
-                        vacNameController.text, amtLeftController.text,
-                        noPhoneController.text);
-                  });
-                  Scaffold.of(context)
-                    .showSnackBar(SnackBar(content:
-                  Text(AppLocalizations.of(context)!.centerUpSuccess)));
-                  }
-                },
-            )
-          ),
-        ],
+            Container(
+              padding: const EdgeInsets.only(left: 5.0, top: 40.0),
+              child: ElevatedButton(
+                child: Text(AppLocalizations.of(context)!.update),
+                onPressed: (){
+                  if(_formKey.currentState!.validate()){
+                    setState(() {
+                      updateClinic(
+                          widget.cInfo.getId(),
+                          cenNameController.text,
+                          vacAddController.text,
+                          vacLadController.text,
+                          vacLongController.text,
+                          vacNameController.text,
+                          amtLeftController.text,
+                          noPhoneController.text);
+                    });
+                    Scaffold.of(context)
+                      .showSnackBar(SnackBar(content:
+                    Text(AppLocalizations.of(context)!.centerUpSuccess)));
+                    }
+                  },
+              )
+            ),
+          ],
+        ),
       ),
     );
   }

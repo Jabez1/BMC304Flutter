@@ -1,13 +1,9 @@
-import 'dart:async';
+import 'package:flutter/services.dart';
 import '/../main.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'Clinic.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
-
-void main() => runApp(AddClinic());
 
 
 createClinic(String cenName, String vacAdd, String vacLad,
@@ -25,7 +21,12 @@ createClinic(String cenName, String vacAdd, String vacLad,
       'numPhone':noPhone
     }
   );
-
+  if (response.statusCode == 200){
+    print("Returned Message: "+response.body.toString());
+  }
+  else{
+    throw Exception('Unexpected Error Occurred!');
+  }
 }
 
 class AddClinic extends StatelessWidget {
@@ -38,7 +39,7 @@ class AddClinic extends StatelessWidget {
           title: Text(AppLocalizations.of(context)!.addNewCenterInfo),
           leading: GestureDetector(
             onTap: (){
-              Navigator.pop(context);
+              Navigator.pushNamed(context, '/viewClinic');
             },
             child: Icon(Icons.arrow_back
             ),
@@ -58,7 +59,6 @@ class ClinicForm extends StatefulWidget{
 
 class _MyCustomFormState extends State<ClinicForm>{
 
-  Future<Clinic>? _futureClinic;
   final _formKey = GlobalKey<FormState>();
   final cenNameController = TextEditingController();
   final vacAddController = TextEditingController();
@@ -82,9 +82,10 @@ class _MyCustomFormState extends State<ClinicForm>{
 
   @override
   Widget build(BuildContext context){
-    return Scaffold(
+    return Form(
       key: _formKey,
-      body: SingleChildScrollView(
+      child: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           children: <Widget>[
             TextFormField(
@@ -102,6 +103,7 @@ class _MyCustomFormState extends State<ClinicForm>{
             ),
             TextFormField(
               controller: vacAddController,
+              maxLines: 3,
               decoration: InputDecoration(
                 hintText: AppLocalizations.of(context)!.enterAddress,
                 labelText: AppLocalizations.of(context)!.address,
@@ -119,6 +121,10 @@ class _MyCustomFormState extends State<ClinicForm>{
                 hintText: AppLocalizations.of(context)!.enterLatitude,
                 labelText: AppLocalizations.of(context)!.latitude,
               ),
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+              ],
+              keyboardType: TextInputType.number,
               validator: (value) {
                 if (value!.isEmpty) {
                   return AppLocalizations.of(context)!.requireValid;
@@ -132,6 +138,10 @@ class _MyCustomFormState extends State<ClinicForm>{
                 hintText: AppLocalizations.of(context)!.enterLongitude,
                 labelText: AppLocalizations.of(context)!.longitude,
               ),
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+              ],
+              keyboardType: TextInputType.number,
               validator: (value) {
                 if (value!.isEmpty) {
                   return AppLocalizations.of(context)!.requireValid;
@@ -158,6 +168,10 @@ class _MyCustomFormState extends State<ClinicForm>{
                 hintText: AppLocalizations.of(context)!.enterAmount,
                 labelText: AppLocalizations.of(context)!.amountLeft,
               ),
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+              ],
+              keyboardType: TextInputType.number,
               validator: (value) {
                 if (value!.isEmpty) {
                   return AppLocalizations.of(context)!.requireValid;
@@ -178,30 +192,39 @@ class _MyCustomFormState extends State<ClinicForm>{
                 return null;
               },
             ),
+            Container(
+                padding: const EdgeInsets.only(left: 150.0, top: 40.0),
+                child: ElevatedButton(
+                  child: Text(AppLocalizations.of(context)!.submit),
+                  onPressed: () {
+                    // It returns true if the form is valid, otherwise returns false
+                    if (_formKey.currentState!.validate()) {
+                      setState(() {
+                        createClinic(
+                            cenNameController.text,
+                            vacAddController.text,
+                            vacLadController.text,
+                            vacLongController.text,
+                            vacNameController.text,
+                            amtLeftController.text,
+                            noPhoneController.text);
+                      });
+                      showDialog(
+                        context: context,
+                        builder: (context){
+                          return AlertDialog(
+                            content: Text(AppLocalizations.of(context)!.centerSuccess),
+                          );
+                        },
+                      );
+                      // If the form is valid, display a Snackbar.
+                      Scaffold.of(context)
+                          .showSnackBar(SnackBar(content: Text('Case has been Added!')));
+                    }
+                  },
+                )),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blueAccent,
-        child: const Icon(Icons.add),
-        onPressed:(){
-          if(_formKey.currentState!.validate()){
-            setState(() {
-              createClinic(cenNameController.text, vacAddController.text,
-                  vacLadController.text, vacLongController.text,
-                  vacNameController.text, amtLeftController.text,
-                  noPhoneController.text);
-            });
-            showDialog(
-              context: context,
-              builder: (context){
-                return AlertDialog(
-                  content: Text('AppLocalizations.of(context)!.centerSucsess'),
-                );
-              },
-            );
-          }
-        },
       ),
     );
   }

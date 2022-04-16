@@ -18,7 +18,7 @@ class UpdateCovid extends StatelessWidget {
         appBar: AppBar(
           title: Text(AppLocalizations.of(context)!.updateDeathTitle),
           leading: GestureDetector(
-            onTap: () { Navigator.pushNamed(context, '/ViewCovid'); },
+            onTap: () { Navigator.pushNamed(context, '/viewCovid'); },
             child: Icon(
               Icons.arrow_back, // add custom icons also
             ),

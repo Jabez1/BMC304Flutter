@@ -24,21 +24,6 @@ class ViewClinic extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-deleteClinic(String cenID) async {
-  final response = await http.post(
-    Uri.parse('http://' + urIp + '/BMC304/clinicDelete.php'),
-    body: {
-      'centerId':cenID
-    }
-  );
-
-  if (response.statusCode == 200) {
-    print("Returned message: "+ response.body.toString());
-  } else {
-    throw Exception('Unexpected error occured!');
-  }
-}
-
 class _MyAppState extends State<ViewClinic> {
   late Future <List<Clinic>> futureData;
 
@@ -86,14 +71,14 @@ class _MyAppState extends State<ViewClinic> {
                             onDismissed:(direction){
                                if(direction == DismissDirection.endToStart){
                                 setState(() {
+                                  print(item.getId());
                                   data?.removeAt(index);
                                   deleteClinic(item.getId());
                                 });
                                }
-
-                              ScaffoldMessenger.of(context)
+                              Scaffold.of(context)
                                   .showSnackBar(SnackBar(content:
-                              Text('$cenName' + AppLocalizations.of(context)!.dismiss)));
+                              Text('$cenName ' + AppLocalizations.of(context)!.dismiss)));
                             },
                           confirmDismiss: (DismissDirection direction) async {
                               return await showDialog(
@@ -177,6 +162,20 @@ class _MyAppState extends State<ViewClinic> {
   }
 }
 
+deleteClinic(String cenID) async {
+  final response = await http.post(
+      Uri.parse('http://' + urIp + '/BMC304php/clinicDelete.php'),
+      body: {
+        'centerId' : cenID
+      }
+  );
+  if (response.statusCode == 200) {
+    print("Returned message: "+ response.body.toString());
+  } else {
+    throw Exception('Unexpected error occured!');
+  }
+}
+
 class ClinicCard extends StatelessWidget{
   const ClinicCard({Key? key, required this.cenName, required this.vacAddress,
     required this.vacLad, required this.vacLong, required this.vacName,
@@ -192,7 +191,7 @@ class ClinicCard extends StatelessWidget{
   Widget build(BuildContext context){
     return Container(
       padding: EdgeInsets.all(5),
-      height: 200,
+      height: 220,
       width: 400,
       child: Card(
           child: InkWell(

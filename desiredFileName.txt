@@ -1,4 +1,8 @@
 {
+  "ms": [
+    "dateNotSelect"
+  ],
+
   "zh": [
     "enterUsername",
     "enterPassword",
