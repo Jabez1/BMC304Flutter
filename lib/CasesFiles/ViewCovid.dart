@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:http/http.dart' as http;
 import '../main.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -50,98 +51,109 @@ class _MyAppState extends State<ViewCovid> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 List<CovidCase>? cases = snapshot.data;
-
-                return
-                  ListView.builder(
+                return AnimationLimiter(
+                    child:
+                    ListView.builder(
                       itemCount: cases?.length,
                       itemBuilder: (BuildContext context, int index) {
                         final item = cases?[index];
                         print(item.toString());
-                        return Dismissible(
-                          key: Key(item!.getDeathDate()),
-                          onDismissed: (direction){
-                            if(direction == DismissDirection.startToEnd){
-                              setState((){
-                                cases?.removeAt(index);
-                                deleteDeathCase(item.getDeathDate());
-                              });
-                            }
-                          },
-                          confirmDismiss: (DismissDirection direction) async {
-                            return await showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                if(direction == DismissDirection.startToEnd){
-                                  return AlertDialog(
-                                    title: Text(AppLocalizations.of(context)!.confirmDelete),
-                                    content: Text(AppLocalizations.of(context)!.questionDeleteItem),
-                                    actions: <Widget>[
-                                      ElevatedButton(
-                                          onPressed: () => Navigator.of(context).pop(true),
-                                          child: Text(AppLocalizations.of(context)!.delete)
-                                      ),
-                                      ElevatedButton(
-                                        onPressed: () => Navigator.of(context).pop(false),
-                                        child: Text(AppLocalizations.of(context)!.cancel),
-                                      ),
-                                    ],
-                                  );
-                                }
-                                else{
-                                  return AlertDialog(
-                                    title: Text(AppLocalizations.of(context)!.confirmUpdate),
-                                    content: Text(AppLocalizations.of(context)!.questionUpItem),
-                                    actions: <Widget>[
-                                      ElevatedButton(
-                                          onPressed: () => {
-                                            Navigator.pushNamed(
-                                                context,
-                                                '/updateCovid',
-                                                arguments: cases?[index]
-                                            )
-                                          },
-                                          child: Text(AppLocalizations.of(context)!.edit)
-                                      ),
-                                      ElevatedButton(
-                                        onPressed: () => Navigator.of(context).pop(false),
-                                        child: Text(AppLocalizations.of(context)!.cancel),
-                                      ),
-                                    ],
-                                  );
-                                }
-                              },
-                            );
-                          },
-                          background:Container(
-                            padding: EdgeInsets.symmetric(horizontal: 30.0),
-                            color: Colors.red,
-                            alignment: Alignment.centerLeft,
-                            child: Icon(Icons.delete_forever),
-                          ),
-                          secondaryBackground: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 30.0),
-                            color: Colors.blue,
-                            alignment: Alignment.centerRight,
-                            child: Icon(Icons.edit),
-                          ),
-                          child: Center(
-                              child: DeathCaseCard(
-                                  date: cases![index].getDeathDate(),
-                                  count: cases[index].deathCount
-                              )
-                          ),
+                        return AnimationConfiguration.staggeredList(
+                          position: index,
+                          duration: const Duration(milliseconds: 375),
+                          child: SlideAnimation(
+                            verticalOffset: 50.0,
+                            child: FadeInAnimation(
+                              child: Dismissible(
+                            key: Key(item!.getDeathDate()),
+                            onDismissed: (direction){
+                              if(direction == DismissDirection.startToEnd){
+                                setState((){
+                                  cases?.removeAt(index);
+                                  deleteDeathCase(item.getDeathDate());
+                                });
+                              }
+                            },
+                            confirmDismiss: (DismissDirection direction) async {
+                              return await showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  if(direction == DismissDirection.startToEnd){
+                                    return AlertDialog(
+                                      title: Text(AppLocalizations.of(context)!.confirmDelete),
+                                      content: Text(AppLocalizations.of(context)!.questionDeleteItem),
+                                      actions: <Widget>[
+                                        ElevatedButton(
+                                            onPressed: () => Navigator.of(context).pop(true),
+                                            child: Text(AppLocalizations.of(context)!.delete)
+                                        ),
+                                        ElevatedButton(
+                                          onPressed: () => Navigator.of(context).pop(false),
+                                          child: Text(AppLocalizations.of(context)!.cancel),
+                                        ),
+                                      ],
+                                    );
+                                  }
+                                  else{
+                                    return AlertDialog(
+                                      title: Text(AppLocalizations.of(context)!.confirmUpdate),
+                                      content: Text(AppLocalizations.of(context)!.questionUpItem),
+                                      actions: <Widget>[
+                                        ElevatedButton(
+                                            onPressed: () => {
+                                              Navigator.pushNamed(
+                                                  context,
+                                                  '/updateCovid',
+                                                  arguments: cases?[index]
+                                              )
+                                            },
+                                            child: Text(AppLocalizations.of(context)!.edit)
+                                        ),
+                                        ElevatedButton(
+                                          onPressed: () => Navigator.of(context).pop(false),
+                                          child: Text(AppLocalizations.of(context)!.cancel),
+                                        ),
+                                      ],
+                                    );
+                                  }
+                                },
+                              );
+                            },
+                            background:Container(
+                              padding: EdgeInsets.symmetric(horizontal: 30.0),
+                              color: Colors.red,
+                              alignment: Alignment.centerLeft,
+                              child: Icon(Icons.delete_forever),
+                            ),
+                            secondaryBackground: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 30.0),
+                              color: Colors.blue,
+                              alignment: Alignment.centerRight,
+                              child: Icon(Icons.edit),
+                            ),
+                            child: Center(
+                                child: DeathCaseCard(
+                                    date: cases![index].getDeathDate(),
+                                    count: cases[index].deathCount
+                                )
+                            ),
 
-                        );
-                      }
-                  );
+                          ),
+                              ),
+                            ),
+                          );
+
+                        }
+                    )
+                );
               } else if (snapshot.hasError) {
-                return Text("${snapshot.error}");
-              }
-              // By default show a loading spinner.
-              return CircularProgressIndicator();
-            },
+                  return Text("${snapshot.error}");
+                }
+                // By default show a loading spinner.
+                return CircularProgressIndicator();
+              },
+            ),
           ),
-        ),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:http/http.dart' as http;
 import '../main.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -51,12 +52,19 @@ class _MyAppState extends State<ViewDeaths> {
               if (snapshot.hasData) {
                 List<DeathCase>? cases = snapshot.data;
 
-                return
-                  ListView.builder(
+                return AnimationLimiter(
+                    child:
+                    ListView.builder(
                       itemCount: cases?.length,
                       itemBuilder: (BuildContext context, int index) {
                         final item = cases?[index];
-                        return Dismissible(
+                        return AnimationConfiguration.staggeredList(
+                          position: index,
+                          duration: const Duration(milliseconds: 375),
+                          child: SlideAnimation(
+                            verticalOffset: 50.0,
+                            child: FadeInAnimation(
+                              child: Dismissible(
                           key: Key(item!.getDeathDate()),
                           onDismissed: (direction){
                             if(direction == DismissDirection.startToEnd){
@@ -130,9 +138,13 @@ class _MyAppState extends State<ViewDeaths> {
                               )
                           ),
 
+                        )
+                        ),
+                        ),
                         );
                       }
-                  );
+                  )
+                );
               } else if (snapshot.hasError) {
                 return Text("${snapshot.error}");
               }

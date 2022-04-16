@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import '/ClinicFiles/Clinic.dart';
@@ -114,8 +115,7 @@ class _MyAppState extends State<clinicMap> {
   Widget build(BuildContext context) {
     return  DefaultTabController(
       length: 2,
-      child: MaterialApp(
-        home: Scaffold(
+      child: Scaffold(
           appBar: AppBar(
             title: Text('Nearby Vaccination Center'),
             leading: GestureDetector(
@@ -164,29 +164,37 @@ class _MyAppState extends State<clinicMap> {
                         double.parse(a.distance as String).compareTo(
                             double.parse(b.distance as String)));
                     _getPolyline(data![0]);
-                    return
+                    return AnimationLimiter(
+                        child:
                       ListView.builder(
                         itemCount: data.length,
                         itemBuilder: (BuildContext context, int index) {
-                          return Center(
-                            child: ClinicMapCard(cenName: data[index].centerName,
-                                vacAddress: data[index].vacAddress,
-                                vacName: data[index].vaccineName,
-                                amountLeft: data[index].amountLeft,
-                                numPhone: data[index].numPhone,
-                                distance: data[index].distance as String
+                          return AnimationConfiguration.staggeredList(
+                            position: index,
+                            duration: const Duration(milliseconds: 375),
+                            child: SlideAnimation(
+                              verticalOffset: 50.0,
+                              child: FadeInAnimation(
+                                child: ClinicMapCard(
+                                    cenName: data[index].centerName,
+                                    vacAddress: data[index].vacAddress,
+                                    vacName: data[index].vaccineName,
+                                    amountLeft: data[index].amountLeft,
+                                    numPhone: data[index].numPhone,
+                                    distance: data[index].distance as String
+                                  ),
+                              ),
                             ),
                           );
                         },
-                      );
-                  }
+                      )
+                    );}
                   return CircularProgressIndicator();
               }
             ),
            ],
          ),
         ),
-      ),
     );
   }
 }
@@ -204,13 +212,11 @@ class ClinicMapCard extends StatelessWidget{
   Widget build(BuildContext context){
     return Container(
       padding: EdgeInsets.all(2),
-      height: 150,
+      height: 180,
       width: 400,
       child: Card(
         child: InkWell(
-          onTap: (){
-
-          },
+          onTap: (){},
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
