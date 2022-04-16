@@ -7,6 +7,7 @@ import 'main.dart';
 import 'dart:math' show cos, sqrt, asin;
 import 'dart:convert';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(clinicMap());
@@ -116,88 +117,84 @@ class _MyAppState extends State<clinicMap> {
     return  DefaultTabController(
       length: 2,
       child: Scaffold(
-          appBar: AppBar(
-            title: Text('Nearby Vaccination Center'),
-            leading: GestureDetector(
-              onTap: (){
-                Navigator.pop(context);
-              },
-              child: Icon(Icons.arrow_back
-              ),
-             ),
-            backgroundColor: Colors.lightBlue[700],
-            bottom: TabBar(
-                tabs:[
-                  Tab(icon: Icon(Icons.map)),
-                  Tab(icon: Icon(Icons.list)),
-                ]
-            )
-          ),
-          body: FutureBuilder <List<Clinic>>(
-            future: futureClinics,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                List<Clinic>? data = snapshot.data;
-                //for each clinic, set the distance attribute using the calculateDistance method
-                data?.forEach((element) {
-                  element.setDistance(calculateDistance(
-                      startLocation.latitude, startLocation.longitude,
-                      double.parse(element.vacLatitude),
-                      double.parse(element.vacLongitude)
-                  ).toStringAsFixed(2)//rounds the result to 2 d.p and converts to String
-                  );});
-                //Sort the list based on distance
-                data?.sort((a,b) =>
-                    double.parse(a.distance as String).compareTo(
-                        double.parse(b.distance as String)));
-                _getPolyline(data![0]);
-                return TabBarView(
-                  //Disables the TabBar Swiping to not affect Map swiping
-                  physics: NeverScrollableScrollPhysics(),
-                  children : <Widget>[
-                  GoogleMap(
-                  onMapCreated: _onMapCreated,
-                  initialCameraPosition: CameraPosition(
-                    target: startLocation,
-                    zoom: 15,
-                  ),
-                  markers: _markers.values.toSet(),
-                  polylines: Set<Polyline>.of(polylines.values),
-                ),
-              AnimationLimiter(
-                    child: ListView.builder(
-                    itemCount: data.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return AnimationConfiguration.staggeredList(
-                        position: index,
-                        duration: const Duration(milliseconds: 375),
-                        child: SlideAnimation(
-                          verticalOffset: 50.0,
-                          child: FadeInAnimation(
-                            child: ClinicMapCard(
-                                cenName: data[index].centerName,
-                                vacAddress: data[index].vacAddress,
-                                vacName: data[index].vaccineName,
-                                amountLeft: data[index].amountLeft,
-                                numPhone: data[index].numPhone,
-                                distance: data[index].distance as String
-                              ),
-                          ),
-                        ),
-                      );
-                    },
-                  )
-              ),
-                  ]
-                );
-              }
-
-                  return CircularProgressIndicator();
-              }
+        appBar: AppBar(
+          title: Text(AppLocalizations.of(context)!.findClinic),
+          leading: GestureDetector(
+            onTap: (){
+              Navigator.pop(context);
+            },
+            child: Icon(Icons.arrow_back
             ),
-
+           ),
+          backgroundColor: Colors.lightBlue[700],
+          bottom: TabBar(
+              tabs:[
+                Tab(icon: Icon(Icons.map)),
+                Tab(icon: Icon(Icons.list)),
+              ]
+          )
+        ),
+        body: FutureBuilder <List<Clinic>>(
+          future: futureClinics,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              List<Clinic>? data = snapshot.data;
+              //for each clinic, set the distance attribute using the calculateDistance method
+              data?.forEach((element) {
+                element.setDistance(calculateDistance(
+                    startLocation.latitude, startLocation.longitude,
+                    double.parse(element.vacLatitude),
+                    double.parse(element.vacLongitude)
+                ).toStringAsFixed(2)//rounds the result to 2 d.p and converts to String
+                );});
+              //Sort the list based on distance
+              data?.sort((a,b) =>
+              double.parse(a.distance as String).compareTo(double.parse(b.distance as String)));
+              _getPolyline(data![0]);
+              return TabBarView(
+                //Disables the TabBar Swiping to not affect Map swiping
+                physics: NeverScrollableScrollPhysics(),
+                children : <Widget>[
+                  GoogleMap(
+                    onMapCreated: _onMapCreated,
+                    initialCameraPosition: CameraPosition(
+                      target: startLocation,
+                      zoom: 15,
+                   ),
+                    markers: _markers.values.toSet(),
+                    polylines: Set<Polyline>.of(polylines.values),
+                  ),
+                  AnimationLimiter(
+                        child: ListView.builder(
+                        itemCount: data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return AnimationConfiguration.staggeredList(
+                            position: index,
+                            duration: const Duration(milliseconds: 375),
+                            child: SlideAnimation(
+                              verticalOffset: 50.0,
+                              child: FadeInAnimation(
+                                child: ClinicMapCard(
+                                    cenName: data[index].centerName,
+                                    vacAddress: data[index].vacAddress,
+                                    vacName: data[index].vaccineName,
+                                    amountLeft: data[index].amountLeft,
+                                    numPhone: data[index].numPhone,
+                                    distance: data[index].distance as String
+                                  ),
+                              ),
+                            ),
+                          );
+                        },
+                      )
+                  ),
+                ]
+              );
+            }
+                return CircularProgressIndicator();
+            }
+        ),
       ),
-
     );
   }
 }
@@ -232,11 +229,11 @@ class ClinicMapCard extends StatelessWidget{
                   fontWeight: FontWeight.bold
                   )
                 ),
-              Text("Address: "+this.vacAddress, textAlign: TextAlign.center),
-              Text("Vaccine Name: "+this.vacName,textAlign: TextAlign.left),
-              Text("Amount Left: "+this.amountLeft,textAlign: TextAlign.left),
-              Text("Phone: "+this.numPhone,textAlign: TextAlign.left),
-              Text("Distance: "+this.distance +"km away",textAlign: TextAlign.left),
+              Text(AppLocalizations.of(context)!.address+": "+this.vacAddress, textAlign: TextAlign.center),
+              Text(AppLocalizations.of(context)!.vaccineName+": "+this.vacName,textAlign: TextAlign.left),
+              Text(AppLocalizations.of(context)!.amountLeft+": "+this.amountLeft,textAlign: TextAlign.left),
+              Text(AppLocalizations.of(context)!.phone+": " +this.numPhone,textAlign: TextAlign.left),
+              Text(AppLocalizations.of(context)!.distance+": " +this.distance +"km",textAlign: TextAlign.left),
             ],
           ),
         )
@@ -244,4 +241,3 @@ class ClinicMapCard extends StatelessWidget{
     );
   }
 }
-

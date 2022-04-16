@@ -159,5 +159,7 @@
 
      "adjustVolume" : "调整音量",
 
-     "adjustSpeed" : "调整速度"
+     "adjustSpeed" : "调整速度",
+
+     "distance" : "距离"
 }

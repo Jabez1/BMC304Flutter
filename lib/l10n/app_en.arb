@@ -162,6 +162,8 @@
 
     "adjustVolume" : "Adjust Volume",
 
-    "adjustSpeed" : "Adjust Speed"
+    "adjustSpeed" : "Adjust Speed",
+
+    "distance" : "Distance away"
 
 }
