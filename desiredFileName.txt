@@ -1,19 +1,9 @@
 {
   "ms": [
-    "username",
-    "password",
-    "insert",
-    "newCovid",
-    "newDeaths",
-    "date",
-    "count"
+    "addNewCenterInfo"
   ],
 
   "zh": [
-    "insert",
-    "newCovid",
-    "newDeaths",
-    "date",
-    "count"
+    "addNewCenterInfo"
   ]
 }

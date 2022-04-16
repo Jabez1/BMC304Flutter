@@ -119,7 +119,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
           ),
           TextFormField(
             controller: countController,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               icon: const Icon(Icons.person),
               hintText: AppLocalizations.of(context)!.enterNumberCovid,
               labelText: AppLocalizations.of(context)!.covidCount,

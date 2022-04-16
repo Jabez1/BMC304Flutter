@@ -6,6 +6,7 @@ import 'ViewDeaths.dart';
 import 'ViewCovid.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:assignment_clinic_finder/CasesFiles/Case.dart';
 
 class CasesCharts extends StatelessWidget {
   Future<List<CovidCase>> futureCovidCases = fetchCovid();
