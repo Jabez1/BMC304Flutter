@@ -73,10 +73,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: SafeArea(
+    return SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -100,8 +97,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               ),
             ],
           ),
-        ),
-      ),
     );
   }
 }

@@ -19,14 +19,13 @@ class _MyHomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         appBar: AppBar(
           title: Text(AppLocalizations.of(context)!.appName),
           bottom: const TabBar(
             tabs: [
               Tab(icon: Icon(Icons.view_list_rounded)),
-              Tab(icon: Icon(Icons.music_note_outlined)),
               Tab(icon: Icon(Icons.smart_display)),
             ],
           ),
@@ -48,7 +47,6 @@ class _MyHomePageState extends State<HomePage> {
         ),
         body: TabBarView(children: <Widget>[
           ButtonPage(),
-          MyApp(),
           VideoPlayerApp(),
         ],
         ),
@@ -103,10 +101,7 @@ class ButtonPage extends StatelessWidget{
                             fontSize: 30,
                             fontWeight: FontWeight.bold)),),
                 ),
-
-
-
-
+                MyApp(),
               ],
             )
         )
