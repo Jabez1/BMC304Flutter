@@ -5,6 +5,10 @@
 
      "loginPage" : "登录页面",
 
+     "username" : "用户名",
+
+     "password" : "密码",
+
      "insertCase" : "Insert a New Case",
 
      "manageCovidCases" : "Manage Covid Cases",
