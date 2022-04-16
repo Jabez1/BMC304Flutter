@@ -27,5 +27,57 @@
 
      "edit" : "Edit",
 
-     "delete" : "Delete"
+     "delete" : "Delete",
+
+     "update" : "Update",
+
+     "AddNewCenterInfo" : "Add New Center Info",
+
+     "centerSuccess" : "Vaccination Center Added Successfully . . .",
+
+     "updateCenter" : "Update Center Info",
+
+     "centerUpSuccess" : "Vaccination Center Updated !",
+
+     "viewCenter" : "Vaccination Center List",
+
+     "dismiss" : "had been dismissed",
+
+     "confirmDelete" : "Delete Confirmation",
+
+     "questionDeleteCenter" : "Are you sure you wish to delete this center info ?",
+
+     "confirmUpdate" : "Update Confirmation",
+
+     "questionUpCenter" : "Are you sure you wish to update this center info ?",
+
+     "centerName" : "Center Name",
+
+     "address" : "Address",
+
+     "latitude" : "Latitude",
+
+     "longitude" : "Longitude",
+
+     "vaccineName" : "Vaccine Name",
+
+     "amountLeft" : "Amount Left",
+
+     "phone" : "Phone",
+
+     "enterCenter" : "Enter center name here",
+
+     "enterAddress" : "Enter address here",
+
+     "enterLatitude" : "Enter latitude here",
+
+     "enterLongitude" : "Enter longitude here",
+
+     "enterVaccine" : "Enter vaccine name here",
+
+     "enterAmount" : "Enter amount left here",
+
+     "enterPhone" : "Enter phone here",
+
+     "requireValid" : "require a value here"
 }
