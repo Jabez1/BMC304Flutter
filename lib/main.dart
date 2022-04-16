@@ -1,6 +1,5 @@
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'ClinicFiles/AddClinicPage.dart';
 import 'ClinicFiles/UpdateClinicPage.dart';
 import 'ClinicFiles/ViewClinic.dart';
@@ -19,7 +18,7 @@ import 'clinicMap.dart';
 import 'SplashScreen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-final String urIp = "192.168.1.105:8080"; //Change ur IP here for easy php
+final String urIp = "192.168.42.217"; //Change ur IP here for easy php
 
 void main() {
   runApp(MyApp());
@@ -33,7 +32,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Routing Page',
       localizationsDelegates: [
-        AppLocalizations.delegate, // Add this line
+        AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
@@ -66,40 +65,6 @@ class MyApp extends StatelessWidget {
         '/adminHomePage': (context) => adminHomePage(),
 
       },
-    );
-  }
-}
-
-class Case{
-  final DateTime deathDate;
-  final int deathCount;
-
-  Case({required this.deathDate, required this.deathCount});
-
-  String getDeathDate(){
-    return DateFormat('yyyy-MM-dd').format(this.deathDate);
-  }
-}
-class DeathCase extends Case {
-  DeathCase({ required DateTime deathDate, required int deathCount})
-      : super(deathDate:deathDate, deathCount: deathCount);
-
-  factory DeathCase.fromJson(Map<String, dynamic> json) {
-    return DeathCase(
-      deathDate: DateTime.parse(json['deathDate']),
-      deathCount: int.parse(json['deathCount']),
-    );
-  }
-}
-
-class CovidCase extends Case {
-  CovidCase({ required DateTime deathDate, required int deathCount})
-      : super(deathDate: deathDate, deathCount: deathCount);
-
-  factory CovidCase.fromJson(Map<String, dynamic> json) {
-    return CovidCase(
-      deathDate: DateTime.parse(json['covidDate']),
-      deathCount: int.parse(json['covidCount']),
     );
   }
 }

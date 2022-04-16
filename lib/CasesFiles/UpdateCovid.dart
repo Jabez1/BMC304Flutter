@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import '../main.dart';
+import 'Case.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class UpdateCovid extends StatelessWidget {
   const UpdateCovid({Key? key}) : super(key: key);
@@ -12,7 +14,7 @@ class UpdateCovid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final dCaseArg = ModalRoute.of(context)!.settings.arguments as DeathCase;
+    final cCaseArg = ModalRoute.of(context)!.settings.arguments as CovidCase;
 
     return Scaffold(
         appBar: AppBar(
@@ -24,7 +26,7 @@ class UpdateCovid extends StatelessWidget {
             ),
           ),
         ),
-        body: MyCustomForm(dCase: dCaseArg),
+        body: MyCustomForm(cCase: cCaseArg),
     );
   }
 }
@@ -47,10 +49,10 @@ updateCovidCase(String date, String count) async{
 
 class MyCustomForm extends StatefulWidget {
 
-  //Pass the DeathCase object to the form
-  final DeathCase dCase;
+  //Pass the CovidCase object to the form
+  final CovidCase cCase;
 
-  const MyCustomForm({Key? key, required this.dCase}) : super(key: key);
+  const MyCustomForm({Key? key, required this.cCase}) : super(key: key);
 
   @override
   _MyCustomFormState createState() => _MyCustomFormState();
@@ -68,8 +70,8 @@ class _MyCustomFormState extends State<MyCustomForm> {
   @override
   void initState() {
     super.initState();
-    dateController.text = widget.dCase.getDeathDate();
-    countController.text = widget.dCase.deathCount.toString();
+    dateController.text = widget.cCase.getDeathDate();
+    countController.text = widget.cCase.deathCount.toString();
   }
 
   @override
@@ -92,7 +94,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
             decoration: const InputDecoration(
               icon: const Icon(Icons.calendar_today),
               hintText: 'Enter the Date',
-              labelText: 'Date',
+              labelText: AppLocalizations.of(context)!.date,
             ),
             readOnly: true,
             onTap: () async {
@@ -123,7 +125,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
             decoration: const InputDecoration(
               icon: const Icon(Icons.person),
               hintText: 'Enter the number of deaths',
-              labelText: 'Death Count',
+              labelText: AppLocalizations.of(context)!.count,
             ),
             inputFormatters: <TextInputFormatter>[
               FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),

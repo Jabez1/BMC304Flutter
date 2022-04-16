@@ -5,8 +5,6 @@ import 'package:just_audio/just_audio.dart';
 import 'common.dart';
 import 'package:rxdart/rxdart.dart';
 
-void main() => runApp(MyApp());
-
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();

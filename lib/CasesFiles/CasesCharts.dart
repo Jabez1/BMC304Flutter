@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:intl/intl.dart';
-import '../main.dart';
+import 'Case.dart';
 import 'ViewDeaths.dart';
 import 'ViewCovid.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CasesCharts extends StatelessWidget {
   Future<List<CovidCase>> futureCovidCases = fetchCovid();
@@ -145,11 +146,11 @@ class CasesCharts extends StatelessWidget {
       child: Scaffold(
           appBar: AppBar(
               backgroundColor: Colors.blue,
-              title: Text("Statistics"),
+              title: Text(AppLocalizations.of(context)!.covidStats),
               bottom: TabBar(
                   tabs:[
-                    Tab(icon: Icon(Icons.bar_chart), text: "New Covid Cases"),
-                    Tab(icon: Icon(Icons.insert_chart), text:"New Covid Deaths"),
+                    Tab(icon: Icon(Icons.bar_chart), text: AppLocalizations.of(context)!.newCovid),
+                    Tab(icon: Icon(Icons.insert_chart), text: AppLocalizations.of(context)!.newDeaths),
                   ]
               )
           ),

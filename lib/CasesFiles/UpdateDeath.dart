@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import '../main.dart';
+import 'Case.dart';
 
 class UpdateDeath extends StatelessWidget {
   const UpdateDeath({Key? key}) : super(key: key);

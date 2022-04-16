@@ -54,6 +54,7 @@ class _MyAppState extends State<ViewClinic> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Vaccination Center List',
       home: Scaffold(
         appBar: AppBar(
           title: Text(AppLocalizations.of(context)!.viewCenter),
@@ -213,9 +214,11 @@ class ClinicCard extends StatelessWidget{
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             Text(
-                AppLocalizations.of(context)!.centerName +this.cenName, style: TextStyle(
+                AppLocalizations.of(context)!.centerName +this.cenName,
+                textAlign: TextAlign.center,
+                style: TextStyle(
               fontWeight: FontWeight.bold
-            )
+             )
             ),
             Text(AppLocalizations.of(context)!.address+":"+this.vacAddress, textAlign: TextAlign.left),
             Text(AppLocalizations.of(context)!.latitude+":" +this.vacLad,textAlign: TextAlign.left),

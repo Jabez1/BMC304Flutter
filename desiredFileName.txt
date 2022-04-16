@@ -1,1 +1,19 @@
-{}
+{
+  "ms": [
+    "username",
+    "password",
+    "insert",
+    "newCovid",
+    "newDeaths",
+    "date",
+    "count"
+  ],
+
+  "zh": [
+    "insert",
+    "newCovid",
+    "newDeaths",
+    "date",
+    "count"
+  ]
+}

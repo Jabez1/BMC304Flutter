@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../main.dart';
+import 'Case.dart';
 
 class ViewDeaths extends StatefulWidget {
   ViewDeaths({Key? key}) : super(key: key);
@@ -26,7 +27,7 @@ class _MyAppState extends State<ViewDeaths> {
         appBar: AppBar(
           title: Text('List of Death Cases'),
           leading: GestureDetector(
-            onTap: () { Navigator.pushNamed(context, '/'); },
+            onTap: () { Navigator.pop(context); },
             child: Icon(
               Icons.arrow_back, // add custom icons also
             ),

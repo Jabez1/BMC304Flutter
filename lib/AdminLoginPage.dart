@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AdminLoginPage extends StatelessWidget {
-  const AdminLoginPage({Key? key}) : super(key: key);
-
-  static const String _title = 'Login as an Admin';
+  AdminLoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text(_title),
+          title: Text(AppLocalizations.of(context)!.loginPage),
           leading: GestureDetector(
             onTap: () {Navigator.pop(context);},
             child: Icon(
@@ -57,7 +56,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
             decoration: const InputDecoration(
                 icon: const Icon(Icons.person),
               hintText: 'Enter your username',
-              labelText: 'Username',
+              labelText: AppLocalizations.of(context)!.username,
             ),
             validator: (value) {
               if (value!.isEmpty) {
@@ -68,10 +67,11 @@ class _MyCustomFormState extends State<MyCustomForm> {
           ),
           TextFormField(
             controller: pwController,
+            obscureText: true,
             decoration: const InputDecoration(
               icon: const Icon(Icons.vpn_key_sharp),
               hintText: 'Enter your Password',
-              labelText: 'Password',
+              labelText: AppLocalizations.of(context)!.password,
             ),
             validator: (value) {
               if (value!.isEmpty) {
